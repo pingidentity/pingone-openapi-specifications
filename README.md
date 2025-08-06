@@ -10,7 +10,7 @@ This repository contains the official OpenAPI specifications for the PingOne Pla
 You can use these specifications to:
 
   * **Generate Client SDKs:** Use open source tools like [OpenAPI Generator](https://openapi-generator.tech/) to create typed client libraries for your application's programming language where we don't provide an existing SDK.
-    * Available SDKs that have been built from this specification can be found at [Configuration and User Management SDKs](https://developer.pingidentity.com/config-user-management-sdks.html) and on [Ping Identity's GitHub](https://github.com/search?q=topic%3Asdk+topic%3Amanagement-api+org%3Apingidentity+fork%3Atrue&type=repositories)
+    * Available SDKs that have been built from this specification can be found at [Configuration and User Management SDKs](https://developer.pingidentity.com/config-user-management-sdks.html) and on [Ping Identity's GitHub](https://github.com/search?q=topic%3Asdk+topic%3Amanagement-api+topic%3Apingone+org%3Apingidentity+fork%3Atrue&type=repositories)
   * **Configure API Tools:** Import the specs into tools like Postman or Insomnia to create ready-to-use collections for exploring and testing the APIs.
     * Ping Identity provide comprehensive Postman collections, see the [PingOne API Reference](https://apidocs.pingidentity.com/pingone/platform/v1/api/#the-pingone-postman-collections) for more information.
   * **Create Mock Servers:** Generate a mock API server for local development and testing, allowing you to build against the PingOne API without a live connection.
