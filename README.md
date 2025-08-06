@@ -2,7 +2,8 @@
 
 This repository contains the official OpenAPI specifications for the PingOne Platform. These specifications are automatically generated from our platform's source code to ensure they remain current. You can use them to build integrations, generate client SDKs, and explore PingOne API capabilities.
 
-**Important:** This is a project in active development, and the specifications are built out incrementally.
+> [!IMPORTANT]  
+> This is a project in active development, and the specifications are built out incrementally. If there is an endpoint that you need, please see the [Feedback and Issues](#feedback-and-issues) section.
 
 ## Possible Uses
 
