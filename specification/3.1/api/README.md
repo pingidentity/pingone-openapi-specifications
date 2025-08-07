@@ -1,6 +1,6 @@
-# PingOne API Specifications
+# PingOne API Specifications - `api` subdomain
 
-This directory contains OpenAPI 3.1 specification files organized in different formats.
+This directory contains OpenAPI 3.1 specification files organized in different formats for the `api` subdomain.
 
 ## Structure
 
