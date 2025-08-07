@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform API
-  version: 2025.08.06-beta
+  version: 2025.08.07-development
   description: PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.
   contact:
     name: Ping Identity Developer Experiences
@@ -34,6 +34,8 @@ tags:
     description: Operations for managing DaVinci connectors and connector instances
   - name: DaVinci Variables
     description: Operations for managing DaVinci variables
+  - name: Directory Total Identities
+    description: Operations for retrieving PingOne directory total identity reports
   - name: Environments
     description: Operations for managing PingOne environments
 paths:
@@ -1163,6 +1165,44 @@ paths:
       x-pingidentity-operation-action: rotate
       tags:
         - DaVinci Applications
+  /environments/{environmentID}/totalIdentities:
+    get:
+      operationId: getTotalIdentities
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - name: filter
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.directory.totalidentitiesdashboard.data.TotalIdentitiesCountDTOCollectionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.directory.totalidentitiesdashboard.data.TotalIdentitiesCountDTOCollectionResponse'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden.P14C63085.DOCS8830'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-permission: orgmgt:read:environment
+      tags:
+        - Directory Total Identities
   /environments/{environmentID}/variables:
     get:
       operationId: getVariables
@@ -3327,6 +3367,49 @@ components:
         - size
         - count
       title: DaVinci Variable Collection Response
+    com.pingidentity.pingone.directory.totalidentitiesdashboard.data.TotalIdentitiesCountDTO:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+          title: Directory Total Identities Count Response Date
+        totalIdentities:
+          type: integer
+          format: int32
+          title: Directory Total Identities Count Response Total Identities
+      title: Directory Total Identities Count Response
+    com.pingidentity.pingone.directory.totalidentitiesdashboard.data.TotalIdentitiesCountDTOCollectionResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            totalIdentities:
+              type: array
+              items:
+                allOf:
+                  - $ref: '#/components/schemas/com.pingidentity.pingone.directory.totalidentitiesdashboard.data.TotalIdentitiesCountDTO'
+                title: Directory Total Identities Count Collection Response _embedded Total Identity
+              title: Directory Total Identities Count Collection Response _embedded Total Identities
+          title: Directory Total Identities Count Collection Response _embedded
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+          additionalProperties:
+            $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+          title: Directory Total Identities Count Collection Response _links
+        count:
+          type: integer
+          format: int32
+          title: Directory Total Identities Count Collection Response Count
+        size:
+          type: integer
+          format: int32
+          title: Directory Total Identities Count Collection Response Size
+      title: Directory Total Identities Count Collection Response
     com.pingidentity.pingone.orgmgt.environments.bom.api.model.BillOfMaterials:
       type: object
       properties:

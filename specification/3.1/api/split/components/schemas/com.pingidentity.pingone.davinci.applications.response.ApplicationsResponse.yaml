@@ -1,0 +1,32 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Application Collection Response _links
+  _embedded:
+    type: object
+    properties:
+      davinciApplications:
+        type: array
+        items:
+          type: object
+          $ref: >-
+            ./com.pingidentity.pingone.davinci.applications.response.ApplicationResponse.yaml
+        title: DaVinci Application Collection Response _embedded Davinci Applications
+    required:
+      - davinciApplications
+    title: DaVinci Application Collection Response _embedded
+required:
+  - _links
+  - _embedded
+title: DaVinci Application Collection Response

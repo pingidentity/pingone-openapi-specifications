@@ -1,0 +1,124 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flowPolicies:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      davinciApplication.rotateKey:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      davinciApplication.rotateSecret:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - self
+      - environment
+      - flowPolicies
+      - davinciApplication.rotateKey
+      - davinciApplication.rotateSecret
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Application Response _links
+  apiKey:
+    type: object
+    properties:
+      enabled:
+        type: boolean
+        default: true
+        title: DaVinci Application Response Api Key Enabled
+      value:
+        type: string
+        format: password
+        minLength: 1
+        title: DaVinci Application Response Api Key Value
+    required:
+      - enabled
+      - value
+    title: DaVinci Application Response Api Key
+  environment:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  id:
+    type: string
+    minLength: 1
+    title: DaVinci Application Response Id
+  name:
+    type: string
+    minLength: 1
+    title: DaVinci Application Response Name
+  oauth:
+    type: object
+    properties:
+      clientSecret:
+        type: string
+        format: password
+        minLength: 1
+        title: DaVinci Application Response OAuth Client Secret
+      enforceSignedRequestOpenid:
+        type: boolean
+        title: DaVinci Application Response OAuth Enforce Signed Request Openid
+      grantTypes:
+        type: array
+        items:
+          enum:
+            - authorizationCode
+            - clientCredentials
+            - implicit
+          type: string
+          title: DaVinci Application Response OAuth Grant Type
+        default:
+          - authorizationCode
+        title: DaVinci Application Response OAuth Grant Types
+      logoutUris:
+        type: array
+        items:
+          type: string
+          title: DaVinci Application Response OAuth Logout Uri
+        title: DaVinci Application Response OAuth Logout Uris
+      redirectUris:
+        type: array
+        items:
+          type: string
+          title: DaVinci Application Response OAuth Redirect Uri
+        title: DaVinci Application Response OAuth Redirect Uris
+      scopes:
+        type: array
+        items:
+          enum:
+            - flow_analytics
+            - offline_access
+            - openid
+            - profile
+          type: string
+          title: DaVinci Application Response OAuth Scope
+        default:
+          - openid
+          - profile
+        title: DaVinci Application Response OAuth Scopes
+      spJwksOpenid:
+        type: string
+        title: DaVinci Application Response OAuth Sp Jwks Openid
+      spjwksUrl:
+        type: string
+        title: DaVinci Application Response OAuth Spjwks Url
+    required:
+      - clientSecret
+    title: DaVinci Application Response OAuth
+  createdAt:
+    type: string
+    format: date-time
+    title: DaVinci Application Response Created At
+  updatedAt:
+    type: string
+    format: date-time
+    title: DaVinci Application Response Updated At
+required:
+  - _links
+  - apiKey
+  - environment
+  - id
+  - name
+  - oauth
+title: DaVinci Application Response

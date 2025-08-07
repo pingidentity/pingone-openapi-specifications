@@ -1,0 +1,10 @@
+type: object
+properties:
+  href:
+    maxLength: 1024
+    minLength: 1
+    type: string
+    title: Environment Bill of Materials Product Console Href
+required:
+  - href
+title: Environment Bill of Materials Product Console

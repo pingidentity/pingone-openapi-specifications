@@ -1,0 +1,5 @@
+description: Internal Server Error
+content:
+  '*/*':
+    schema:
+      $ref: ../schemas/com.pingidentity.ApiErrorResponse.500.yaml

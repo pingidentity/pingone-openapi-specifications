@@ -1,0 +1,48 @@
+$schema: http://json-schema.org/draft/2020-12/schema#
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    minLength: 1
+    title: Unsupported Media Type Error Id
+  code:
+    type: string
+    enum:
+      - INVALID_REQUEST
+    minLength: 1
+    title: Unsupported Media Type Error Code
+  message:
+    type: string
+    minLength: 1
+    title: Unsupported Media Type Error Message
+  details:
+    type: array
+    items:
+      type: object
+      properties:
+        code:
+          type: string
+          minLength: 1
+          title: Unsupported Media Type Error Detail Code
+        message:
+          type: string
+          minLength: 1
+          title: Unsupported Media Type Error Detail Message
+        innerError:
+          type: object
+          additionalProperties: true
+          title: Unsupported Media Type Error Detail Inner Error
+        target:
+          type: string
+          title: Unsupported Media Type Error Detail Target
+      required:
+        - code
+        - message
+      title: Unsupported Media Type Error Detail
+    title: Unsupported Media Type Error Details
+required:
+  - id
+  - code
+  - message
+title: Unsupported Media Type Error

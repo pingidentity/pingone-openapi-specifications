@@ -1,0 +1,32 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - self
+      - environment
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Flow Policy Collection _links
+  _embedded:
+    type: object
+    properties:
+      flowPolicies:
+        type: array
+        items:
+          type: object
+          $ref: >-
+            ./com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse.yaml
+        title: DaVinci Flow Policy Collection _embedded Flow Policies
+    required:
+      - flowPolicies
+    title: DaVinci Flow Policy Collection _embedded
+required:
+  - _links
+  - _embedded
+title: DaVinci Flow Policy Collection

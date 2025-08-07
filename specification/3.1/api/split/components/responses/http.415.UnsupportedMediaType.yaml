@@ -1,0 +1,5 @@
+description: Unsupported Media Type
+content:
+  '*/*':
+    schema:
+      $ref: ../schemas/com.pingidentity.ApiErrorResponse.415.yaml

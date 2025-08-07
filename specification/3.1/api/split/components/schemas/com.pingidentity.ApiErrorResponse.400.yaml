@@ -1,0 +1,97 @@
+$schema: http://json-schema.org/draft/2020-12/schema#
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    minLength: 1
+    title: Bad Request Error Id
+  code:
+    type: string
+    enum:
+      - INVALID_DATA
+      - INVALID_REQUEST
+      - REQUEST_FAILED
+    minLength: 1
+    title: Bad Request Error Code
+  message:
+    type: string
+    minLength: 1
+    title: Bad Request Error Message
+  details:
+    type: array
+    items:
+      type: object
+      properties:
+        code:
+          type: string
+          enum:
+            - ACCOUNT_NOT_USABLE
+            - CONSTRAINT_VIOLATION
+            - EMPTY_VALUE
+            - INVALID_FILTER
+            - INVALID_OTP
+            - INVALID_PARAMETER
+            - INVALID_VALUE
+            - MFA_AUTH_METHODS_CONFLICT
+            - NO_PASSWORD
+            - OUT_OF_RANGE
+            - REQUIRED_VALUE
+            - SIZE_LIMIT_EXCEEDED
+            - UNIQUENESS_VIOLATION
+          minLength: 1
+          title: Bad Request Error Detail Code
+        message:
+          type: string
+          minLength: 1
+          title: Bad Request Error Detail Message
+        innerError:
+          type: object
+          properties:
+            allowedPattern:
+              type: string
+              title: Bad Request Error Detail Inner Error Allowed Pattern
+            allowedValues:
+              type: array
+              items:
+                type: string
+                title: Bad Request Error Detail Inner Error Allowed Value
+              title: Bad Request Error Detail Inner Error Allowed Values
+            claim:
+              type: string
+              title: Bad Request Error Detail Inner Error Claim
+            existingId:
+              type: string
+              format: uuid
+              title: Bad Request Error Detail Inner Error Existing Id
+            maximumValue:
+              type: number
+              title: Bad Request Error Detail Inner Error Maximum Value
+            quotaLimit:
+              type: number
+              title: Bad Request Error Detail Inner Error Quota Limit
+            quotaResetTime:
+              type: string
+              format: date-time
+              title: Bad Request Error Detail Inner Error Quota Reset Time
+            rangeMaximumValue:
+              type: number
+              title: Bad Request Error Detail Inner Error Range Maximum Value
+            rangeMinimumValue:
+              type: number
+              title: Bad Request Error Detail Inner Error Range Minimum Value
+          additionalProperties: true
+          title: Bad Request Error Detail Inner Error
+        target:
+          type: string
+          title: Bad Request Error Detail Target
+      required:
+        - code
+        - message
+      title: Bad Request Error Detail
+    title: Bad Request Error Details
+required:
+  - id
+  - code
+  - message
+title: Bad Request Error

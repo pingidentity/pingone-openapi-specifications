@@ -1,0 +1,149 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.<index>:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      version.<flowId>.<index>:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - self
+      - environment
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Flow Policy Response _links
+  environment:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  flowDistributions:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: DaVinci Flow Policy Response Flow Distribution Id
+        version:
+          type: number
+          title: DaVinci Flow Policy Response Flow Distribution Version
+        ip:
+          type: array
+          items:
+            type: string
+            title: DaVinci Flow Policy Response Flow Distribution Ip Item
+          title: DaVinci Flow Policy Response Flow Distribution Ip
+        successNodes:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                minLength: 1
+                title: DaVinci Flow Policy Response Flow Distribution Success Node Id
+            required:
+              - id
+            title: DaVinci Flow Policy Response Flow Distribution Success Node
+          title: DaVinci Flow Policy Response Flow Distribution Success Nodes
+        weight:
+          type: number
+          title: DaVinci Flow Policy Response Flow Distribution Weight
+      required:
+        - id
+        - version
+      title: DaVinci Flow Policy Response Flow Distribution
+    title: DaVinci Flow Policy Response Flow Distributions
+  id:
+    type: string
+    minLength: 1
+    title: DaVinci Flow Policy Response Id
+  name:
+    type: string
+    minLength: 1
+    title: DaVinci Flow Policy Response Name
+  status:
+    enum:
+      - disabled
+      - enabled
+    type: string
+    minLength: 1
+    title: DaVinci Flow Policy Response Status
+  createdAt:
+    type: string
+    format: date-time
+    title: DaVinci Flow Policy Response Created At
+  trigger:
+    type: object
+    properties:
+      configuration:
+        type: object
+        properties:
+          mfa:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+                title: DaVinci Flow Policy Response Trigger Configuration MFA Enabled
+              time:
+                type: number
+                title: DaVinci Flow Policy Response Trigger Configuration MFA Time
+              timeFormat:
+                type: string
+                minLength: 1
+                title: >-
+                  DaVinci Flow Policy Response Trigger Configuration MFA Time
+                  Format
+            required:
+              - enabled
+              - time
+              - timeFormat
+            title: DaVinci Flow Policy Response Trigger Configuration MFA
+          pwd:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+                title: >-
+                  DaVinci Flow Policy Response Trigger Configuration Password
+                  Enabled
+              time:
+                type: number
+                title: >-
+                  DaVinci Flow Policy Response Trigger Configuration Password
+                  Time
+              timeFormat:
+                type: string
+                minLength: 1
+                title: >-
+                  DaVinci Flow Policy Response Trigger Configuration Password
+                  Time Format
+            required:
+              - enabled
+              - time
+              - timeFormat
+            title: DaVinci Flow Policy Response Trigger Configuration Password
+        required:
+          - mfa
+          - pwd
+        title: DaVinci Flow Policy Response Trigger Configuration
+      type:
+        type: string
+        title: DaVinci Flow Policy Response Trigger Type
+    title: DaVinci Flow Policy Response Trigger
+  updatedAt:
+    type: string
+    format: date-time
+    title: DaVinci Flow Policy Response Updated At
+required:
+  - _links
+  - environment
+  - flowDistributions
+  - id
+  - name
+  - status
+title: DaVinci Flow Policy Response

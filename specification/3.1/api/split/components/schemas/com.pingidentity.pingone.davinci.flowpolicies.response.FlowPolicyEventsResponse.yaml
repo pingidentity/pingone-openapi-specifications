@@ -1,0 +1,98 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - self
+      - environment
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Flow Policy Events Collection _links
+  _embedded:
+    type: object
+    properties:
+      events:
+        type: array
+        items:
+          type: object
+          properties:
+            environment:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                  title: >-
+                    DaVinci Flow Policy Events Collection _embedded Event
+                    Environment Id
+              required:
+                - id
+              title: >-
+                DaVinci Flow Policy Events Collection _embedded Event
+                Environment
+            flow:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                  title: >-
+                    DaVinci Flow Policy Events Collection _embedded Event Flow
+                    Id
+                version:
+                  type: number
+                  title: >-
+                    DaVinci Flow Policy Events Collection _embedded Event Flow
+                    Version
+              required:
+                - id
+              title: DaVinci Flow Policy Events Collection _embedded Event Flow
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                    title: >-
+                      DaVinci Flow Policy Events Collection _embedded Event
+                      Event Id
+                  timestamp:
+                    type: string
+                    minLength: 1
+                    title: >-
+                      DaVinci Flow Policy Events Collection _embedded Event
+                      Event Timestamp
+                required:
+                  - id
+                  - timestamp
+                title: DaVinci Flow Policy Events Collection _embedded Event Event
+              title: DaVinci Flow Policy Events Collection _embedded Event Events
+            successCount:
+              type: number
+              title: >-
+                DaVinci Flow Policy Events Collection _embedded Event Success
+                Count
+            totalCount:
+              type: number
+              title: >-
+                DaVinci Flow Policy Events Collection _embedded Event Total
+                Count
+          required:
+            - environment
+            - flow
+          title: DaVinci Flow Policy Events Collection _embedded Event
+        title: DaVinci Flow Policy Events Collection _embedded Events
+    required:
+      - events
+    title: DaVinci Flow Policy Events Collection _embedded
+required:
+  - _links
+  - _embedded
+title: DaVinci Flow Policy Events Collection

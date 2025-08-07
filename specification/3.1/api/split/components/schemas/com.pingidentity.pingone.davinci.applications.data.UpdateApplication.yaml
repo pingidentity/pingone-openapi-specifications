@@ -1,0 +1,64 @@
+type: object
+additionalProperties: true
+properties:
+  name:
+    pattern: ^(?=\S)[\p{L}\p{M}\p{N}\p{So}/.'_ -]*(?!.*((<)|(\$\{)))
+    maxLength: 256
+    type: string
+    minLength: 1
+    title: DaVinci Application Replace Request Name
+  apiKeyEnabled:
+    type: boolean
+    title: DaVinci Application Replace Request Api Key Enabled
+  oauth:
+    type: object
+    additionalProperties: true
+    properties:
+      enforceSignedRequestOpenid:
+        type: boolean
+        title: >-
+          DaVinci Application Replace Request OAuth Enforce Signed Request
+          Openid
+      grantTypes:
+        type: array
+        items:
+          type: string
+          enum:
+            - authorizationCode
+            - clientCredentials
+            - implicit
+          title: DaVinci Application Replace Request OAuth Grant Type
+        title: DaVinci Application Replace Request OAuth Grant Types
+      logoutUris:
+        type: array
+        items:
+          type: string
+          title: DaVinci Application Replace Request OAuth Logout Uri
+        title: DaVinci Application Replace Request OAuth Logout Uris
+      redirectUris:
+        type: array
+        items:
+          type: string
+          title: DaVinci Application Replace Request OAuth Redirect Uri
+        title: DaVinci Application Replace Request OAuth Redirect Uris
+      scopes:
+        type: array
+        items:
+          type: string
+          enum:
+            - flow_analytics
+            - offline_access
+            - openid
+            - profile
+          title: DaVinci Application Replace Request OAuth Scope
+        title: DaVinci Application Replace Request OAuth Scopes
+      spJwksOpenid:
+        type: string
+        title: DaVinci Application Replace Request OAuth Sp Jwks Openid
+      spjwksUrl:
+        type: string
+        title: DaVinci Application Replace Request OAuth Spjwks Url
+    title: DaVinci Application Replace Request OAuth
+required:
+  - name
+title: DaVinci Application Replace Request

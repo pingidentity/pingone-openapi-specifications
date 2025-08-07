@@ -1,0 +1,78 @@
+type: object
+properties:
+  numberOfAadhaar:
+    type: integer
+    format: int64
+    title: Environment License Quantities Number Of Aadhaar
+  numberOfAccountOwnership:
+    type: integer
+    format: int64
+    title: Environment License Quantities Number Of Account Ownership
+  numberOfDataVerifications:
+    type: integer
+    format: int64
+    title: Environment License Quantities Number Of Data Verifications
+  rlgAnalyticsRpm:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgAppRegRpm:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgAuditRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgAuthnRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgAuthzRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgCatchAllRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgConfigRpm:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgCredRpm:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgDirAccessRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgDirBulkRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgDirFixedRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgDirWriteRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgDvFlowCallbackRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgDvFlowExecRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgDvFlowStartRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgMfaFixedRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgMfaPollingRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgMfaRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgRiskEvalsRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgTokenCheckRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgVerifyRpm:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+title: Environment License Quantities

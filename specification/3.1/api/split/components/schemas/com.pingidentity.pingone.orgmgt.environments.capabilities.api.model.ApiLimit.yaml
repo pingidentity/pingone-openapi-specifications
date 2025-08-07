@@ -1,0 +1,7 @@
+type: object
+properties:
+  limit:
+    type: integer
+    format: int64
+    title: Environment API Limit Limit
+title: Environment API Limit

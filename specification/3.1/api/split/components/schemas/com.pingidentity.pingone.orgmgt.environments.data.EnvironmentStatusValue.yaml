@@ -1,0 +1,6 @@
+type: string
+enum:
+  - ACTIVE
+  - DELETE_PENDING
+minLength: 1
+title: Environment Status Value

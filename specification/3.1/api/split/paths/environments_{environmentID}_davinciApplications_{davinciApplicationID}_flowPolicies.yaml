@@ -1,0 +1,85 @@
+get:
+  operationId: getFlowPoliciesByDavinciApplicationId
+  parameters:
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.environmentID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID.yaml
+    - $ref: ../components/parameters/com.pingidentity.header.ExternalSessionID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.header.ExternalTransactionID.yaml
+  responses:
+    '200':
+      description: Successful Operation.
+      content:
+        application/json:
+          schema:
+            $ref: >-
+              ../components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPoliciesResponse.yaml
+    '400':
+      $ref: ../components/responses/http.400.BadRequest.yaml
+    '401':
+      $ref: ../components/responses/http.401.Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/http.403.Forbidden.P14C63085.yaml
+    '404':
+      $ref: ../components/responses/http.404.NotFound.yaml
+    '415':
+      $ref: ../components/responses/http.415.UnsupportedMediaType.yaml
+    '429':
+      $ref: ../components/responses/http.429.TooManyRequests.yaml
+    '500':
+      $ref: ../components/responses/http.500.InternalServerError.yaml
+    '502':
+      $ref: ../components/responses/http.502.BadGateway.yaml
+    '503':
+      $ref: ../components/responses/http.503.ServiceUnavailable.yaml
+  x-permission: davinci:read:flowPolicies
+  tags:
+    - DaVinci Applications
+post:
+  operationId: createFlowPolicyByDavinciApplicationId
+  parameters:
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.environmentID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID.yaml
+    - $ref: ../components/parameters/com.pingidentity.header.ExternalSessionID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.header.ExternalTransactionID.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: >-
+            ../components/schemas/com.pingidentity.pingone.davinci.flowpolicies.data.CreateFlowPolicy.yaml
+    required: true
+  responses:
+    '201':
+      description: Successfully created the resource.
+      content:
+        application/json:
+          schema:
+            $ref: >-
+              ../components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse.yaml
+    '400':
+      $ref: ../components/responses/http.400.BadRequest.yaml
+    '401':
+      $ref: ../components/responses/http.401.Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/http.403.Forbidden.P14C63085.yaml
+    '404':
+      $ref: ../components/responses/http.404.NotFound.yaml
+    '415':
+      $ref: ../components/responses/http.415.UnsupportedMediaType.yaml
+    '429':
+      $ref: ../components/responses/http.429.TooManyRequests.yaml
+    '500':
+      $ref: ../components/responses/http.500.InternalServerError.yaml
+    '502':
+      $ref: ../components/responses/http.502.BadGateway.yaml
+    '503':
+      $ref: ../components/responses/http.503.ServiceUnavailable.yaml
+  x-permission: davinci:create:flowPolicies
+  tags:
+    - DaVinci Applications

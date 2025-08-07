@@ -1,0 +1,6 @@
+name: flowPolicyID
+in: path
+required: true
+schema:
+  type: string
+  pattern: ^(?=\S)[\p{L}\p{M}\p{N}\p{So}/.'_ -]*(?!.*((<)|(\$\{)))

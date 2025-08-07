@@ -1,0 +1,11 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+    minLength: 1
+    title: Resource Relationship Read-Only Id
+required:
+  - id
+title: Resource Relationship Read-Only

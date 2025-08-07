@@ -1,0 +1,10 @@
+type: object
+properties:
+  id:
+    type: string
+    pattern: ^(?=\S)[\p{L}\p{M}\p{N}\p{So}/.'_ -]*(?!.*((<)|(\$\{)))
+    minLength: 1
+    title: Resource Relationship DaVinci Id
+required:
+  - id
+title: Resource Relationship DaVinci

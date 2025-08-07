@@ -1,0 +1,35 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    properties:
+      totalIdentities:
+        type: array
+        items:
+          allOf:
+            - $ref: >-
+                ./com.pingidentity.pingone.directory.totalidentitiesdashboard.data.TotalIdentitiesCountDTO.yaml
+          title: >-
+            Directory Total Identities Count Collection Response _embedded Total
+            Identity
+        title: >-
+          Directory Total Identities Count Collection Response _embedded Total
+          Identities
+    title: Directory Total Identities Count Collection Response _embedded
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: Directory Total Identities Count Collection Response _links
+  count:
+    type: integer
+    format: int32
+    title: Directory Total Identities Count Collection Response Count
+  size:
+    type: integer
+    format: int32
+    title: Directory Total Identities Count Collection Response Size
+title: Directory Total Identities Count Collection Response

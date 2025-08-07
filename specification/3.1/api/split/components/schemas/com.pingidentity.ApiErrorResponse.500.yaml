@@ -1,0 +1,48 @@
+$schema: http://json-schema.org/draft/2020-12/schema#
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    minLength: 1
+    title: Internal Server Error Id
+  code:
+    type: string
+    enum:
+      - UNEXPECTED_ERROR
+    minLength: 1
+    title: Internal Server Error Code
+  message:
+    type: string
+    minLength: 1
+    title: Internal Server Error Message
+  details:
+    type: array
+    items:
+      type: object
+      properties:
+        code:
+          type: string
+          minLength: 1
+          title: Internal Server Error Detail Code
+        message:
+          type: string
+          minLength: 1
+          title: Internal Server Error Detail Message
+        innerError:
+          type: object
+          additionalProperties: true
+          title: Internal Server Error Detail Inner Error
+        target:
+          type: string
+          title: Internal Server Error Detail Target
+      required:
+        - code
+        - message
+      title: Internal Server Error Detail
+    title: Internal Server Error Details
+required:
+  - id
+  - code
+  - message
+title: Internal Server Error

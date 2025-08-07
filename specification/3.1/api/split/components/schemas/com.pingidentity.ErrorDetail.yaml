@@ -1,0 +1,18 @@
+type: object
+properties:
+  code:
+    type: string
+    title: General Error Detail Code
+  innerError:
+    type: object
+    additionalProperties:
+      type: object
+      title: General Error Detail Inner Error Additional Properties
+    title: General Error Detail Inner Error
+  message:
+    type: string
+    title: General Error Detail Message
+  target:
+    type: string
+    title: General Error Detail Target
+title: General Error Detail

@@ -1,0 +1,63 @@
+$schema: http://json-schema.org/draft/2020-12/schema#
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    minLength: 1
+    title: Too Many Requests Error Id
+  code:
+    type: string
+    enum:
+      - REQUEST_LIMITED
+    minLength: 1
+    title: Too Many Requests Error Code
+  message:
+    type: string
+    minLength: 1
+    title: Too Many Requests Error Message
+  details:
+    type: array
+    items:
+      type: object
+      properties:
+        code:
+          type: string
+          enum:
+            - LIMIT_EXCEEDED
+            - QUOTA_EXCEEDED
+          minLength: 1
+          title: Too Many Requests Error Detail Code
+        message:
+          type: string
+          minLength: 1
+          title: Too Many Requests Error Detail Message
+        innerError:
+          type: object
+          properties:
+            quotaLimit:
+              type: number
+              title: Too Many Requests Error Detail Inner Error Quota Limit
+            quotaResetTime:
+              type: string
+              format: date-time
+              title: Too Many Requests Error Detail Inner Error Quota Reset Time
+            retryAfter:
+              type: string
+              format: date-time
+              title: Too Many Requests Error Detail Inner Error Retry After
+          additionalProperties: true
+          title: Too Many Requests Error Detail Inner Error
+        target:
+          type: string
+          title: Too Many Requests Error Detail Target
+      required:
+        - code
+        - message
+      title: Too Many Requests Error Detail
+    title: Too Many Requests Error Details
+required:
+  - id
+  - code
+  - message
+title: Too Many Requests Error

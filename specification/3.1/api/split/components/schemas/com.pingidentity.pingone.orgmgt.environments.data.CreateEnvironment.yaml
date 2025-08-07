@@ -1,0 +1,30 @@
+required:
+  - name
+  - region
+  - type
+  - license
+type: object
+properties:
+  name:
+    type: string
+    minLength: 1
+    title: Environment Create Request Name
+  region:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentRegionCodeValue.yaml
+  type:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentTypeValue.yaml
+  license:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentLicense.yaml
+  billOfMaterials:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.bom.api.model.BillOfMaterials.yaml
+  description:
+    type: string
+    title: Environment Create Request Description
+  icon:
+    type: string
+    title: Environment Create Request Icon
+title: Environment Create Request

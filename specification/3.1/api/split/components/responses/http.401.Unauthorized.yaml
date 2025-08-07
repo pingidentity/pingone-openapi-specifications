@@ -1,0 +1,5 @@
+description: Unauthorized
+content:
+  '*/*':
+    schema:
+      $ref: ../schemas/com.pingidentity.ApiErrorResponse.401.yaml

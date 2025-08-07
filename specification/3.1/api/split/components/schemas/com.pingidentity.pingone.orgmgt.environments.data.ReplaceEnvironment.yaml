@@ -1,0 +1,34 @@
+required:
+  - name
+  - region
+  - type
+type: object
+properties:
+  name:
+    type: string
+    minLength: 1
+    title: Environment Replace Request Name
+  region:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentRegionCodeValue.yaml
+  type:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentTypeValue.yaml
+  billOfMaterials:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.bom.api.model.ReplaceBillOfMaterials.yaml
+  description:
+    type: string
+    title: Environment Replace Request Description
+  icon:
+    type: string
+    title: Environment Replace Request Icon
+  license:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentLicense.yaml
+  status:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentStatusValue.yaml
+x-immutable:
+  - region
+title: Environment Replace Request

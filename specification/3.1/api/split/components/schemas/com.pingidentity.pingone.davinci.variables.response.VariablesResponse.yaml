@@ -1,0 +1,42 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    properties:
+      variables:
+        type: array
+        items:
+          type: object
+          $ref: >-
+            ./com.pingidentity.pingone.davinci.variables.response.VariableResponse.yaml
+        title: DaVinci Variable Collection Response _embedded Variables
+    required:
+      - variables
+    title: DaVinci Variable Collection Response _embedded
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      next:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Variable Collection Response _links
+  size:
+    type: number
+    title: DaVinci Variable Collection Response Size
+  count:
+    type: number
+    title: DaVinci Variable Collection Response Count
+required:
+  - _embedded
+  - _links
+  - size
+  - count
+title: DaVinci Variable Collection Response

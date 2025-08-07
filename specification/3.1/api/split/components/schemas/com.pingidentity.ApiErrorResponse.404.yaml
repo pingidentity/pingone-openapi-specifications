@@ -1,0 +1,48 @@
+$schema: http://json-schema.org/draft/2020-12/schema#
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    minLength: 1
+    title: Not Found Error Id
+  code:
+    type: string
+    enum:
+      - NOT_FOUND
+    minLength: 1
+    title: Not Found Error Code
+  message:
+    type: string
+    minLength: 1
+    title: Not Found Error Message
+  details:
+    type: array
+    items:
+      type: object
+      properties:
+        code:
+          type: string
+          minLength: 1
+          title: Not Found Error Detail Code
+        message:
+          type: string
+          minLength: 1
+          title: Not Found Error Detail Message
+        innerError:
+          type: object
+          additionalProperties: true
+          title: Not Found Error Detail Inner Error
+        target:
+          type: string
+          title: Not Found Error Detail Target
+      required:
+        - code
+        - message
+      title: Not Found Error Detail
+    title: Not Found Error Details
+required:
+  - id
+  - code
+  - message
+title: Not Found Error

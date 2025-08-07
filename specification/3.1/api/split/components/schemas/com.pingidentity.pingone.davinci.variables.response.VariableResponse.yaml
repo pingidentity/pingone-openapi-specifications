@@ -1,0 +1,89 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Variable Response _links
+  dataType:
+    enum:
+      - array
+      - boolean
+      - button
+      - list
+      - listInt
+      - mapping
+      - number
+      - object
+      - propertyGroup
+      - screenConfig
+      - secret
+      - skConnectorList
+      - skEvent
+      - string
+      - timestamp
+    type: string
+    minLength: 1
+    title: DaVinci Variable Response Data Type
+  environment:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  id:
+    type: string
+    format: uuid
+    minLength: 1
+    title: DaVinci Variable Response Id
+  name:
+    type: string
+    minLength: 1
+    title: DaVinci Variable Response Name
+  context:
+    type: string
+    title: DaVinci Variable Response Context
+  createdAt:
+    type: string
+    format: date-time
+    title: DaVinci Variable Response Created At
+  displayName:
+    type: string
+    title: DaVinci Variable Response Display Name
+  flow:
+    $ref: ./com.pingidentity.api.Relationship.DaVinci.RO.yaml
+  max:
+    type: number
+    title: DaVinci Variable Response Max
+  min:
+    type: number
+    title: DaVinci Variable Response Min
+  mutable:
+    type: boolean
+    title: DaVinci Variable Response Mutable
+  updatedAt:
+    type: string
+    format: date-time
+    title: DaVinci Variable Response Updated At
+  value:
+    oneOf:
+      - type: boolean
+        title: DaVinci Variable Response Value Choice 1
+      - type: number
+        title: DaVinci Variable Response Value Choice 2
+      - type: object
+        title: DaVinci Variable Response Value Choice 3
+      - type: string
+        title: DaVinci Variable Response Value Choice 4
+    title: DaVinci Variable Response Value
+required:
+  - _links
+  - dataType
+  - environment
+  - id
+  - name
+title: DaVinci Variable Response

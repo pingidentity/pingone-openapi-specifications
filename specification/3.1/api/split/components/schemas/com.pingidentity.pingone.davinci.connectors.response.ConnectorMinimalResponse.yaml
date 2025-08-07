@@ -1,0 +1,94 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Connector Minimal Response _links
+  createdAt:
+    type: string
+    format: date-time
+    minLength: 1
+    title: DaVinci Connector Minimal Response Created At
+  description:
+    type: string
+    minLength: 1
+    title: DaVinci Connector Minimal Response Description
+  environment:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  id:
+    type: string
+    minLength: 1
+    title: DaVinci Connector Minimal Response Id
+  metadata:
+    type: object
+    properties:
+      colors:
+        type: object
+        properties:
+          canvas:
+            type: string
+            title: DaVinci Connector Minimal Response Metadata Colors Canvas
+          canvasText:
+            type: string
+            title: DaVinci Connector Minimal Response Metadata Colors Canvas Text
+          dark:
+            type: string
+            title: DaVinci Connector Minimal Response Metadata Colors Dark
+        title: DaVinci Connector Minimal Response Metadata Colors
+      logos:
+        type: object
+        properties:
+          canvas:
+            type: object
+            properties:
+              imageFileName:
+                type: string
+                title: >-
+                  DaVinci Connector Minimal Response Metadata Logos Canvas Image
+                  File Name
+            title: DaVinci Connector Minimal Response Metadata Logos Canvas
+        title: DaVinci Connector Minimal Response Metadata Logos
+      type:
+        enum:
+          - core
+          - ping
+          - service
+        type: string
+        title: DaVinci Connector Minimal Response Metadata Type
+      vendor:
+        type: string
+        title: DaVinci Connector Minimal Response Metadata Vendor
+    title: DaVinci Connector Minimal Response Metadata
+  name:
+    type: string
+    minLength: 1
+    title: DaVinci Connector Minimal Response Name
+  updatedAt:
+    type: string
+    format: date-time
+    minLength: 1
+    title: DaVinci Connector Minimal Response Updated At
+  version:
+    type: string
+    minLength: 1
+    title: DaVinci Connector Minimal Response Version
+required:
+  - _links
+  - createdAt
+  - description
+  - environment
+  - id
+  - metadata
+  - name
+  - updatedAt
+  - version
+title: DaVinci Connector Minimal Response

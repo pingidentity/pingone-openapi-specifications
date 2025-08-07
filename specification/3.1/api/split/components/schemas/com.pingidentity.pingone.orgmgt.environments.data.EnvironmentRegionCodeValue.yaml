@@ -1,0 +1,10 @@
+type: string
+enum:
+  - AP
+  - AU
+  - CA
+  - EU
+  - NA
+  - SG
+minLength: 1
+title: Environment Region Code

@@ -1,0 +1,32 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    properties:
+      connectors:
+        type: array
+        items:
+          type: object
+          $ref: >-
+            ./com.pingidentity.pingone.davinci.connectors.response.ConnectorMinimalResponse.yaml
+        title: DaVinci Connector Collection Minimal Response _embedded Connectors
+    required:
+      - connectors
+    title: DaVinci Connector Collection Minimal Response _embedded
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Connector Collection Minimal Response _links
+required:
+  - _embedded
+  - _links
+title: DaVinci Connector Collection Minimal Response

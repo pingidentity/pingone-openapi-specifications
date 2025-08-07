@@ -1,0 +1,25 @@
+type: object
+properties:
+  href:
+    type: string
+    format: uri
+    minLength: 1
+    title: JSON HAL Link Href
+  name:
+    type: string
+    title: JSON HAL Link Name
+  profile:
+    type: string
+    format: uri
+    title: JSON HAL Link Profile
+  title:
+    type: string
+    format: uri
+    title: JSON HAL Link Title
+  type:
+    type: string
+    title: JSON HAL Link Type
+required:
+  - href
+readOnly: true
+title: JSON HAL Link

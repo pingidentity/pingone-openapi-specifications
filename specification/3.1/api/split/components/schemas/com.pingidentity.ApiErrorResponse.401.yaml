@@ -1,0 +1,51 @@
+$schema: http://json-schema.org/draft/2020-12/schema#
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    minLength: 1
+    title: Unauthorized Error Id
+  code:
+    type: string
+    enum:
+      - ACCESS_FAILED
+    minLength: 1
+    title: Unauthorized Error Code
+  message:
+    type: string
+    minLength: 1
+    title: Unauthorized Error Message
+  details:
+    type: array
+    items:
+      type: object
+      properties:
+        code:
+          type: string
+          enum:
+            - INSUFFICIENT_PERMISSIONS
+            - INVALID_TOKEN
+          minLength: 1
+          title: Unauthorized Error Detail Code
+        message:
+          type: string
+          minLength: 1
+          title: Unauthorized Error Detail Message
+        innerError:
+          type: object
+          additionalProperties: true
+          title: Unauthorized Error Detail Inner Error
+        target:
+          type: string
+          title: Unauthorized Error Detail Target
+      required:
+        - code
+        - message
+      title: Unauthorized Error Detail
+    title: Unauthorized Error Details
+required:
+  - id
+  - code
+  - message
+title: Unauthorized Error

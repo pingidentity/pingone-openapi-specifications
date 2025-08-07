@@ -1,0 +1,128 @@
+openapi: 3.1.1
+info:
+  title: PingOne Platform API
+  version: 2025.08.07-development
+  description: >-
+    PingOne is a cloud-based framework for secure identity access management.
+    The PingOne API gives developers the tools to integrate enterprise and
+    third-party applications with the PingOne platform.
+  contact:
+    name: Ping Identity Developer Experiences
+    url: https://developer.pingidentity.com
+    email: developerexperiences@pingidentity.com
+  license:
+    identifier: Apache-2.0
+    name: Apache 2.0
+servers:
+  - url: https://api.pingone.{tld}/{basePath}
+    variables:
+      basePath:
+        default: v1
+      tld:
+        enum:
+          - eu
+          - com
+          - asia
+          - com.au
+          - ca
+          - sg
+        default: com
+security:
+  - bearerAuth: []
+  - oauth2: []
+tags:
+  - name: DaVinci Applications
+    description: >-
+      Operations for managing DaVinci applications and application flows
+      policies
+  - name: DaVinci Connectors
+    description: Operations for managing DaVinci connectors and connector instances
+  - name: DaVinci Variables
+    description: Operations for managing DaVinci variables
+  - name: Directory Total Identities
+    description: Operations for retrieving PingOne directory total identity reports
+  - name: Environments
+    description: Operations for managing PingOne environments
+paths:
+  /environments:
+    $ref: paths/environments.yaml
+  /environments/{environmentID}:
+    $ref: paths/environments_{environmentID}.yaml
+  /environments/{environmentID}/billOfMaterials:
+    $ref: paths/environments_{environmentID}_billOfMaterials.yaml
+  /environments/{environmentID}/connectorInstances:
+    $ref: paths/environments_{environmentID}_connectorInstances.yaml
+  /environments/{environmentID}/connectorInstances/{connectorInstanceID}:
+    $ref: >-
+      paths/environments_{environmentID}_connectorInstances_{connectorInstanceID}.yaml
+  /environments/{environmentID}/connectors:
+    $ref: paths/environments_{environmentID}_connectors.yaml
+  /environments/{environmentID}/connectors/{connectorID}:
+    $ref: paths/environments_{environmentID}_connectors_{connectorID}.yaml
+  /environments/{environmentID}/connectors/{connectorID}/details:
+    $ref: paths/environments_{environmentID}_connectors_{connectorID}_details.yaml
+  /environments/{environmentID}/davinciApplications:
+    $ref: paths/environments_{environmentID}_davinciApplications.yaml
+  /environments/{environmentID}/davinciApplications/{davinciApplicationID}:
+    $ref: >-
+      paths/environments_{environmentID}_davinciApplications_{davinciApplicationID}.yaml
+  /environments/{environmentID}/davinciApplications/{davinciApplicationID}/flowPolicies:
+    $ref: >-
+      paths/environments_{environmentID}_davinciApplications_{davinciApplicationID}_flowPolicies.yaml
+  /environments/{environmentID}/davinciApplications/{davinciApplicationID}/flowPolicies/{flowPolicyID}:
+    $ref: >-
+      paths/environments_{environmentID}_davinciApplications_{davinciApplicationID}_flowPolicies_{flowPolicyID}.yaml
+  /environments/{environmentID}/davinciApplications/{davinciApplicationID}/flowPolicies/{flowPolicyID}/events:
+    $ref: >-
+      paths/environments_{environmentID}_davinciApplications_{davinciApplicationID}_flowPolicies_{flowPolicyID}_events.yaml
+  /environments/{environmentID}/davinciApplications/{davinciApplicationID}/key:
+    $ref: >-
+      paths/environments_{environmentID}_davinciApplications_{davinciApplicationID}_key.yaml
+  /environments/{environmentID}/davinciApplications/{davinciApplicationID}/secret:
+    $ref: >-
+      paths/environments_{environmentID}_davinciApplications_{davinciApplicationID}_secret.yaml
+  /environments/{environmentID}/totalIdentities:
+    $ref: paths/environments_{environmentID}_totalIdentities.yaml
+  /environments/{environmentID}/variables:
+    $ref: paths/environments_{environmentID}_variables.yaml
+  /environments/{environmentID}/variables/{variableID}:
+    $ref: paths/environments_{environmentID}_variables_{variableID}.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /as/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /as/authorize
+          tokenUrl: /as/token
+          refreshUrl: /as/token
+          scopes: {}
+x-permissions:
+  - name: davinci:create:applications
+  - name: davinci:create:connections
+  - name: davinci:create:constructs
+  - name: davinci:create:flowPolicies
+  - name: davinci:delete:applications
+  - name: davinci:delete:connections
+  - name: davinci:delete:constructs
+  - name: davinci:delete:flowPolicies
+  - name: davinci:read:applications
+  - name: davinci:read:connections
+  - name: davinci:read:connectors
+  - name: davinci:read:constructs
+  - name: davinci:read:flowPolicies
+  - name: davinci:update:applications
+  - name: davinci:update:connections
+  - name: davinci:update:constructs
+  - name: davinci:update:flowPolicies
+  - name: orgmgt:create:environment
+  - name: orgmgt:delete:environment
+  - name: orgmgt:read:environment
+  - name: orgmgt:update:environment

@@ -1,0 +1,34 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    properties:
+      connectorInstances:
+        type: array
+        items:
+          type: object
+          $ref: >-
+            ./com.pingidentity.pingone.davinci.connectorinstances.response.ConnectorInstanceResponse.yaml
+        title: >-
+          DaVinci Connector Instance Collection Response _embedded Connector
+          Instances
+    required:
+      - connectorInstances
+    title: DaVinci Connector Instance Collection Response _embedded
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Connector Instance Collection Response _links
+required:
+  - _embedded
+  - _links
+title: DaVinci Connector Instance Collection Response

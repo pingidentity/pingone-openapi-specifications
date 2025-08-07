@@ -1,0 +1,8 @@
+description: Service Unavailable
+headers:
+  Retry-After:
+    $ref: ../headers/http.RetryAfter.yaml
+content:
+  '*/*':
+    schema:
+      $ref: ../schemas/com.pingidentity.ApiErrorResponse.yaml

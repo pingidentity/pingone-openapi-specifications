@@ -1,0 +1,64 @@
+required:
+  - type
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - IDENTITY_CLOUD
+      - PING_ACCESS
+      - PING_AUTHORIZE
+      - PING_CENTRAL
+      - PING_DATA_GOVERNANCE
+      - PING_DATA_SYNC
+      - PING_DIRECTORY
+      - PING_FEDERATE
+      - PING_ID
+      - PING_ID_SDK
+      - PING_INTELLIGENCE
+      - PING_ONE_AUTHORIZE
+      - PING_ONE_BASE
+      - PING_ONE_CREDENTIALS
+      - PING_ONE_DAVINCI
+      - PING_ONE_FOR_ENTERPRISE
+      - PING_ONE_FOR_SAAS
+      - PING_ONE_FRAUD
+      - PING_ONE_ID
+      - PING_ONE_LEGACY
+      - PING_ONE_MFA
+      - PING_ONE_ORCHESTRATE
+      - PING_ONE_PROVISIONING
+      - PING_ONE_RISK
+      - PING_ONE_VERIFY
+    minLength: 1
+    title: Environment Bill of Materials Product Type
+  bookmarks:
+    maxItems: 5
+    minItems: 0
+    type: array
+    items:
+      $ref: >-
+        ./com.pingidentity.pingone.orgmgt.environments.bom.api.model.Bookmark.yaml
+    title: Environment Bill of Materials Product Bookmarks
+  console:
+    $ref: ./com.pingidentity.pingone.orgmgt.environments.bom.api.model.Console.yaml
+  deployment:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  description:
+    type: string
+    title: Environment Bill of Materials Product Description
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+    title: Environment Bill of Materials Product Id
+    minLength: 1
+  softwareLicense:
+    $ref: ./com.pingidentity.api.Relationship.lang.String.yaml
+  tags:
+    type: array
+    items:
+      type: string
+      title: Environment Bill of Materials Product Tag
+    title: Environment Bill of Materials Product Tags
+title: Environment Bill of Materials Product

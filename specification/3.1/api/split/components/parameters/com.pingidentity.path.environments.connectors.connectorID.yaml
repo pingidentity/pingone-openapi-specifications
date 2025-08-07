@@ -1,0 +1,6 @@
+name: connectorID
+in: path
+required: true
+schema:
+  type: string
+  format: uuid

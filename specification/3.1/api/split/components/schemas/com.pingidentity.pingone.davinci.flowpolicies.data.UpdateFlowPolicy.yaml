@@ -1,0 +1,133 @@
+type: object
+additionalProperties: true
+properties:
+  name:
+    pattern: ^(?=\S)[\p{L}\p{M}\p{N}\p{So}/.'_ -]*(?!.*((<)|(\$\{)))
+    maxLength: 256
+    type: string
+    default: New Policy
+    minLength: 1
+    title: DaVinci Flow Policy Replace Request Name
+  flowDistributions:
+    type: array
+    minItems: 1
+    maxItems: 100
+    items:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: DaVinci Flow Policy Replace Request Flow Distribution Id
+        version:
+          type: number
+          title: DaVinci Flow Policy Replace Request Flow Distribution Version
+        ip:
+          type: array
+          items:
+            type: string
+            title: DaVinci Flow Policy Replace Request Flow Distribution Ip Item
+          title: DaVinci Flow Policy Replace Request Flow Distribution Ip
+        successNodes:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              id:
+                pattern: ^[a-zA-Z0-9]+$
+                type: string
+                minLength: 1
+                title: >-
+                  DaVinci Flow Policy Replace Request Flow Distribution Success
+                  Node Id
+            required:
+              - id
+            title: DaVinci Flow Policy Replace Request Flow Distribution Success Node
+          title: DaVinci Flow Policy Replace Request Flow Distribution Success Nodes
+        weight:
+          type: number
+          title: DaVinci Flow Policy Replace Request Flow Distribution Weight
+      required:
+        - id
+        - version
+      title: DaVinci Flow Policy Replace Request Flow Distribution
+    title: DaVinci Flow Policy Replace Request Flow Distributions
+  status:
+    enum:
+      - disabled
+      - enabled
+    type: string
+    default: enabled
+    title: DaVinci Flow Policy Replace Request Status
+  trigger:
+    type: object
+    additionalProperties: true
+    properties:
+      configuration:
+        type: object
+        additionalProperties: true
+        properties:
+          mfa:
+            type: object
+            additionalProperties: true
+            properties:
+              enabled:
+                type: boolean
+                title: >-
+                  DaVinci Flow Policy Replace Request Trigger Configuration MFA
+                  Enabled
+              time:
+                type: number
+                minLength: 0
+                maxLength: 100000
+                title: >-
+                  DaVinci Flow Policy Replace Request Trigger Configuration MFA
+                  Time
+              timeFormat:
+                type: string
+                minLength: 0
+                maxLength: 50
+                title: >-
+                  DaVinci Flow Policy Replace Request Trigger Configuration MFA
+                  Time Format
+            title: DaVinci Flow Policy Replace Request Trigger Configuration MFA
+          pwd:
+            type: object
+            additionalProperties: true
+            properties:
+              enabled:
+                type: boolean
+                title: >-
+                  DaVinci Flow Policy Replace Request Trigger Configuration
+                  Password Enabled
+              time:
+                type: number
+                minLength: 0
+                maxLength: 100000
+                title: >-
+                  DaVinci Flow Policy Replace Request Trigger Configuration
+                  Password Time
+              timeFormat:
+                type: string
+                minLength: 0
+                maxLength: 50
+                title: >-
+                  DaVinci Flow Policy Replace Request Trigger Configuration
+                  Password Time Format
+            title: DaVinci Flow Policy Replace Request Trigger Configuration Password
+        title: DaVinci Flow Policy Replace Request Trigger Configuration
+      type:
+        type: string
+        minLength: 0
+        maxLength: 50
+        enum:
+          - AUTHENTICATION
+        default: AUTHENTICATION
+        title: DaVinci Flow Policy Replace Request Trigger Type
+    title: DaVinci Flow Policy Replace Request Trigger
+required:
+  - name
+title: DaVinci Flow Policy Replace Request

@@ -1,0 +1,15 @@
+type: object
+properties:
+  href:
+    maxLength: 1024
+    minLength: 1
+    type: string
+    title: Environment Bill of Materials Product Bookmark Href
+  name:
+    type: string
+    minLength: 1
+    title: Environment Bill of Materials Product Bookmark Name
+required:
+  - href
+  - name
+title: Environment Bill of Materials Product Bookmark

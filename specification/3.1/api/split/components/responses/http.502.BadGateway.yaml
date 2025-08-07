@@ -1,0 +1,5 @@
+description: Bad Gateway
+content:
+  '*/*':
+    schema:
+      $ref: ../schemas/com.pingidentity.ApiErrorResponse.yaml

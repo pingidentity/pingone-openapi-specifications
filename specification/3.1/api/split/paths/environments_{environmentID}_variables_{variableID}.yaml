@@ -1,0 +1,119 @@
+get:
+  operationId: getVariableById
+  parameters:
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.environmentID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.variables.variableID.yaml
+    - $ref: ../components/parameters/com.pingidentity.header.ExternalSessionID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.header.ExternalTransactionID.yaml
+  responses:
+    '200':
+      description: Successful Operation.
+      content:
+        application/json:
+          schema:
+            $ref: >-
+              ../components/schemas/com.pingidentity.pingone.davinci.variables.response.VariableResponse.yaml
+    '400':
+      $ref: ../components/responses/http.400.BadRequest.yaml
+    '401':
+      $ref: ../components/responses/http.401.Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/http.403.Forbidden.P14C63085.yaml
+    '404':
+      $ref: ../components/responses/http.404.NotFound.yaml
+    '415':
+      $ref: ../components/responses/http.415.UnsupportedMediaType.yaml
+    '429':
+      $ref: ../components/responses/http.429.TooManyRequests.yaml
+    '500':
+      $ref: ../components/responses/http.500.InternalServerError.yaml
+    '502':
+      $ref: ../components/responses/http.502.BadGateway.yaml
+    '503':
+      $ref: ../components/responses/http.503.ServiceUnavailable.yaml
+  x-permission: davinci:read:constructs
+  tags:
+    - DaVinci Variables
+put:
+  operationId: replaceVariableById
+  parameters:
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.environmentID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.variables.variableID.yaml
+    - $ref: ../components/parameters/com.pingidentity.header.ExternalSessionID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.header.ExternalTransactionID.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: >-
+            ../components/schemas/com.pingidentity.pingone.davinci.variables.data.UpdateVariable.yaml
+    required: true
+  responses:
+    '200':
+      description: Successful Operation.
+      content:
+        application/json:
+          schema:
+            $ref: >-
+              ../components/schemas/com.pingidentity.pingone.davinci.variables.response.VariableResponse.yaml
+    '400':
+      $ref: ../components/responses/http.400.BadRequest.yaml
+    '401':
+      $ref: ../components/responses/http.401.Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/http.403.Forbidden.P14C63085.yaml
+    '404':
+      $ref: ../components/responses/http.404.NotFound.yaml
+    '415':
+      $ref: ../components/responses/http.415.UnsupportedMediaType.yaml
+    '429':
+      $ref: ../components/responses/http.429.TooManyRequests.yaml
+    '500':
+      $ref: ../components/responses/http.500.InternalServerError.yaml
+    '502':
+      $ref: ../components/responses/http.502.BadGateway.yaml
+    '503':
+      $ref: ../components/responses/http.503.ServiceUnavailable.yaml
+  x-permission: davinci:update:constructs
+  tags:
+    - DaVinci Variables
+delete:
+  operationId: deleteVariableById
+  parameters:
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.environmentID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.variables.variableID.yaml
+    - $ref: ../components/parameters/com.pingidentity.header.ExternalSessionID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.header.ExternalTransactionID.yaml
+  responses:
+    '204':
+      description: Successfully removed. No content.
+    '400':
+      $ref: ../components/responses/http.400.BadRequest.yaml
+    '401':
+      $ref: ../components/responses/http.401.Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/http.403.Forbidden.P14C63085.yaml
+    '404':
+      $ref: ../components/responses/http.404.NotFound.yaml
+    '415':
+      $ref: ../components/responses/http.415.UnsupportedMediaType.yaml
+    '429':
+      $ref: ../components/responses/http.429.TooManyRequests.yaml
+    '500':
+      $ref: ../components/responses/http.500.InternalServerError.yaml
+    '502':
+      $ref: ../components/responses/http.502.BadGateway.yaml
+    '503':
+      $ref: ../components/responses/http.503.ServiceUnavailable.yaml
+  x-permission: davinci:delete:constructs
+  tags:
+    - DaVinci Variables

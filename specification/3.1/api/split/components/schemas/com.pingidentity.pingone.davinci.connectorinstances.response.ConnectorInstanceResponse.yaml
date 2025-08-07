@@ -1,0 +1,58 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      connectorInstance.clone:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      applications:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      deviceAuthenticationPolicies:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      gateways:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      notificationsPolicies:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+      - connectorInstance.clone
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Connector Instance Response _links
+  connector:
+    $ref: ./com.pingidentity.api.Relationship.DaVinci.RO.yaml
+  environment:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  id:
+    type: string
+    minLength: 1
+    title: DaVinci Connector Instance Response Id
+  name:
+    type: string
+    minLength: 1
+    title: DaVinci Connector Instance Response Name
+  createdAt:
+    type: string
+    format: date-time
+    title: DaVinci Connector Instance Response Created At
+  properties:
+    type: object
+    properties: {}
+    additionalProperties: true
+    title: DaVinci Connector Instance Response
+  updatedAt:
+    type: string
+    format: date-time
+    title: DaVinci Connector Instance Response Updated At
+required:
+  - _links
+  - connector
+  - environment
+  - id
+  - name
+title: DaVinci Connector Instance Response

@@ -1,0 +1,13 @@
+type: object
+properties:
+  products:
+    maxItems: 100
+    minItems: 0
+    type: array
+    items:
+      $ref: >-
+        ./com.pingidentity.pingone.orgmgt.environments.bom.api.model.Product.yaml
+    title: Environment Bill of Materials Replace Request Products
+required:
+  - products
+title: Environment Bill of Materials Replace Request

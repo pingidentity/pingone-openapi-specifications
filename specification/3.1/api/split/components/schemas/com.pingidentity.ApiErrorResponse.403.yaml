@@ -1,0 +1,55 @@
+$schema: http://json-schema.org/draft/2020-12/schema#
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    minLength: 1
+    title: Forbidden Error Id
+  code:
+    type: string
+    enum:
+      - ACCESS_FAILED
+    minLength: 1
+    title: Forbidden Error Code
+  message:
+    type: string
+    minLength: 1
+    title: Forbidden Error Message
+  details:
+    type: array
+    items:
+      type: object
+      properties:
+        code:
+          type: string
+          enum:
+            - INSUFFICIENT_PERMISSIONS
+            - LICENSE_EXCEEDED
+          minLength: 1
+          title: Forbidden Error Detail Code
+        message:
+          type: string
+          minLength: 1
+          title: Forbidden Error Detail Message
+        innerError:
+          type: object
+          properties:
+            quotaLimit:
+              type: number
+              title: Forbidden Error Detail Inner Error Quota Limit
+          additionalProperties: true
+          title: Forbidden Error Detail Inner Error
+        target:
+          type: string
+          title: Forbidden Error Detail Target
+      required:
+        - code
+        - message
+      title: Forbidden Error Detail
+    title: Forbidden Error Details
+required:
+  - id
+  - code
+  - message
+title: Forbidden Error

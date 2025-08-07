@@ -1,0 +1,7 @@
+type: object
+properties:
+  id:
+    type: string
+    readOnly: true
+    title: Resource Relationship Generic Id
+title: Resource Relationship Generic

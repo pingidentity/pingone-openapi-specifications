@@ -1,0 +1,8 @@
+description: >-
+  Not Found - Note: This may be due to eventual consistency if the environment
+  was recently created. Try again after a short delay.
+content:
+  '*/*':
+    schema:
+      $ref: ../schemas/com.pingidentity.ApiErrorResponse.404.yaml
+x-pingone-docs-8830: true

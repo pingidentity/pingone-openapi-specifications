@@ -1,0 +1,13 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    minLength: 1
+    title: Environment License Id
+  package:
+    type: string
+    title: Environment License Package
+required:
+  - id
+title: Environment License

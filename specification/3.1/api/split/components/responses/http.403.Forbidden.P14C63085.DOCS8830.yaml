@@ -1,0 +1,11 @@
+description: >-
+  Forbidden - Note: This may occur if the environment doesn't exist. Check for
+  environment existence with GET /environments/{environmentID} first. - Note:
+  This may be due to eventual consistency if the environment was recently
+  created. Try again after a short delay.
+content:
+  '*/*':
+    schema:
+      $ref: ../schemas/com.pingidentity.ApiErrorResponse.403.yaml
+x-pingone-p14c-63085: true
+x-pingone-docs-8830: true

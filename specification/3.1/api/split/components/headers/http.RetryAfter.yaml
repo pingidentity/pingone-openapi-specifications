@@ -1,0 +1,6 @@
+schema:
+  oneOf:
+    - type: integer
+      format: int32
+    - type: string
+  title: Retry-After Header

@@ -1,0 +1,70 @@
+type: object
+additionalProperties: true
+properties:
+  name:
+    pattern: ^(?=\S)[\p{L}\p{M}\p{N}\p{So}/.'_ -]*(?!.*((<)|(\$\{)))
+    maxLength: 256
+    type: string
+    minLength: 1
+    title: DaVinci Variable Replace Request Name
+  context:
+    type: string
+    enum:
+      - company
+      - flow
+      - flowInstance
+      - user
+    minLength: 1
+    title: DaVinci Variable Replace Request Context
+  dataType:
+    type: string
+    enum:
+      - boolean
+      - number
+      - object
+      - secret
+      - string
+    minLength: 1
+    title: DaVinci Variable Replace Request Data Type
+  mutable:
+    type: boolean
+    title: DaVinci Variable Replace Request Mutable
+  displayName:
+    pattern: ^(?=\S)[\p{L}\p{M}\p{N}\p{So}/.'_ -]*(?!.*((<)|(\$\{)))
+    minLength: 0
+    maxLength: 256
+    type: string
+    title: DaVinci Variable Replace Request Display Name
+  flow:
+    $ref: ./com.pingidentity.api.Relationship.DaVinci.yaml
+  max:
+    type: integer
+    minimum: 0
+    default: 2000
+    title: DaVinci Variable Replace Request Max
+  min:
+    type: integer
+    minimum: 0
+    default: 0
+    title: DaVinci Variable Replace Request Min
+  value:
+    oneOf:
+      - type: boolean
+        title: DaVinci Variable Replace Request Value Choice 1
+      - type: number
+        title: DaVinci Variable Replace Request Value Choice 2
+      - type: object
+        title: DaVinci Variable Replace Request Value Choice 3
+      - type: string
+        title: DaVinci Variable Replace Request Value Choice 4
+    title: DaVinci Variable Replace Request Value
+required:
+  - name
+  - context
+  - dataType
+  - mutable
+x-immutable:
+  - name
+  - flow
+  - context
+title: DaVinci Variable Replace Request

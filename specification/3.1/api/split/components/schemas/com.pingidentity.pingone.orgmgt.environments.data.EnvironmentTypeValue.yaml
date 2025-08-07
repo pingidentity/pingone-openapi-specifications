@@ -1,0 +1,6 @@
+type: string
+enum:
+  - PRODUCTION
+  - SANDBOX
+minLength: 1
+title: Environment Type Value

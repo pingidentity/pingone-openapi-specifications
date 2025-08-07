@@ -1,0 +1,11 @@
+type: object
+properties:
+  date:
+    type: string
+    format: date-time
+    title: Directory Total Identities Count Response Date
+  totalIdentities:
+    type: integer
+    format: int32
+    title: Directory Total Identities Count Response Total Identities
+title: Directory Total Identities Count Response

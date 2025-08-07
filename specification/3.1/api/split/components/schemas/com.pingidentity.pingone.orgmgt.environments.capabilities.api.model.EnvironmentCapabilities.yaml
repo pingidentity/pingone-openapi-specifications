@@ -1,0 +1,270 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    additionalProperties:
+      type: object
+      readOnly: true
+      title: Environment Capabilities _embedded Additional Properties
+    readOnly: true
+    title: Environment Capabilities _embedded
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    readOnly: true
+    title: Environment Capabilities _links
+  canAddResources:
+    type: boolean
+    title: Environment Capabilities Can Add Resources
+  canAssignCustomRolesEverywhere:
+    type: boolean
+    title: Environment Capabilities Can Assign Custom Roles Everywhere
+  canAssignUsersRoles:
+    type: boolean
+    title: Environment Capabilities Can Assign Users Roles
+  canContactSupport:
+    type: boolean
+    title: Environment Capabilities Can Contact Support
+  canCreateConnections:
+    type: boolean
+    title: Environment Capabilities Can Create Connections
+  canCreateCustomDomain:
+    type: boolean
+    title: Environment Capabilities Can Create Custom Domain
+  canPromoteToProd:
+    type: boolean
+    title: Environment Capabilities Can Promote To Prod
+  canSendMfaNotificationsOutsideWhitelist:
+    type: boolean
+    title: Environment Capabilities Can Send MFA Notifications Outside Whitelist
+  canSendPasswordManagementNotifications:
+    type: boolean
+    title: Environment Capabilities Can Send Password Management Notifications
+  canSendVerificationFlowNotifications:
+    type: boolean
+    title: Environment Capabilities Can Send Verification Flow Notifications
+  canUseAadhaar:
+    type: boolean
+    title: Environment Capabilities Can Use Aadhaar
+  canUseAamva:
+    type: boolean
+    title: Environment Capabilities Can Use Aamva
+  canUseAccountOwnership:
+    type: boolean
+    title: Environment Capabilities Can Use Account Ownership
+  canUseAccountProtection:
+    type: boolean
+    title: Environment Capabilities Can Use Account Protection
+  canUseAccountTakeoverDetection:
+    type: boolean
+    title: Environment Capabilities Can Use Account Takeover Detection
+  canUseApiAccessManagement:
+    type: boolean
+    title: Environment Capabilities Can Use Api Access Management
+  canUseApplicationPermissions:
+    type: boolean
+    title: Environment Capabilities Can Use Application Permissions
+  canUseBotMaliciousDeviceDetection:
+    type: boolean
+    title: Environment Capabilities Can Use Bot Malicious Device Detection
+  canUseCredentialSharingDetection:
+    type: boolean
+    title: Environment Capabilities Can Use Credential Sharing Detection
+  canUseCredentials:
+    type: boolean
+    title: Environment Capabilities Can Use Credentials
+  canUseCredentialsPushNotifications:
+    type: boolean
+    title: Environment Capabilities Can Use Credentials Push Notifications
+  canUseCustomSchema:
+    type: boolean
+    title: Environment Capabilities Can Use Custom Schema
+  canUseDaVinciAdminPortal:
+    type: boolean
+    title: Environment Capabilities Can Use Da Vinci Admin Portal
+  canUseDataAnalyticsSupport:
+    type: boolean
+    title: Environment Capabilities Can Use Data Analytics Support
+  canUseDataBasedVerifications:
+    type: boolean
+    title: Environment Capabilities Can Use Data Based Verifications
+  canUseDigitalVerifications:
+    type: boolean
+    title: Environment Capabilities Can Use Digital Verifications
+  canUseDocumentMatch:
+    type: boolean
+    title: Environment Capabilities Can Use Document Match
+  canUseDynamicAuthorization:
+    type: boolean
+    title: Environment Capabilities Can Use Dynamic Authorization
+  canUseEditNotificationTemplate:
+    type: boolean
+    title: Environment Capabilities Can Use Edit Notification Template
+  canUseEmailOtp:
+    type: boolean
+    title: Environment Capabilities Can Use Email Otp
+  canUseFaceMatch:
+    type: boolean
+    title: Environment Capabilities Can Use Face Match
+  canUseFraudDataEnrichment:
+    type: boolean
+    title: Environment Capabilities Can Use Fraud Data Enrichment
+  canUseIdentities:
+    type: boolean
+    title: Environment Capabilities Can Use Identities
+  canUseIdentityProviders:
+    type: boolean
+    title: Environment Capabilities Can Use Identity Providers
+  canUseInboundProvisioning:
+    type: boolean
+    title: Environment Capabilities Can Use Inbound Provisioning
+  canUseIntelligence:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence
+  canUseIntelligenceAdvancedPredictors:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence Advanced Predictors
+  canUseIntelligenceAnonymousNetworkDetection:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence Anonymous Network Detection
+  canUseIntelligenceDataConsent:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence Data Consent
+  canUseIntelligenceEditPolicyScores:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence Edit Policy Scores
+  canUseIntelligenceGeoVelocity:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence Geo Velocity
+  canUseIntelligenceLastTransactionOlderThan:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence Last Transaction Older Than
+  canUseIntelligenceLimitedCompositePredictor:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence Limited Composite Predictor
+  canUseIntelligenceNewDevicePredictor:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence New Device Predictor
+  canUseIntelligenceProtect:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence Protect
+  canUseIntelligenceReputation:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence Reputation
+  canUseIntelligenceRisk:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence Risk
+  canUseIntelligenceTrustDevicePredictor:
+    type: boolean
+    title: Environment Capabilities Can Use Intelligence Trust Device Predictor
+  canUseKerberosGateway:
+    type: boolean
+    title: Environment Capabilities Can Use Kerberos Gateway
+  canUseLdapGateway:
+    type: boolean
+    title: Environment Capabilities Can Use Ldap Gateway
+  canUseManualIDStepUpInspection:
+    type: boolean
+    title: Environment Capabilities Can Use Manual ID Step Up Inspection
+  canUseManualIdInspection:
+    type: boolean
+    title: Environment Capabilities Can Use Manual Id Inspection
+  canUseMfa:
+    type: boolean
+    title: Environment Capabilities Can Use MFA
+  canUseMfaFido2Devices:
+    type: boolean
+    title: Environment Capabilities Can Use MFA Fido 2 Devices
+  canUseMfaPushNotifications:
+    type: boolean
+    title: Environment Capabilities Can Use MFA Push Notifications
+  canUseMfaVoiceOtp:
+    type: boolean
+    title: Environment Capabilities Can Use MFA Voice Otp
+  canUseMyAccount:
+    type: boolean
+    title: Environment Capabilities Can Use My Account
+  canUseNewAccountFraudDetection:
+    type: boolean
+    title: Environment Capabilities Can Use New Account Fraud Detection
+  canUseOATHToken:
+    type: boolean
+    title: Environment Capabilities Can Use OATH Token
+  canUseOrchestration:
+    type: boolean
+    title: Environment Capabilities Can Use Orchestration
+  canUsePasswordManagement:
+    type: boolean
+    title: Environment Capabilities Can Use Password Management
+  canUsePasswordOnlyAuthentication:
+    type: boolean
+    title: Environment Capabilities Can Use Password Only Authentication
+  canUsePasswordPolicy:
+    type: boolean
+    title: Environment Capabilities Can Use Password Policy
+  canUsePingIDApp:
+    type: boolean
+    title: Environment Capabilities Can Use Ping ID App
+  canUsePingSmsAccount:
+    type: boolean
+    title: Environment Capabilities Can Use Ping Sms Account
+  canUsePlatform:
+    type: boolean
+    title: Environment Capabilities Can Use Platform
+  canUseProtectTransactions:
+    type: boolean
+    title: Environment Capabilities Can Use Protect Transactions
+  canUseProvisioning:
+    type: boolean
+    title: Environment Capabilities Can Use Provisioning
+  canUseRadiusGateway:
+    type: boolean
+    title: Environment Capabilities Can Use Radius Gateway
+  canUseSmsOtp:
+    type: boolean
+    title: Environment Capabilities Can Use Sms Otp
+  canUseTotp:
+    type: boolean
+    title: Environment Capabilities Can Use Totp
+  canUseUniversalDeviceId:
+    type: boolean
+    title: Environment Capabilities Can Use Universal Device Id
+  canUseVerificationFlow:
+    type: boolean
+    title: Environment Capabilities Can Use Verification Flow
+  canUseVerify:
+    type: boolean
+    title: Environment Capabilities Can Use Verify
+  canUseVerifyPushNotifications:
+    type: boolean
+    title: Environment Capabilities Can Use Verify Push Notifications
+  canUseVerifyVoice:
+    type: boolean
+    title: Environment Capabilities Can Use Verify Voice
+  canUseWhatsAppOtp:
+    type: boolean
+    title: Environment Capabilities Can Use Whats App Otp
+  canUseWinLogin:
+    type: boolean
+    title: Environment Capabilities Can Use Win Login
+  canUseYubikey:
+    type: boolean
+    title: Environment Capabilities Can Use Yubikey
+  canUsersUpdateSelf:
+    type: boolean
+    title: Environment Capabilities Can Users Update Self
+  environmentId:
+    type: string
+    format: uuid
+    title: Environment Capabilities Environment Id
+  getcanUseUniversalCapture:
+    type: boolean
+    title: Environment Capabilities Getcan Use Universal Capture
+  licenseQuantities:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.LicenseQuantities.yaml
+title: Environment Capabilities

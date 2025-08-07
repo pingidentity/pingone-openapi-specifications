@@ -1,0 +1,5 @@
+schema:
+  type: string
+  minLength: 1
+name: X-Ping-External-Transaction-ID
+in: header

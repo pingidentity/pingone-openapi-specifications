@@ -1,0 +1,39 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    additionalProperties:
+      type: object
+      title: Environment Bill of Materials Response _embedded Additional Properties
+    readOnly: true
+    title: Environment Bill of Materials Response _embedded
+  _links:
+    type: object
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    readOnly: true
+    title: Environment Bill of Materials Response _links
+  createdAt:
+    type: string
+    format: date-time
+    readOnly: true
+    title: Environment Bill of Materials Response Created At
+  products:
+    maxItems: 100
+    minItems: 0
+    type: array
+    items:
+      $ref: >-
+        ./com.pingidentity.pingone.orgmgt.environments.bom.api.model.Product.yaml
+    title: Environment Bill of Materials Response Products
+  solutionType:
+    maxLength: 100
+    minLength: 0
+    type: string
+    title: Environment Bill of Materials Response Solution Type
+  updatedAt:
+    type: string
+    format: date-time
+    readOnly: true
+    title: Environment Bill of Materials Response Updated At
+title: Environment Bill of Materials Response

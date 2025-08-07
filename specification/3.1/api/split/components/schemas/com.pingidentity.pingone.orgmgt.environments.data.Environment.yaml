@@ -1,0 +1,86 @@
+required:
+  - name
+  - region
+  - type
+  - createdAt
+  - updatedAt
+  - id
+  - organization
+type: object
+properties:
+  name:
+    type: string
+    minLength: 1
+    title: Environment Response Name
+  region:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentRegionCodeValue.yaml
+  type:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentTypeValue.yaml
+  createdAt:
+    type: string
+    format: date-time
+    readOnly: true
+    minLength: 1
+    title: Environment Response Created At
+  updatedAt:
+    type: string
+    format: date-time
+    readOnly: true
+    minLength: 1
+    title: Environment Response Updated At
+  id:
+    type: string
+    format: uuid
+    minLength: 1
+    title: Environment Response Id
+  organization:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  _embedded:
+    type: object
+    additionalProperties:
+      type: object
+      readOnly: true
+      title: Environment Response _embedded Additional Properties
+    readOnly: true
+    title: Environment Response _embedded
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    readOnly: true
+    title: Environment Response _links
+  billOfMaterials:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.bom.api.model.BillOfMaterials.yaml
+  description:
+    type: string
+    title: Environment Response Description
+  environmentCapabilities:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.EnvironmentCapabilities.yaml
+  hardDeleteAllowedAt:
+    type: string
+    format: date-time
+    title: Environment Response Hard Delete Allowed At
+  icon:
+    type: string
+    title: Environment Response Icon
+  license:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentLicense.yaml
+  pingoneAccountId:
+    type: string
+    title: Environment Response Pingone Account Id
+  softDeletedAt:
+    type: string
+    format: date-time
+    title: Environment Response Soft Deleted At
+  status:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentStatusValue.yaml
+title: Environment Response

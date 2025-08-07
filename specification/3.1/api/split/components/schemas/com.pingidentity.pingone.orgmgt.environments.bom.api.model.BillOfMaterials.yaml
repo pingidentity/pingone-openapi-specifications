@@ -1,0 +1,25 @@
+type: object
+properties:
+  products:
+    maxItems: 100
+    minItems: 0
+    type: array
+    items:
+      $ref: >-
+        ./com.pingidentity.pingone.orgmgt.environments.bom.api.model.Product.yaml
+    title: Environment Bill of Materials Products
+  solutionType:
+    maxLength: 100
+    minLength: 0
+    type: string
+    enum:
+      - CIAM_TRIAL
+      - CUSTOMER
+      - WF_TRIAL
+      - WORKFORCE
+    title: Environment Bill of Materials Solution Type
+required:
+  - products
+x-immutable:
+  - solutionType
+title: Environment Bill of Materials

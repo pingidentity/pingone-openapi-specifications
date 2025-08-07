@@ -1,0 +1,111 @@
+get:
+  operationId: getEnvironments
+  parameters:
+    - name: expand
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: filter
+      in: query
+      schema:
+        type: string
+    - name: order
+      in: query
+      schema:
+        type: string
+    - name: limit
+      in: query
+      schema:
+        maximum: 5000
+        minimum: 1
+        type: integer
+        format: int32
+        default: 1000
+    - name: cursor
+      in: query
+      schema:
+        type: string
+    - $ref: ../components/parameters/com.pingidentity.header.ExternalSessionID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.header.ExternalTransactionID.yaml
+  responses:
+    '200':
+      description: Successful operation. This is also returned if the collection is empty.
+      content:
+        application/hal+json:
+          schema:
+            $ref: >-
+              ../components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentsResponse.yaml
+        application/json:
+          schema:
+            $ref: >-
+              ../components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentsResponse.yaml
+    '400':
+      $ref: ../components/responses/http.400.BadRequest.yaml
+    '401':
+      $ref: ../components/responses/http.401.Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/http.403.Forbidden.yaml
+    '404':
+      $ref: ../components/responses/http.404.NotFound.yaml
+    '429':
+      $ref: ../components/responses/http.429.TooManyRequests.yaml
+    '500':
+      $ref: ../components/responses/http.500.InternalServerError.yaml
+    '502':
+      $ref: ../components/responses/http.502.BadGateway.yaml
+    '503':
+      $ref: ../components/responses/http.503.ServiceUnavailable.yaml
+  x-permission: orgmgt:read:environment
+  x-pingidentity-paginatedresponse: true
+  tags:
+    - Environments
+post:
+  operationId: createEnvironment
+  parameters:
+    - $ref: ../components/parameters/com.pingidentity.header.ExternalSessionID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.header.ExternalTransactionID.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: >-
+            ../components/schemas/com.pingidentity.pingone.orgmgt.environments.data.CreateEnvironment.yaml
+    required: true
+  responses:
+    '201':
+      description: Successfully created.
+      headers:
+        Location:
+          schema:
+            type: string
+      content:
+        application/hal+json:
+          schema:
+            $ref: >-
+              ../components/schemas/com.pingidentity.pingone.orgmgt.environments.data.Environment.yaml
+        application/json:
+          schema:
+            $ref: >-
+              ../components/schemas/com.pingidentity.pingone.orgmgt.environments.data.Environment.yaml
+    '400':
+      $ref: ../components/responses/http.400.BadRequest.yaml
+    '401':
+      $ref: ../components/responses/http.401.Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/http.403.Forbidden.yaml
+    '404':
+      $ref: ../components/responses/http.404.NotFound.yaml
+    '429':
+      $ref: ../components/responses/http.429.TooManyRequests.yaml
+    '500':
+      $ref: ../components/responses/http.500.InternalServerError.yaml
+    '502':
+      $ref: ../components/responses/http.502.BadGateway.yaml
+    '503':
+      $ref: ../components/responses/http.503.ServiceUnavailable.yaml
+  x-permission: orgmgt:create:environment
+  tags:
+    - Environments

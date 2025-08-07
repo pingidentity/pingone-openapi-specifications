@@ -1,0 +1,4 @@
+type: object
+additionalProperties: true
+properties: {}
+title: DaVinci Connector Instance Clone Request

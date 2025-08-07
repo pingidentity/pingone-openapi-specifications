@@ -1,0 +1,179 @@
+type: object
+properties:
+  environment:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Connector Details Response _links
+  accountConfigView:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          properties: {}
+          additionalProperties: true
+          title: DaVinci Connector Details Response Account Config View Item Item
+        title: DaVinci Connector Details Response Account Config View Item
+      componentViewSize:
+        type: string
+        title: >-
+          DaVinci Connector Details Response Account Config View Component View
+          Size
+    required:
+      - items
+    title: DaVinci Connector Details Response Account Config View
+  capabilities:
+    type: object
+    additionalProperties:
+      type: object
+      additionalProperties: false
+      patternProperties:
+        ^[0-9]+$:
+          type: object
+          additionalProperties: true
+          properties:
+            flowConfigView:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties: {}
+                    additionalProperties: true
+                    title: >-
+                      DaVinci Connector Details Response Capabilities Additional
+                      Properties Pattern Properties `^[0-9]+$` Flow Config View
+                      Item Item
+                  title: >-
+                    DaVinci Connector Details Response Capabilities Additional
+                    Properties Pattern Properties `^[0-9]+$` Flow Config View
+                    Item
+              required:
+                - items
+              title: >-
+                DaVinci Connector Details Response Capabilities Additional
+                Properties Pattern Properties `^[0-9]+$` Flow Config View
+            globalOutputSchema:
+              type: object
+              title: >-
+                DaVinci Connector Details Response Capabilities Additional
+                Properties Pattern Properties `^[0-9]+$` Global Output Schema
+            inputs:
+              type: array
+              items:
+                type: string
+                title: >-
+                  DaVinci Connector Details Response Capabilities Additional
+                  Properties Pattern Properties `^[0-9]+$` Input
+              title: >-
+                DaVinci Connector Details Response Capabilities Additional
+                Properties Pattern Properties `^[0-9]+$` Inputs
+            respondToUser:
+              type: boolean
+              title: >-
+                DaVinci Connector Details Response Capabilities Additional
+                Properties Pattern Properties `^[0-9]+$` Respond To User
+            subTitle:
+              type: string
+              title: >-
+                DaVinci Connector Details Response Capabilities Additional
+                Properties Pattern Properties `^[0-9]+$` Sub Title
+            title:
+              type: string
+              title: >-
+                DaVinci Connector Details Response Capabilities Additional
+                Properties Pattern Properties `^[0-9]+$` Title
+            type:
+              type: string
+              title: >-
+                DaVinci Connector Details Response Capabilities Additional
+                Properties Pattern Properties `^[0-9]+$` Type
+            userViews:
+              type: array
+              items:
+                type: object
+                title: >-
+                  DaVinci Connector Details Response Capabilities Additional
+                  Properties Pattern Properties `^[0-9]+$` User View
+              title: >-
+                DaVinci Connector Details Response Capabilities Additional
+                Properties Pattern Properties `^[0-9]+$` User Views
+          title: >-
+            DaVinci Connector Details Response Capabilities Additional
+            Properties Pattern Properties `^[0-9]+$`
+      title: DaVinci Connector Details Response Capabilities Additional Properties
+    title: DaVinci Connector Details Response Capabilities
+  credentialsView:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          properties: {}
+          additionalProperties: true
+          title: DaVinci Connector Details Response Credentials View Item Item
+        title: DaVinci Connector Details Response Credentials View Item
+    required:
+      - items
+    title: DaVinci Connector Details Response Credentials View
+  flowSections:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          title: DaVinci Connector Details Response Flow Section Name
+        value:
+          type: string
+          minLength: 1
+          title: DaVinci Connector Details Response Flow Section Value
+      required:
+        - name
+        - value
+      title: DaVinci Connector Details Response Flow Section
+    title: DaVinci Connector Details Response Flow Sections
+  properties:
+    type: object
+    properties: {}
+    additionalProperties: true
+    title: DaVinci Connector Details Response
+  sections:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          title: DaVinci Connector Details Response Section Name
+        value:
+          type: string
+          minLength: 1
+          title: DaVinci Connector Details Response Section Value
+        default:
+          type: boolean
+          title: DaVinci Connector Details Response Section Default
+      required:
+        - name
+        - value
+      title: DaVinci Connector Details Response Section
+    title: DaVinci Connector Details Response Sections
+required:
+  - environment
+title: DaVinci Connector Details Response
