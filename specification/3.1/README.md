@@ -4,4 +4,4 @@ This directory contains OpenAPI 3.1 specification files for PingOne APIs.
 
 ## Structure
 
-- `api/` - API specifications
+- `api/` - API specifications for the `api` subdomain (e.g. `api.pingone.com`)
