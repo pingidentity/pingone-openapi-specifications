@@ -38,7 +38,9 @@ get:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:read:flowPolicies
   tags:
-    - DaVinci Applications
+    - DaVinci Admin Application Flow Policies
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 put:
   operationId: replaceFlowPolicyByIdUsingDavinciApplicationId
   parameters:
@@ -86,7 +88,9 @@ put:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:update:flowPolicies
   tags:
-    - DaVinci Applications
+    - DaVinci Admin Application Flow Policies
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 delete:
   operationId: deleteFlowPolicyByIdUsingDavinciApplicationId
   parameters:
@@ -122,4 +126,6 @@ delete:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:delete:flowPolicies
   tags:
-    - DaVinci Applications
+    - DaVinci Admin Application Flow Policies
+    - DaVinci Admin APIs
+    - PingOne DaVinci

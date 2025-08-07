@@ -36,7 +36,9 @@ get:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:read:applications
   tags:
-    - DaVinci Applications
+    - DaVinci Admin Applications
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 put:
   operationId: replaceDavinciApplicationById
   parameters:
@@ -82,7 +84,9 @@ put:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:update:applications
   tags:
-    - DaVinci Applications
+    - DaVinci Admin Applications
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 delete:
   operationId: deleteDavinciApplicationById
   parameters:
@@ -116,4 +120,6 @@ delete:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:delete:applications
   tags:
-    - DaVinci Applications
+    - DaVinci Admin Applications
+    - DaVinci Admin APIs
+    - PingOne DaVinci

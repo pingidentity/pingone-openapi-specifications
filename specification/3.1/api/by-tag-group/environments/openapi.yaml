@@ -1,0 +1,1621 @@
+openapi: 3.1.1
+info:
+  title: PingOne Platform API
+  version: 2025.08.07-development
+  description: PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.
+  contact:
+    name: Ping Identity Developer Experiences
+    url: https://developer.pingidentity.com
+    email: developerexperiences@pingidentity.com
+  license:
+    identifier: Apache-2.0
+    name: Apache 2.0
+servers:
+  - url: https://api.pingone.{tld}/{basePath}
+    variables:
+      basePath:
+        default: v1
+      tld:
+        enum:
+          - eu
+          - com
+          - asia
+          - com.au
+          - ca
+          - sg
+        default: com
+tags:
+  - name: Environments
+    description: Operations for managing PingOne environments
+paths:
+  /environments:
+    get:
+      operationId: getEnvironments
+      parameters:
+        - name: expand
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: filter
+          in: query
+          schema:
+            type: string
+        - name: order
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            maximum: 5000
+            minimum: 1
+            type: integer
+            format: int32
+            default: 1000
+        - name: cursor
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      responses:
+        '200':
+          description: Successful operation. This is also returned if the collection is empty.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentsResponse'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden'
+        '404':
+          $ref: '#/components/responses/http.404.NotFound'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-permission: orgmgt:read:environment
+      x-pingidentity-paginatedresponse: true
+      tags:
+        - Environments
+    post:
+      operationId: createEnvironment
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.CreateEnvironment'
+        required: true
+      responses:
+        '201':
+          description: Successfully created.
+          headers:
+            Location:
+              schema:
+                type: string
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.Environment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.Environment'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden'
+        '404':
+          $ref: '#/components/responses/http.404.NotFound'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-permission: orgmgt:create:environment
+      tags:
+        - Environments
+  /environments/{environmentID}:
+    get:
+      operationId: getEnvironmentById
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - name: expand
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.Environment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.Environment'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden.P14C63085'
+        '404':
+          $ref: '#/components/responses/http.404.NotFound.DOCS8830'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-permission: orgmgt:read:environment
+      tags:
+        - Environments
+    put:
+      operationId: replaceEnvironmentById
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.ReplaceEnvironment'
+        required: true
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.Environment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.Environment'
+        '201':
+          description: Successfully created.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.Environment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.Environment'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden.P14C63085'
+        '404':
+          $ref: '#/components/responses/http.404.NotFound.DOCS8830'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-permission: orgmgt:update:environment
+      tags:
+        - Environments
+    delete:
+      operationId: deleteEnvironmentById
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      responses:
+        '204':
+          description: Successfully removed. No content.
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden.P14C63085'
+        '404':
+          $ref: '#/components/responses/http.404.NotFound.DOCS8830'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-permission: orgmgt:delete:environment
+      tags:
+        - Environments
+  /environments/{environmentID}/billOfMaterials:
+    get:
+      operationId: getBillOfMaterialsByEnvironmentId
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.BillOfMaterialsApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.BillOfMaterialsApiResponse'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden.P14C63085.DOCS8830'
+        '404':
+          $ref: '#/components/responses/http.404.NotFound.DOCS8830'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-permission: orgmgt:read:environment
+      tags:
+        - Environments
+    put:
+      operationId: replaceBillOfMaterialsByEnvironmentId
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.ReplaceBillOfMaterials'
+        required: true
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.BillOfMaterialsApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.BillOfMaterialsApiResponse'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden.P14C63085.DOCS8830'
+        '404':
+          $ref: '#/components/responses/http.404.NotFound.DOCS8830'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-permission: orgmgt:update:environment
+      tags:
+        - Environments
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /as/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /as/authorize
+          tokenUrl: /as/token
+          refreshUrl: /as/token
+          scopes: {}
+  schemas:
+    com.pingidentity.ApiErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          title: General Error Code
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/com.pingidentity.ErrorDetail'
+          title: General Error Details
+        id:
+          type: string
+          title: General Error Id
+        message:
+          type: string
+          title: General Error Message
+      title: General Error
+    com.pingidentity.ApiErrorResponse.400:
+      $schema: http://json-schema.org/draft/2020-12/schema#
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 1
+          title: Bad Request Error Id
+        code:
+          type: string
+          enum:
+            - INVALID_DATA
+            - INVALID_REQUEST
+            - REQUEST_FAILED
+          minLength: 1
+          title: Bad Request Error Code
+        message:
+          type: string
+          minLength: 1
+          title: Bad Request Error Message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                enum:
+                  - ACCOUNT_NOT_USABLE
+                  - CONSTRAINT_VIOLATION
+                  - EMPTY_VALUE
+                  - INVALID_FILTER
+                  - INVALID_OTP
+                  - INVALID_PARAMETER
+                  - INVALID_VALUE
+                  - MFA_AUTH_METHODS_CONFLICT
+                  - NO_PASSWORD
+                  - OUT_OF_RANGE
+                  - REQUIRED_VALUE
+                  - SIZE_LIMIT_EXCEEDED
+                  - UNIQUENESS_VIOLATION
+                minLength: 1
+                title: Bad Request Error Detail Code
+              message:
+                type: string
+                minLength: 1
+                title: Bad Request Error Detail Message
+              innerError:
+                type: object
+                properties:
+                  allowedPattern:
+                    type: string
+                    title: Bad Request Error Detail Inner Error Allowed Pattern
+                  allowedValues:
+                    type: array
+                    items:
+                      type: string
+                      title: Bad Request Error Detail Inner Error Allowed Value
+                    title: Bad Request Error Detail Inner Error Allowed Values
+                  claim:
+                    type: string
+                    title: Bad Request Error Detail Inner Error Claim
+                  existingId:
+                    type: string
+                    format: uuid
+                    title: Bad Request Error Detail Inner Error Existing Id
+                  maximumValue:
+                    type: number
+                    title: Bad Request Error Detail Inner Error Maximum Value
+                  quotaLimit:
+                    type: number
+                    title: Bad Request Error Detail Inner Error Quota Limit
+                  quotaResetTime:
+                    type: string
+                    format: date-time
+                    title: Bad Request Error Detail Inner Error Quota Reset Time
+                  rangeMaximumValue:
+                    type: number
+                    title: Bad Request Error Detail Inner Error Range Maximum Value
+                  rangeMinimumValue:
+                    type: number
+                    title: Bad Request Error Detail Inner Error Range Minimum Value
+                additionalProperties: true
+                title: Bad Request Error Detail Inner Error
+              target:
+                type: string
+                title: Bad Request Error Detail Target
+            required:
+              - code
+              - message
+            title: Bad Request Error Detail
+          title: Bad Request Error Details
+      required:
+        - id
+        - code
+        - message
+      title: Bad Request Error
+    com.pingidentity.ApiErrorResponse.401:
+      $schema: http://json-schema.org/draft/2020-12/schema#
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 1
+          title: Unauthorized Error Id
+        code:
+          type: string
+          enum:
+            - ACCESS_FAILED
+          minLength: 1
+          title: Unauthorized Error Code
+        message:
+          type: string
+          minLength: 1
+          title: Unauthorized Error Message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                enum:
+                  - INSUFFICIENT_PERMISSIONS
+                  - INVALID_TOKEN
+                minLength: 1
+                title: Unauthorized Error Detail Code
+              message:
+                type: string
+                minLength: 1
+                title: Unauthorized Error Detail Message
+              innerError:
+                type: object
+                additionalProperties: true
+                title: Unauthorized Error Detail Inner Error
+              target:
+                type: string
+                title: Unauthorized Error Detail Target
+            required:
+              - code
+              - message
+            title: Unauthorized Error Detail
+          title: Unauthorized Error Details
+      required:
+        - id
+        - code
+        - message
+      title: Unauthorized Error
+    com.pingidentity.ApiErrorResponse.403:
+      $schema: http://json-schema.org/draft/2020-12/schema#
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 1
+          title: Forbidden Error Id
+        code:
+          type: string
+          enum:
+            - ACCESS_FAILED
+          minLength: 1
+          title: Forbidden Error Code
+        message:
+          type: string
+          minLength: 1
+          title: Forbidden Error Message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                enum:
+                  - INSUFFICIENT_PERMISSIONS
+                  - LICENSE_EXCEEDED
+                minLength: 1
+                title: Forbidden Error Detail Code
+              message:
+                type: string
+                minLength: 1
+                title: Forbidden Error Detail Message
+              innerError:
+                type: object
+                properties:
+                  quotaLimit:
+                    type: number
+                    title: Forbidden Error Detail Inner Error Quota Limit
+                additionalProperties: true
+                title: Forbidden Error Detail Inner Error
+              target:
+                type: string
+                title: Forbidden Error Detail Target
+            required:
+              - code
+              - message
+            title: Forbidden Error Detail
+          title: Forbidden Error Details
+      required:
+        - id
+        - code
+        - message
+      title: Forbidden Error
+    com.pingidentity.ApiErrorResponse.404:
+      $schema: http://json-schema.org/draft/2020-12/schema#
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 1
+          title: Not Found Error Id
+        code:
+          type: string
+          enum:
+            - NOT_FOUND
+          minLength: 1
+          title: Not Found Error Code
+        message:
+          type: string
+          minLength: 1
+          title: Not Found Error Message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                minLength: 1
+                title: Not Found Error Detail Code
+              message:
+                type: string
+                minLength: 1
+                title: Not Found Error Detail Message
+              innerError:
+                type: object
+                additionalProperties: true
+                title: Not Found Error Detail Inner Error
+              target:
+                type: string
+                title: Not Found Error Detail Target
+            required:
+              - code
+              - message
+            title: Not Found Error Detail
+          title: Not Found Error Details
+      required:
+        - id
+        - code
+        - message
+      title: Not Found Error
+    com.pingidentity.ApiErrorResponse.429:
+      $schema: http://json-schema.org/draft/2020-12/schema#
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 1
+          title: Too Many Requests Error Id
+        code:
+          type: string
+          enum:
+            - REQUEST_LIMITED
+          minLength: 1
+          title: Too Many Requests Error Code
+        message:
+          type: string
+          minLength: 1
+          title: Too Many Requests Error Message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                enum:
+                  - LIMIT_EXCEEDED
+                  - QUOTA_EXCEEDED
+                minLength: 1
+                title: Too Many Requests Error Detail Code
+              message:
+                type: string
+                minLength: 1
+                title: Too Many Requests Error Detail Message
+              innerError:
+                type: object
+                properties:
+                  quotaLimit:
+                    type: number
+                    title: Too Many Requests Error Detail Inner Error Quota Limit
+                  quotaResetTime:
+                    type: string
+                    format: date-time
+                    title: Too Many Requests Error Detail Inner Error Quota Reset Time
+                  retryAfter:
+                    type: string
+                    format: date-time
+                    title: Too Many Requests Error Detail Inner Error Retry After
+                additionalProperties: true
+                title: Too Many Requests Error Detail Inner Error
+              target:
+                type: string
+                title: Too Many Requests Error Detail Target
+            required:
+              - code
+              - message
+            title: Too Many Requests Error Detail
+          title: Too Many Requests Error Details
+      required:
+        - id
+        - code
+        - message
+      title: Too Many Requests Error
+    com.pingidentity.ApiErrorResponse.500:
+      $schema: http://json-schema.org/draft/2020-12/schema#
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 1
+          title: Internal Server Error Id
+        code:
+          type: string
+          enum:
+            - UNEXPECTED_ERROR
+          minLength: 1
+          title: Internal Server Error Code
+        message:
+          type: string
+          minLength: 1
+          title: Internal Server Error Message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                minLength: 1
+                title: Internal Server Error Detail Code
+              message:
+                type: string
+                minLength: 1
+                title: Internal Server Error Detail Message
+              innerError:
+                type: object
+                additionalProperties: true
+                title: Internal Server Error Detail Inner Error
+              target:
+                type: string
+                title: Internal Server Error Detail Target
+            required:
+              - code
+              - message
+            title: Internal Server Error Detail
+          title: Internal Server Error Details
+      required:
+        - id
+        - code
+        - message
+      title: Internal Server Error
+    com.pingidentity.ErrorDetail:
+      type: object
+      properties:
+        code:
+          type: string
+          title: General Error Detail Code
+        innerError:
+          type: object
+          additionalProperties:
+            type: object
+            title: General Error Detail Inner Error Additional Properties
+          title: General Error Detail Inner Error
+        message:
+          type: string
+          title: General Error Detail Message
+        target:
+          type: string
+          title: General Error Detail Target
+      title: General Error Detail
+    com.pingidentity.api.Relationship.PingOne.RO:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          minLength: 1
+          title: Resource Relationship Read-Only Id
+      required:
+        - id
+      title: Resource Relationship Read-Only
+    com.pingidentity.api.Relationship.lang.String:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          title: Resource Relationship Generic Id
+      title: Resource Relationship Generic
+    com.pingidentity.api.response.Link:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+          minLength: 1
+          title: JSON HAL Link Href
+        name:
+          type: string
+          title: JSON HAL Link Name
+        profile:
+          type: string
+          format: uri
+          title: JSON HAL Link Profile
+        title:
+          type: string
+          format: uri
+          title: JSON HAL Link Title
+        type:
+          type: string
+          title: JSON HAL Link Type
+      required:
+        - href
+      readOnly: true
+      title: JSON HAL Link
+    com.pingidentity.pingone.orgmgt.environments.bom.api.model.BillOfMaterials:
+      type: object
+      properties:
+        products:
+          maxItems: 100
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.Product'
+          title: Environment Bill of Materials Products
+        solutionType:
+          maxLength: 100
+          minLength: 0
+          type: string
+          enum:
+            - CIAM_TRIAL
+            - CUSTOMER
+            - WF_TRIAL
+            - WORKFORCE
+          title: Environment Bill of Materials Solution Type
+      required:
+        - products
+      x-immutable:
+        - solutionType
+      title: Environment Bill of Materials
+    com.pingidentity.pingone.orgmgt.environments.bom.api.model.BillOfMaterialsApiResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          additionalProperties:
+            type: object
+            title: Environment Bill of Materials Response _embedded Additional Properties
+          readOnly: true
+          title: Environment Bill of Materials Response _embedded
+        _links:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+          readOnly: true
+          title: Environment Bill of Materials Response _links
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Environment Bill of Materials Response Created At
+        products:
+          maxItems: 100
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.Product'
+          title: Environment Bill of Materials Response Products
+        solutionType:
+          maxLength: 100
+          minLength: 0
+          type: string
+          title: Environment Bill of Materials Response Solution Type
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Environment Bill of Materials Response Updated At
+      title: Environment Bill of Materials Response
+    com.pingidentity.pingone.orgmgt.environments.bom.api.model.Bookmark:
+      type: object
+      properties:
+        href:
+          maxLength: 1024
+          minLength: 1
+          type: string
+          title: Environment Bill of Materials Product Bookmark Href
+        name:
+          type: string
+          minLength: 1
+          title: Environment Bill of Materials Product Bookmark Name
+      required:
+        - href
+        - name
+      title: Environment Bill of Materials Product Bookmark
+    com.pingidentity.pingone.orgmgt.environments.bom.api.model.Console:
+      type: object
+      properties:
+        href:
+          maxLength: 1024
+          minLength: 1
+          type: string
+          title: Environment Bill of Materials Product Console Href
+      required:
+        - href
+      title: Environment Bill of Materials Product Console
+    com.pingidentity.pingone.orgmgt.environments.bom.api.model.Product:
+      required:
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - IDENTITY_CLOUD
+            - PING_ACCESS
+            - PING_AUTHORIZE
+            - PING_CENTRAL
+            - PING_DATA_GOVERNANCE
+            - PING_DATA_SYNC
+            - PING_DIRECTORY
+            - PING_FEDERATE
+            - PING_ID
+            - PING_ID_SDK
+            - PING_INTELLIGENCE
+            - PING_ONE_AUTHORIZE
+            - PING_ONE_BASE
+            - PING_ONE_CREDENTIALS
+            - PING_ONE_DAVINCI
+            - PING_ONE_FOR_ENTERPRISE
+            - PING_ONE_FOR_SAAS
+            - PING_ONE_FRAUD
+            - PING_ONE_ID
+            - PING_ONE_LEGACY
+            - PING_ONE_MFA
+            - PING_ONE_ORCHESTRATE
+            - PING_ONE_PROVISIONING
+            - PING_ONE_RISK
+            - PING_ONE_VERIFY
+          minLength: 1
+          title: Environment Bill of Materials Product Type
+        bookmarks:
+          maxItems: 5
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.Bookmark'
+          title: Environment Bill of Materials Product Bookmarks
+        console:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.Console'
+        deployment:
+          $ref: '#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO'
+        description:
+          type: string
+          title: Environment Bill of Materials Product Description
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          title: Environment Bill of Materials Product Id
+          minLength: 1
+        softwareLicense:
+          $ref: '#/components/schemas/com.pingidentity.api.Relationship.lang.String'
+        tags:
+          type: array
+          items:
+            type: string
+            title: Environment Bill of Materials Product Tag
+          title: Environment Bill of Materials Product Tags
+      title: Environment Bill of Materials Product
+    com.pingidentity.pingone.orgmgt.environments.bom.api.model.ReplaceBillOfMaterials:
+      type: object
+      properties:
+        products:
+          maxItems: 100
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.Product'
+          title: Environment Bill of Materials Replace Request Products
+      required:
+        - products
+      title: Environment Bill of Materials Replace Request
+    com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit:
+      type: object
+      properties:
+        limit:
+          type: integer
+          format: int64
+          title: Environment API Limit Limit
+      title: Environment API Limit
+    com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.EnvironmentCapabilities:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          additionalProperties:
+            type: object
+            readOnly: true
+            title: Environment Capabilities _embedded Additional Properties
+          readOnly: true
+          title: Environment Capabilities _embedded
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+          additionalProperties:
+            $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+          readOnly: true
+          title: Environment Capabilities _links
+        canAddResources:
+          type: boolean
+          title: Environment Capabilities Can Add Resources
+        canAssignCustomRolesEverywhere:
+          type: boolean
+          title: Environment Capabilities Can Assign Custom Roles Everywhere
+        canAssignUsersRoles:
+          type: boolean
+          title: Environment Capabilities Can Assign Users Roles
+        canContactSupport:
+          type: boolean
+          title: Environment Capabilities Can Contact Support
+        canCreateConnections:
+          type: boolean
+          title: Environment Capabilities Can Create Connections
+        canCreateCustomDomain:
+          type: boolean
+          title: Environment Capabilities Can Create Custom Domain
+        canPromoteToProd:
+          type: boolean
+          title: Environment Capabilities Can Promote To Prod
+        canSendMfaNotificationsOutsideWhitelist:
+          type: boolean
+          title: Environment Capabilities Can Send MFA Notifications Outside Whitelist
+        canSendPasswordManagementNotifications:
+          type: boolean
+          title: Environment Capabilities Can Send Password Management Notifications
+        canSendVerificationFlowNotifications:
+          type: boolean
+          title: Environment Capabilities Can Send Verification Flow Notifications
+        canUseAadhaar:
+          type: boolean
+          title: Environment Capabilities Can Use Aadhaar
+        canUseAamva:
+          type: boolean
+          title: Environment Capabilities Can Use Aamva
+        canUseAccountOwnership:
+          type: boolean
+          title: Environment Capabilities Can Use Account Ownership
+        canUseAccountProtection:
+          type: boolean
+          title: Environment Capabilities Can Use Account Protection
+        canUseAccountTakeoverDetection:
+          type: boolean
+          title: Environment Capabilities Can Use Account Takeover Detection
+        canUseApiAccessManagement:
+          type: boolean
+          title: Environment Capabilities Can Use Api Access Management
+        canUseApplicationPermissions:
+          type: boolean
+          title: Environment Capabilities Can Use Application Permissions
+        canUseBotMaliciousDeviceDetection:
+          type: boolean
+          title: Environment Capabilities Can Use Bot Malicious Device Detection
+        canUseCredentialSharingDetection:
+          type: boolean
+          title: Environment Capabilities Can Use Credential Sharing Detection
+        canUseCredentials:
+          type: boolean
+          title: Environment Capabilities Can Use Credentials
+        canUseCredentialsPushNotifications:
+          type: boolean
+          title: Environment Capabilities Can Use Credentials Push Notifications
+        canUseCustomSchema:
+          type: boolean
+          title: Environment Capabilities Can Use Custom Schema
+        canUseDaVinciAdminPortal:
+          type: boolean
+          title: Environment Capabilities Can Use Da Vinci Admin Portal
+        canUseDataAnalyticsSupport:
+          type: boolean
+          title: Environment Capabilities Can Use Data Analytics Support
+        canUseDataBasedVerifications:
+          type: boolean
+          title: Environment Capabilities Can Use Data Based Verifications
+        canUseDigitalVerifications:
+          type: boolean
+          title: Environment Capabilities Can Use Digital Verifications
+        canUseDocumentMatch:
+          type: boolean
+          title: Environment Capabilities Can Use Document Match
+        canUseDynamicAuthorization:
+          type: boolean
+          title: Environment Capabilities Can Use Dynamic Authorization
+        canUseEditNotificationTemplate:
+          type: boolean
+          title: Environment Capabilities Can Use Edit Notification Template
+        canUseEmailOtp:
+          type: boolean
+          title: Environment Capabilities Can Use Email Otp
+        canUseFaceMatch:
+          type: boolean
+          title: Environment Capabilities Can Use Face Match
+        canUseFraudDataEnrichment:
+          type: boolean
+          title: Environment Capabilities Can Use Fraud Data Enrichment
+        canUseIdentities:
+          type: boolean
+          title: Environment Capabilities Can Use Identities
+        canUseIdentityProviders:
+          type: boolean
+          title: Environment Capabilities Can Use Identity Providers
+        canUseInboundProvisioning:
+          type: boolean
+          title: Environment Capabilities Can Use Inbound Provisioning
+        canUseIntelligence:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence
+        canUseIntelligenceAdvancedPredictors:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence Advanced Predictors
+        canUseIntelligenceAnonymousNetworkDetection:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence Anonymous Network Detection
+        canUseIntelligenceDataConsent:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence Data Consent
+        canUseIntelligenceEditPolicyScores:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence Edit Policy Scores
+        canUseIntelligenceGeoVelocity:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence Geo Velocity
+        canUseIntelligenceLastTransactionOlderThan:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence Last Transaction Older Than
+        canUseIntelligenceLimitedCompositePredictor:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence Limited Composite Predictor
+        canUseIntelligenceNewDevicePredictor:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence New Device Predictor
+        canUseIntelligenceProtect:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence Protect
+        canUseIntelligenceReputation:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence Reputation
+        canUseIntelligenceRisk:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence Risk
+        canUseIntelligenceTrustDevicePredictor:
+          type: boolean
+          title: Environment Capabilities Can Use Intelligence Trust Device Predictor
+        canUseKerberosGateway:
+          type: boolean
+          title: Environment Capabilities Can Use Kerberos Gateway
+        canUseLdapGateway:
+          type: boolean
+          title: Environment Capabilities Can Use Ldap Gateway
+        canUseManualIDStepUpInspection:
+          type: boolean
+          title: Environment Capabilities Can Use Manual ID Step Up Inspection
+        canUseManualIdInspection:
+          type: boolean
+          title: Environment Capabilities Can Use Manual Id Inspection
+        canUseMfa:
+          type: boolean
+          title: Environment Capabilities Can Use MFA
+        canUseMfaFido2Devices:
+          type: boolean
+          title: Environment Capabilities Can Use MFA Fido 2 Devices
+        canUseMfaPushNotifications:
+          type: boolean
+          title: Environment Capabilities Can Use MFA Push Notifications
+        canUseMfaVoiceOtp:
+          type: boolean
+          title: Environment Capabilities Can Use MFA Voice Otp
+        canUseMyAccount:
+          type: boolean
+          title: Environment Capabilities Can Use My Account
+        canUseNewAccountFraudDetection:
+          type: boolean
+          title: Environment Capabilities Can Use New Account Fraud Detection
+        canUseOATHToken:
+          type: boolean
+          title: Environment Capabilities Can Use OATH Token
+        canUseOrchestration:
+          type: boolean
+          title: Environment Capabilities Can Use Orchestration
+        canUsePasswordManagement:
+          type: boolean
+          title: Environment Capabilities Can Use Password Management
+        canUsePasswordOnlyAuthentication:
+          type: boolean
+          title: Environment Capabilities Can Use Password Only Authentication
+        canUsePasswordPolicy:
+          type: boolean
+          title: Environment Capabilities Can Use Password Policy
+        canUsePingIDApp:
+          type: boolean
+          title: Environment Capabilities Can Use Ping ID App
+        canUsePingSmsAccount:
+          type: boolean
+          title: Environment Capabilities Can Use Ping Sms Account
+        canUsePlatform:
+          type: boolean
+          title: Environment Capabilities Can Use Platform
+        canUseProtectTransactions:
+          type: boolean
+          title: Environment Capabilities Can Use Protect Transactions
+        canUseProvisioning:
+          type: boolean
+          title: Environment Capabilities Can Use Provisioning
+        canUseRadiusGateway:
+          type: boolean
+          title: Environment Capabilities Can Use Radius Gateway
+        canUseSmsOtp:
+          type: boolean
+          title: Environment Capabilities Can Use Sms Otp
+        canUseTotp:
+          type: boolean
+          title: Environment Capabilities Can Use Totp
+        canUseUniversalDeviceId:
+          type: boolean
+          title: Environment Capabilities Can Use Universal Device Id
+        canUseVerificationFlow:
+          type: boolean
+          title: Environment Capabilities Can Use Verification Flow
+        canUseVerify:
+          type: boolean
+          title: Environment Capabilities Can Use Verify
+        canUseVerifyPushNotifications:
+          type: boolean
+          title: Environment Capabilities Can Use Verify Push Notifications
+        canUseVerifyVoice:
+          type: boolean
+          title: Environment Capabilities Can Use Verify Voice
+        canUseWhatsAppOtp:
+          type: boolean
+          title: Environment Capabilities Can Use Whats App Otp
+        canUseWinLogin:
+          type: boolean
+          title: Environment Capabilities Can Use Win Login
+        canUseYubikey:
+          type: boolean
+          title: Environment Capabilities Can Use Yubikey
+        canUsersUpdateSelf:
+          type: boolean
+          title: Environment Capabilities Can Users Update Self
+        environmentId:
+          type: string
+          format: uuid
+          title: Environment Capabilities Environment Id
+        getcanUseUniversalCapture:
+          type: boolean
+          title: Environment Capabilities Getcan Use Universal Capture
+        licenseQuantities:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.LicenseQuantities'
+      title: Environment Capabilities
+    com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.LicenseQuantities:
+      type: object
+      properties:
+        numberOfAadhaar:
+          type: integer
+          format: int64
+          title: Environment License Quantities Number Of Aadhaar
+        numberOfAccountOwnership:
+          type: integer
+          format: int64
+          title: Environment License Quantities Number Of Account Ownership
+        numberOfDataVerifications:
+          type: integer
+          format: int64
+          title: Environment License Quantities Number Of Data Verifications
+        rlgAnalyticsRpm:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgAppRegRpm:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgAuditRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgAuthnRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgAuthzRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgCatchAllRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgConfigRpm:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgCredRpm:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgDirAccessRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgDirBulkRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgDirFixedRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgDirWriteRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgDvFlowCallbackRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgDvFlowExecRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgDvFlowStartRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgMfaFixedRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgMfaPollingRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgMfaRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgRiskEvalsRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgTokenCheckRps:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+        rlgVerifyRpm:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit'
+      title: Environment License Quantities
+    com.pingidentity.pingone.orgmgt.environments.data.CreateEnvironment:
+      required:
+        - name
+        - region
+        - type
+        - license
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          title: Environment Create Request Name
+        region:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentRegionCodeValue'
+        type:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentTypeValue'
+        license:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentLicense'
+        billOfMaterials:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.BillOfMaterials'
+        description:
+          type: string
+          title: Environment Create Request Description
+        icon:
+          type: string
+          title: Environment Create Request Icon
+      title: Environment Create Request
+    com.pingidentity.pingone.orgmgt.environments.data.Environment:
+      required:
+        - name
+        - region
+        - type
+        - createdAt
+        - updatedAt
+        - id
+        - organization
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          title: Environment Response Name
+        region:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentRegionCodeValue'
+        type:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentTypeValue'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          minLength: 1
+          title: Environment Response Created At
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          minLength: 1
+          title: Environment Response Updated At
+        id:
+          type: string
+          format: uuid
+          minLength: 1
+          title: Environment Response Id
+        organization:
+          $ref: '#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO'
+        _embedded:
+          type: object
+          additionalProperties:
+            type: object
+            readOnly: true
+            title: Environment Response _embedded Additional Properties
+          readOnly: true
+          title: Environment Response _embedded
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+          additionalProperties:
+            $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+          readOnly: true
+          title: Environment Response _links
+        billOfMaterials:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.BillOfMaterials'
+        description:
+          type: string
+          title: Environment Response Description
+        environmentCapabilities:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.EnvironmentCapabilities'
+        hardDeleteAllowedAt:
+          type: string
+          format: date-time
+          title: Environment Response Hard Delete Allowed At
+        icon:
+          type: string
+          title: Environment Response Icon
+        license:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentLicense'
+        pingoneAccountId:
+          type: string
+          title: Environment Response Pingone Account Id
+        softDeletedAt:
+          type: string
+          format: date-time
+          title: Environment Response Soft Deleted At
+        status:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentStatusValue'
+      title: Environment Response
+    com.pingidentity.pingone.orgmgt.environments.data.EnvironmentLicense:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 1
+          title: Environment License Id
+        package:
+          type: string
+          title: Environment License Package
+      required:
+        - id
+      title: Environment License
+    com.pingidentity.pingone.orgmgt.environments.data.EnvironmentRegionCodeValue:
+      type: string
+      enum:
+        - AP
+        - AU
+        - CA
+        - EU
+        - NA
+        - SG
+      minLength: 1
+      title: Environment Region Code
+    com.pingidentity.pingone.orgmgt.environments.data.EnvironmentStatusValue:
+      type: string
+      enum:
+        - ACTIVE
+        - DELETE_PENDING
+      minLength: 1
+      title: Environment Status Value
+    com.pingidentity.pingone.orgmgt.environments.data.EnvironmentTypeValue:
+      type: string
+      enum:
+        - PRODUCTION
+        - SANDBOX
+      minLength: 1
+      title: Environment Type Value
+    com.pingidentity.pingone.orgmgt.environments.data.EnvironmentsResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            environments:
+              type: array
+              items:
+                allOf:
+                  - $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.Environment'
+                title: Environments Collection Response _embedded Environment
+              title: Environments Collection Response _embedded Environments
+          title: Environments Collection Response _embedded
+        _links:
+          type: object
+          properties:
+            next:
+              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+            prev:
+              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+            self:
+              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+          additionalProperties:
+            $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+          title: Environments Collection Response _links
+        count:
+          type: integer
+          format: int32
+          title: Environments Collection Response Count
+        size:
+          type: integer
+          format: int32
+          title: Environments Collection Response Size
+      title: Environments Collection Response
+    com.pingidentity.pingone.orgmgt.environments.data.ReplaceEnvironment:
+      required:
+        - name
+        - region
+        - type
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          title: Environment Replace Request Name
+        region:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentRegionCodeValue'
+        type:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentTypeValue'
+        billOfMaterials:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.bom.api.model.ReplaceBillOfMaterials'
+        description:
+          type: string
+          title: Environment Replace Request Description
+        icon:
+          type: string
+          title: Environment Replace Request Icon
+        license:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentLicense'
+        status:
+          $ref: '#/components/schemas/com.pingidentity.pingone.orgmgt.environments.data.EnvironmentStatusValue'
+      x-immutable:
+        - region
+      title: Environment Replace Request
+  parameters:
+    com.pingidentity.header.ExternalSessionID:
+      schema:
+        type: string
+        minLength: 1
+      name: X-Ping-External-Session-ID
+      in: header
+    com.pingidentity.header.ExternalTransactionID:
+      schema:
+        type: string
+        minLength: 1
+      name: X-Ping-External-Transaction-ID
+      in: header
+    com.pingidentity.path.environments.environmentID:
+      name: environmentID
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    http.400.BadRequest:
+      description: Bad Request
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.400'
+    http.401.Unauthorized:
+      description: Unauthorized
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.401'
+    http.403.Forbidden:
+      description: Forbidden
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.403'
+    http.403.Forbidden.P14C63085:
+      description: 'Forbidden - Note: This may occur if the environment doesn''t exist. Check for environment existence with GET /environments/{environmentID} first.'
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.403'
+      x-pingone-p14c-63085: true
+    http.403.Forbidden.P14C63085.DOCS8830:
+      description: 'Forbidden - Note: This may occur if the environment doesn''t exist. Check for environment existence with GET /environments/{environmentID} first. - Note: This may be due to eventual consistency if the environment was recently created. Try again after a short delay.'
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.403'
+      x-pingone-p14c-63085: true
+      x-pingone-docs-8830: true
+    http.404.NotFound:
+      description: Not Found
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.404'
+    http.404.NotFound.DOCS8830:
+      description: 'Not Found - Note: This may be due to eventual consistency if the environment was recently created. Try again after a short delay.'
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.404'
+      x-pingone-docs-8830: true
+    http.429.TooManyRequests:
+      description: Too Many Requests
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/http.RetryAfter'
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.429'
+    http.500.InternalServerError:
+      description: Internal Server Error
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.500'
+    http.502.BadGateway:
+      description: Bad Gateway
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse'
+    http.503.ServiceUnavailable:
+      description: Service Unavailable
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/http.RetryAfter'
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse'
+  headers:
+    http.RetryAfter:
+      schema:
+        oneOf:
+          - type: integer
+            format: int32
+          - type: string
+        title: Retry-After Header

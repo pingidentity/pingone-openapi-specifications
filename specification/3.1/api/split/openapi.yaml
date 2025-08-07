@@ -31,18 +31,31 @@ security:
   - bearerAuth: []
   - oauth2: []
 tags:
-  - name: DaVinci Applications
+  - name: DaVinci Admin APIs
     description: >-
-      Operations for managing DaVinci applications and application flows
-      policies
-  - name: DaVinci Connectors
+      The PingOne DaVinci Admin APIs provide access to DaVinci operations
+      through the PingOne API resource server.
+  - name: DaVinci Admin Application Flow Policies
+    description: Operations for managing DaVinci application flows policies
+  - name: DaVinci Admin Applications
+    description: Operations for managing DaVinci applications
+  - name: DaVinci Admin Connector Instances
     description: Operations for managing DaVinci connectors and connector instances
-  - name: DaVinci Variables
+  - name: DaVinci Admin Connectors
+    description: Operations for managing DaVinci connectors and connector instances
+  - name: DaVinci Admin Variables
     description: Operations for managing DaVinci variables
-  - name: Directory Total Identities
-    description: Operations for retrieving PingOne directory total identity reports
   - name: Environments
     description: Operations for managing PingOne environments
+  - name: Metrics
+    description: Operations that support retrieving metrics
+  - name: PingOne DaVinci
+    description: >-
+      PingOne DaVinci is an orchestration platform that helps you design and
+      create flows. Flows are constructed, logical paths that can contain both
+      user-facing and backend elements.
+  - name: Total Identities
+    description: Operations for retrieving PingOne directory total identity reports
 paths:
   /environments:
     $ref: paths/environments.yaml

@@ -36,7 +36,9 @@ get:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:read:constructs
   tags:
-    - DaVinci Variables
+    - DaVinci Admin Variables
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 put:
   operationId: replaceVariableById
   parameters:
@@ -82,7 +84,9 @@ put:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:update:constructs
   tags:
-    - DaVinci Variables
+    - DaVinci Admin Variables
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 delete:
   operationId: deleteVariableById
   parameters:
@@ -116,4 +120,6 @@ delete:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:delete:constructs
   tags:
-    - DaVinci Variables
+    - DaVinci Admin Variables
+    - DaVinci Admin APIs
+    - PingOne DaVinci

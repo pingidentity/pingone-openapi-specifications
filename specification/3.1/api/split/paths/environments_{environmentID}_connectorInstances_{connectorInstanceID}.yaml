@@ -36,7 +36,9 @@ get:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:read:connections
   tags:
-    - DaVinci Connectors
+    - DaVinci Admin Connector Instances
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 post:
   operationId: createConnectorInstanceById
   parameters:
@@ -82,7 +84,9 @@ post:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:create:connections
   tags:
-    - DaVinci Connectors
+    - DaVinci Admin Connector Instances
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 put:
   operationId: replaceConnectorInstanceById
   parameters:
@@ -128,7 +132,9 @@ put:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:update:connections
   tags:
-    - DaVinci Connectors
+    - DaVinci Admin Connector Instances
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 delete:
   operationId: deleteConnectorInstanceById
   parameters:
@@ -162,4 +168,6 @@ delete:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:delete:connections
   tags:
-    - DaVinci Connectors
+    - DaVinci Admin Connector Instances
+    - DaVinci Admin APIs
+    - PingOne DaVinci

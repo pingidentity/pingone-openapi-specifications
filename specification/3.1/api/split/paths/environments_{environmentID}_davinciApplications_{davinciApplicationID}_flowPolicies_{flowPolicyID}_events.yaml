@@ -38,4 +38,6 @@ get:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:read:flowPolicies
   tags:
-    - DaVinci Applications
+    - DaVinci Admin Application Flow Policies
+    - DaVinci Admin APIs
+    - PingOne DaVinci

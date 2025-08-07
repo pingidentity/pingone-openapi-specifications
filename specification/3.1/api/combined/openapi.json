@@ -45,24 +45,44 @@
   ],
   "tags": [
     {
-      "name": "DaVinci Applications",
-      "description": "Operations for managing DaVinci applications and application flows policies"
+      "name": "DaVinci Admin APIs",
+      "description": "The PingOne DaVinci Admin APIs provide access to DaVinci operations through the PingOne API resource server."
     },
     {
-      "name": "DaVinci Connectors",
+      "name": "DaVinci Admin Application Flow Policies",
+      "description": "Operations for managing DaVinci application flows policies"
+    },
+    {
+      "name": "DaVinci Admin Applications",
+      "description": "Operations for managing DaVinci applications"
+    },
+    {
+      "name": "DaVinci Admin Connector Instances",
       "description": "Operations for managing DaVinci connectors and connector instances"
     },
     {
-      "name": "DaVinci Variables",
-      "description": "Operations for managing DaVinci variables"
+      "name": "DaVinci Admin Connectors",
+      "description": "Operations for managing DaVinci connectors and connector instances"
     },
     {
-      "name": "Directory Total Identities",
-      "description": "Operations for retrieving PingOne directory total identity reports"
+      "name": "DaVinci Admin Variables",
+      "description": "Operations for managing DaVinci variables"
     },
     {
       "name": "Environments",
       "description": "Operations for managing PingOne environments"
+    },
+    {
+      "name": "Metrics",
+      "description": "Operations that support retrieving metrics"
+    },
+    {
+      "name": "PingOne DaVinci",
+      "description": "PingOne DaVinci is an orchestration platform that helps you design and create flows. Flows are constructed, logical paths that can contain both user-facing and backend elements."
+    },
+    {
+      "name": "Total Identities",
+      "description": "Operations for retrieving PingOne directory total identity reports"
     }
   ],
   "paths": {
@@ -623,7 +643,9 @@
         },
         "x-permission": "davinci:read:connections",
         "tags": [
-          "DaVinci Connectors"
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "post": {
@@ -690,7 +712,9 @@
         },
         "x-permission": "davinci:create:connections",
         "tags": [
-          "DaVinci Connectors"
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -752,7 +776,9 @@
         },
         "x-permission": "davinci:read:connections",
         "tags": [
-          "DaVinci Connectors"
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "post": {
@@ -822,7 +848,9 @@
         },
         "x-permission": "davinci:create:connections",
         "tags": [
-          "DaVinci Connectors"
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "put": {
@@ -892,7 +920,9 @@
         },
         "x-permission": "davinci:update:connections",
         "tags": [
-          "DaVinci Connectors"
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "delete": {
@@ -945,7 +975,9 @@
         },
         "x-permission": "davinci:delete:connections",
         "tags": [
-          "DaVinci Connectors"
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -1004,7 +1036,9 @@
         },
         "x-permission": "davinci:read:connectors",
         "tags": [
-          "DaVinci Connectors"
+          "DaVinci Admin Connectors",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -1066,7 +1100,9 @@
         },
         "x-permission": "davinci:read:connectors",
         "tags": [
-          "DaVinci Connectors"
+          "DaVinci Admin Connectors",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -1128,7 +1164,9 @@
         },
         "x-permission": "davinci:read:connectors",
         "tags": [
-          "DaVinci Connectors"
+          "DaVinci Admin Connectors",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -1187,7 +1225,9 @@
         },
         "x-permission": "davinci:read:applications",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "post": {
@@ -1254,7 +1294,9 @@
         },
         "x-permission": "davinci:create:applications",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -1316,7 +1358,9 @@
         },
         "x-permission": "davinci:read:applications",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "put": {
@@ -1386,7 +1430,9 @@
         },
         "x-permission": "davinci:update:applications",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "delete": {
@@ -1439,7 +1485,9 @@
         },
         "x-permission": "davinci:delete:applications",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -1501,7 +1549,9 @@
         },
         "x-permission": "davinci:read:flowPolicies",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "post": {
@@ -1571,7 +1621,9 @@
         },
         "x-permission": "davinci:create:flowPolicies",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -1636,7 +1688,9 @@
         },
         "x-permission": "davinci:read:flowPolicies",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "put": {
@@ -1709,7 +1763,9 @@
         },
         "x-permission": "davinci:update:flowPolicies",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "delete": {
@@ -1765,7 +1821,9 @@
         },
         "x-permission": "davinci:delete:flowPolicies",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -1830,7 +1888,9 @@
         },
         "x-permission": "davinci:read:flowPolicies",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -1903,7 +1963,9 @@
         "x-permission": "davinci:update:applications",
         "x-pingidentity-operation-action": "rotate",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -1976,7 +2038,9 @@
         "x-permission": "davinci:update:applications",
         "x-pingidentity-operation-action": "rotate",
         "tags": [
-          "DaVinci Applications"
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -2041,7 +2105,8 @@
         },
         "x-permission": "orgmgt:read:environment",
         "tags": [
-          "Directory Total Identities"
+          "Total Identities",
+          "Metrics"
         ]
       }
     },
@@ -2129,7 +2194,9 @@
         "x-permission": "davinci:read:constructs",
         "x-pingidentity-paginatedresponse": true,
         "tags": [
-          "DaVinci Variables"
+          "DaVinci Admin Variables",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "post": {
@@ -2196,7 +2263,9 @@
         },
         "x-permission": "davinci:create:constructs",
         "tags": [
-          "DaVinci Variables"
+          "DaVinci Admin Variables",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     },
@@ -2258,7 +2327,9 @@
         },
         "x-permission": "davinci:read:constructs",
         "tags": [
-          "DaVinci Variables"
+          "DaVinci Admin Variables",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "put": {
@@ -2328,7 +2399,9 @@
         },
         "x-permission": "davinci:update:constructs",
         "tags": [
-          "DaVinci Variables"
+          "DaVinci Admin Variables",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       },
       "delete": {
@@ -2381,7 +2454,9 @@
         },
         "x-permission": "davinci:delete:constructs",
         "tags": [
-          "DaVinci Variables"
+          "DaVinci Admin Variables",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
         ]
       }
     }

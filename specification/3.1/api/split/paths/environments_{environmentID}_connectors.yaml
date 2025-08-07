@@ -34,4 +34,6 @@ get:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:read:connectors
   tags:
-    - DaVinci Connectors
+    - DaVinci Admin Connectors
+    - DaVinci Admin APIs
+    - PingOne DaVinci

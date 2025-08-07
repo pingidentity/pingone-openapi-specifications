@@ -34,7 +34,9 @@ get:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:read:applications
   tags:
-    - DaVinci Applications
+    - DaVinci Admin Applications
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 post:
   operationId: createDavinciApplication
   parameters:
@@ -78,4 +80,6 @@ post:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:create:applications
   tags:
-    - DaVinci Applications
+    - DaVinci Admin Applications
+    - DaVinci Admin APIs
+    - PingOne DaVinci

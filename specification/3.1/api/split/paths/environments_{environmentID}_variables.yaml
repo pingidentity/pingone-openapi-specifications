@@ -54,7 +54,9 @@ get:
   x-permission: davinci:read:constructs
   x-pingidentity-paginatedresponse: true
   tags:
-    - DaVinci Variables
+    - DaVinci Admin Variables
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 post:
   operationId: createVariable
   parameters:
@@ -98,4 +100,6 @@ post:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:create:constructs
   tags:
-    - DaVinci Variables
+    - DaVinci Admin Variables
+    - DaVinci Admin APIs
+    - PingOne DaVinci

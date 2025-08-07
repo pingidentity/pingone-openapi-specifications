@@ -38,4 +38,5 @@ get:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: orgmgt:read:environment
   tags:
-    - Directory Total Identities
+    - Total Identities
+    - Metrics

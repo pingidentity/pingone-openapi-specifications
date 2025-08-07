@@ -1,0 +1,4681 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "PingOne Platform API",
+    "version": "2025.08.07-development",
+    "description": "PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.",
+    "contact": {
+      "name": "Ping Identity Developer Experiences",
+      "url": "https://developer.pingidentity.com",
+      "email": "developerexperiences@pingidentity.com"
+    },
+    "license": {
+      "identifier": "Apache-2.0",
+      "name": "Apache 2.0"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.pingone.{tld}/{basePath}",
+      "variables": {
+        "basePath": {
+          "default": "v1"
+        },
+        "tld": {
+          "enum": [
+            "eu",
+            "com",
+            "asia",
+            "com.au",
+            "ca",
+            "sg"
+          ],
+          "default": "com"
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "PingOne DaVinci",
+      "description": "PingOne DaVinci is an orchestration platform that helps you design and create flows. Flows are constructed, logical paths that can contain both user-facing and backend elements."
+    }
+  ],
+  "paths": {
+    "/environments/{environmentID}/connectorInstances": {
+      "get": {
+        "operationId": "getConnectorInstances",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectorinstances.response.ConnectorInstancesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085.DOCS8830"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound.DOCS8830"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:connections",
+        "tags": [
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "post": {
+        "operationId": "createConnectorInstance",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectorinstances.data.CreateConnectorInstance"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created the resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectorinstances.response.ConnectorInstanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085.DOCS8830"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound.DOCS8830"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:create:connections",
+        "tags": [
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/connectorInstances/{connectorInstanceID}": {
+      "get": {
+        "operationId": "getConnectorInstanceById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.connectorInstances.connectorInstanceID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectorinstances.response.ConnectorInstanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:connections",
+        "tags": [
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "post": {
+        "operationId": "createConnectorInstanceById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.connectorInstances.connectorInstanceID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/vnd.pingidentity.connectorInstance.clone+json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectorinstances.data.CloneConnectorInstance"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created the resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectorinstances.response.ConnectorInstanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:create:connections",
+        "tags": [
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "put": {
+        "operationId": "replaceConnectorInstanceById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.connectorInstances.connectorInstanceID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectorinstances.data.UpdateConnectorInstance"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectorinstances.response.ConnectorInstanceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:update:connections",
+        "tags": [
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteConnectorInstanceById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.connectorInstances.connectorInstanceID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully removed. No content."
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:delete:connections",
+        "tags": [
+          "DaVinci Admin Connector Instances",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/connectors": {
+      "get": {
+        "operationId": "getConnectors",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectors.response.ConnectorsMinimalResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085.DOCS8830"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound.DOCS8830"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:connectors",
+        "tags": [
+          "DaVinci Admin Connectors",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/connectors/{connectorID}": {
+      "get": {
+        "operationId": "getConnectorById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.connectors.connectorID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectors.response.ConnectorMinimalResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:connectors",
+        "tags": [
+          "DaVinci Admin Connectors",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/connectors/{connectorID}/details": {
+      "get": {
+        "operationId": "getDetailsByConnectorId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.connectors.connectorID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectors.response.ConnectorDetailsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:connectors",
+        "tags": [
+          "DaVinci Admin Connectors",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/davinciApplications": {
+      "get": {
+        "operationId": "getDavinciApplications",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.applications.response.ApplicationsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085.DOCS8830"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound.DOCS8830"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:applications",
+        "tags": [
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "post": {
+        "operationId": "createDavinciApplication",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.applications.data.CreateApplication"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created the resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.applications.response.ApplicationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085.DOCS8830"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound.DOCS8830"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:create:applications",
+        "tags": [
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/davinciApplications/{davinciApplicationID}": {
+      "get": {
+        "operationId": "getDavinciApplicationById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.applications.response.ApplicationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:applications",
+        "tags": [
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "put": {
+        "operationId": "replaceDavinciApplicationById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.applications.data.UpdateApplication"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.applications.response.ApplicationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:update:applications",
+        "tags": [
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteDavinciApplicationById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully removed. No content."
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:delete:applications",
+        "tags": [
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/davinciApplications/{davinciApplicationID}/flowPolicies": {
+      "get": {
+        "operationId": "getFlowPoliciesByDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPoliciesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "post": {
+        "operationId": "createFlowPolicyByDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.data.CreateFlowPolicy"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created the resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:create:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/davinciApplications/{davinciApplicationID}/flowPolicies/{flowPolicyID}": {
+      "get": {
+        "operationId": "getFlowPolicyByIdUsingDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.flowPolicies.flowPolicyID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "put": {
+        "operationId": "replaceFlowPolicyByIdUsingDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.flowPolicies.flowPolicyID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.data.UpdateFlowPolicy"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:update:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteFlowPolicyByIdUsingDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.flowPolicies.flowPolicyID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully removed. No content."
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:delete:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/davinciApplications/{davinciApplicationID}/flowPolicies/{flowPolicyID}/events": {
+      "get": {
+        "operationId": "getEventsByDavinciApplicationIdAndFlowPolicyId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.flowPolicies.flowPolicyID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyEventsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/davinciApplications/{davinciApplicationID}/key": {
+      "post": {
+        "operationId": "rotateKeyByDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/vnd.pingidentity.davinciApplication.rotateKey+json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.applications.data.RotateApplicationKey"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.applications.response.ApplicationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:update:applications",
+        "x-pingidentity-operation-action": "rotate",
+        "tags": [
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/davinciApplications/{davinciApplicationID}/secret": {
+      "post": {
+        "operationId": "rotateSecretByDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/vnd.pingidentity.davinciApplication.rotateSecret+json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.applications.data.RotateApplicationSecret"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.applications.response.ApplicationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:update:applications",
+        "x-pingidentity-operation-action": "rotate",
+        "tags": [
+          "DaVinci Admin Applications",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/variables": {
+      "get": {
+        "operationId": "getVariables",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "maximum": 500,
+              "default": 10
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.variables.response.VariablesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085.DOCS8830"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound.DOCS8830"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:constructs",
+        "x-pingidentity-paginatedresponse": true,
+        "tags": [
+          "DaVinci Admin Variables",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "post": {
+        "operationId": "createVariable",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.variables.data.CreateVariable"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created the resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.variables.response.VariableResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085.DOCS8830"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound.DOCS8830"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:create:constructs",
+        "tags": [
+          "DaVinci Admin Variables",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/variables/{variableID}": {
+      "get": {
+        "operationId": "getVariableById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.variables.variableID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.variables.response.VariableResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:constructs",
+        "tags": [
+          "DaVinci Admin Variables",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "put": {
+        "operationId": "replaceVariableById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.variables.variableID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.variables.data.UpdateVariable"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.variables.response.VariableResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:update:constructs",
+        "tags": [
+          "DaVinci Admin Variables",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteVariableById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.variables.variableID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully removed. No content."
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:delete:constructs",
+        "tags": [
+          "DaVinci Admin Variables",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "/as/token",
+            "scopes": {}
+          },
+          "authorizationCode": {
+            "authorizationUrl": "/as/authorize",
+            "tokenUrl": "/as/token",
+            "refreshUrl": "/as/token",
+            "scopes": {}
+          }
+        }
+      }
+    },
+    "schemas": {
+      "com.pingidentity.ApiErrorResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "General Error Code"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.pingidentity.ErrorDetail"
+            },
+            "title": "General Error Details"
+          },
+          "id": {
+            "type": "string",
+            "title": "General Error Id"
+          },
+          "message": {
+            "type": "string",
+            "title": "General Error Message"
+          }
+        },
+        "title": "General Error"
+      },
+      "com.pingidentity.ApiErrorResponse.400": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Bad Request Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "INVALID_DATA",
+              "INVALID_REQUEST",
+              "REQUEST_FAILED"
+            ],
+            "minLength": 1,
+            "title": "Bad Request Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Bad Request Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "ACCOUNT_NOT_USABLE",
+                    "CONSTRAINT_VIOLATION",
+                    "EMPTY_VALUE",
+                    "INVALID_FILTER",
+                    "INVALID_OTP",
+                    "INVALID_PARAMETER",
+                    "INVALID_VALUE",
+                    "MFA_AUTH_METHODS_CONFLICT",
+                    "NO_PASSWORD",
+                    "OUT_OF_RANGE",
+                    "REQUIRED_VALUE",
+                    "SIZE_LIMIT_EXCEEDED",
+                    "UNIQUENESS_VIOLATION"
+                  ],
+                  "minLength": 1,
+                  "title": "Bad Request Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Bad Request Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "properties": {
+                    "allowedPattern": {
+                      "type": "string",
+                      "title": "Bad Request Error Detail Inner Error Allowed Pattern"
+                    },
+                    "allowedValues": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "title": "Bad Request Error Detail Inner Error Allowed Value"
+                      },
+                      "title": "Bad Request Error Detail Inner Error Allowed Values"
+                    },
+                    "claim": {
+                      "type": "string",
+                      "title": "Bad Request Error Detail Inner Error Claim"
+                    },
+                    "existingId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "title": "Bad Request Error Detail Inner Error Existing Id"
+                    },
+                    "maximumValue": {
+                      "type": "number",
+                      "title": "Bad Request Error Detail Inner Error Maximum Value"
+                    },
+                    "quotaLimit": {
+                      "type": "number",
+                      "title": "Bad Request Error Detail Inner Error Quota Limit"
+                    },
+                    "quotaResetTime": {
+                      "type": "string",
+                      "format": "date-time",
+                      "title": "Bad Request Error Detail Inner Error Quota Reset Time"
+                    },
+                    "rangeMaximumValue": {
+                      "type": "number",
+                      "title": "Bad Request Error Detail Inner Error Range Maximum Value"
+                    },
+                    "rangeMinimumValue": {
+                      "type": "number",
+                      "title": "Bad Request Error Detail Inner Error Range Minimum Value"
+                    }
+                  },
+                  "additionalProperties": true,
+                  "title": "Bad Request Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Bad Request Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Bad Request Error Detail"
+            },
+            "title": "Bad Request Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Bad Request Error"
+      },
+      "com.pingidentity.ApiErrorResponse.401": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Unauthorized Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "ACCESS_FAILED"
+            ],
+            "minLength": 1,
+            "title": "Unauthorized Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Unauthorized Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "INSUFFICIENT_PERMISSIONS",
+                    "INVALID_TOKEN"
+                  ],
+                  "minLength": 1,
+                  "title": "Unauthorized Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Unauthorized Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Unauthorized Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Unauthorized Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Unauthorized Error Detail"
+            },
+            "title": "Unauthorized Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Unauthorized Error"
+      },
+      "com.pingidentity.ApiErrorResponse.403": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Forbidden Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "ACCESS_FAILED"
+            ],
+            "minLength": 1,
+            "title": "Forbidden Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Forbidden Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "INSUFFICIENT_PERMISSIONS",
+                    "LICENSE_EXCEEDED"
+                  ],
+                  "minLength": 1,
+                  "title": "Forbidden Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Forbidden Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "properties": {
+                    "quotaLimit": {
+                      "type": "number",
+                      "title": "Forbidden Error Detail Inner Error Quota Limit"
+                    }
+                  },
+                  "additionalProperties": true,
+                  "title": "Forbidden Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Forbidden Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Forbidden Error Detail"
+            },
+            "title": "Forbidden Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Forbidden Error"
+      },
+      "com.pingidentity.ApiErrorResponse.404": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Not Found Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "NOT_FOUND"
+            ],
+            "minLength": 1,
+            "title": "Not Found Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Not Found Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Not Found Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Not Found Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Not Found Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Not Found Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Not Found Error Detail"
+            },
+            "title": "Not Found Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Not Found Error"
+      },
+      "com.pingidentity.ApiErrorResponse.415": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Unsupported Media Type Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "INVALID_REQUEST"
+            ],
+            "minLength": 1,
+            "title": "Unsupported Media Type Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Unsupported Media Type Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Unsupported Media Type Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Unsupported Media Type Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Unsupported Media Type Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Unsupported Media Type Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Unsupported Media Type Error Detail"
+            },
+            "title": "Unsupported Media Type Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Unsupported Media Type Error"
+      },
+      "com.pingidentity.ApiErrorResponse.429": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Too Many Requests Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "REQUEST_LIMITED"
+            ],
+            "minLength": 1,
+            "title": "Too Many Requests Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Too Many Requests Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "LIMIT_EXCEEDED",
+                    "QUOTA_EXCEEDED"
+                  ],
+                  "minLength": 1,
+                  "title": "Too Many Requests Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Too Many Requests Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "properties": {
+                    "quotaLimit": {
+                      "type": "number",
+                      "title": "Too Many Requests Error Detail Inner Error Quota Limit"
+                    },
+                    "quotaResetTime": {
+                      "type": "string",
+                      "format": "date-time",
+                      "title": "Too Many Requests Error Detail Inner Error Quota Reset Time"
+                    },
+                    "retryAfter": {
+                      "type": "string",
+                      "format": "date-time",
+                      "title": "Too Many Requests Error Detail Inner Error Retry After"
+                    }
+                  },
+                  "additionalProperties": true,
+                  "title": "Too Many Requests Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Too Many Requests Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Too Many Requests Error Detail"
+            },
+            "title": "Too Many Requests Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Too Many Requests Error"
+      },
+      "com.pingidentity.ApiErrorResponse.500": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Internal Server Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNEXPECTED_ERROR"
+            ],
+            "minLength": 1,
+            "title": "Internal Server Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Internal Server Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Internal Server Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Internal Server Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Internal Server Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Internal Server Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Internal Server Error Detail"
+            },
+            "title": "Internal Server Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Internal Server Error"
+      },
+      "com.pingidentity.ErrorDetail": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "General Error Detail Code"
+          },
+          "innerError": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "title": "General Error Detail Inner Error Additional Properties"
+            },
+            "title": "General Error Detail Inner Error"
+          },
+          "message": {
+            "type": "string",
+            "title": "General Error Detail Message"
+          },
+          "target": {
+            "type": "string",
+            "title": "General Error Detail Target"
+          }
+        },
+        "title": "General Error Detail"
+      },
+      "com.pingidentity.api.Relationship.DaVinci": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "minLength": 1,
+            "title": "Resource Relationship DaVinci Id"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "Resource Relationship DaVinci"
+      },
+      "com.pingidentity.api.Relationship.DaVinci.RO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "readOnly": true,
+            "minLength": 1,
+            "title": "Resource Relationship DaVinci Read-Only Id"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "Resource Relationship DaVinci Read-Only"
+      },
+      "com.pingidentity.api.Relationship.PingOne.RO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true,
+            "minLength": 1,
+            "title": "Resource Relationship Read-Only Id"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "Resource Relationship Read-Only"
+      },
+      "com.pingidentity.api.response.Link": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "minLength": 1,
+            "title": "JSON HAL Link Href"
+          },
+          "name": {
+            "type": "string",
+            "title": "JSON HAL Link Name"
+          },
+          "profile": {
+            "type": "string",
+            "format": "uri",
+            "title": "JSON HAL Link Profile"
+          },
+          "title": {
+            "type": "string",
+            "format": "uri",
+            "title": "JSON HAL Link Title"
+          },
+          "type": {
+            "type": "string",
+            "title": "JSON HAL Link Type"
+          }
+        },
+        "required": [
+          "href"
+        ],
+        "readOnly": true,
+        "title": "JSON HAL Link"
+      },
+      "com.pingidentity.pingone.davinci.applications.data.CreateApplication": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "maxLength": 256,
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Application Create Request Name"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "DaVinci Application Create Request"
+      },
+      "com.pingidentity.pingone.davinci.applications.data.RotateApplicationKey": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "title": "DaVinci Application Rotate Key Request"
+      },
+      "com.pingidentity.pingone.davinci.applications.data.RotateApplicationSecret": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {},
+        "title": "DaVinci Application Rotate Secret Request"
+      },
+      "com.pingidentity.pingone.davinci.applications.data.UpdateApplication": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "maxLength": 256,
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Application Replace Request Name"
+          },
+          "apiKeyEnabled": {
+            "type": "boolean",
+            "title": "DaVinci Application Replace Request Api Key Enabled"
+          },
+          "oauth": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "enforceSignedRequestOpenid": {
+                "type": "boolean",
+                "title": "DaVinci Application Replace Request OAuth Enforce Signed Request Openid"
+              },
+              "grantTypes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "authorizationCode",
+                    "clientCredentials",
+                    "implicit"
+                  ],
+                  "title": "DaVinci Application Replace Request OAuth Grant Type"
+                },
+                "title": "DaVinci Application Replace Request OAuth Grant Types"
+              },
+              "logoutUris": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "title": "DaVinci Application Replace Request OAuth Logout Uri"
+                },
+                "title": "DaVinci Application Replace Request OAuth Logout Uris"
+              },
+              "redirectUris": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "title": "DaVinci Application Replace Request OAuth Redirect Uri"
+                },
+                "title": "DaVinci Application Replace Request OAuth Redirect Uris"
+              },
+              "scopes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "flow_analytics",
+                    "offline_access",
+                    "openid",
+                    "profile"
+                  ],
+                  "title": "DaVinci Application Replace Request OAuth Scope"
+                },
+                "title": "DaVinci Application Replace Request OAuth Scopes"
+              },
+              "spJwksOpenid": {
+                "type": "string",
+                "title": "DaVinci Application Replace Request OAuth Sp Jwks Openid"
+              },
+              "spjwksUrl": {
+                "type": "string",
+                "title": "DaVinci Application Replace Request OAuth Spjwks Url"
+              }
+            },
+            "title": "DaVinci Application Replace Request OAuth"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "DaVinci Application Replace Request"
+      },
+      "com.pingidentity.pingone.davinci.applications.response.ApplicationResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flowPolicies": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "davinciApplication.rotateKey": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "davinciApplication.rotateSecret": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "self",
+              "environment",
+              "flowPolicies",
+              "davinciApplication.rotateKey",
+              "davinciApplication.rotateSecret"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Application Response _links"
+          },
+          "apiKey": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "default": true,
+                "title": "DaVinci Application Response Api Key Enabled"
+              },
+              "value": {
+                "type": "string",
+                "format": "password",
+                "minLength": 1,
+                "title": "DaVinci Application Response Api Key Value"
+              }
+            },
+            "required": [
+              "enabled",
+              "value"
+            ],
+            "title": "DaVinci Application Response Api Key"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Application Response Id"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Application Response Name"
+          },
+          "oauth": {
+            "type": "object",
+            "properties": {
+              "clientSecret": {
+                "type": "string",
+                "format": "password",
+                "minLength": 1,
+                "title": "DaVinci Application Response OAuth Client Secret"
+              },
+              "enforceSignedRequestOpenid": {
+                "type": "boolean",
+                "title": "DaVinci Application Response OAuth Enforce Signed Request Openid"
+              },
+              "grantTypes": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "authorizationCode",
+                    "clientCredentials",
+                    "implicit"
+                  ],
+                  "type": "string",
+                  "title": "DaVinci Application Response OAuth Grant Type"
+                },
+                "default": [
+                  "authorizationCode"
+                ],
+                "title": "DaVinci Application Response OAuth Grant Types"
+              },
+              "logoutUris": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "title": "DaVinci Application Response OAuth Logout Uri"
+                },
+                "title": "DaVinci Application Response OAuth Logout Uris"
+              },
+              "redirectUris": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "title": "DaVinci Application Response OAuth Redirect Uri"
+                },
+                "title": "DaVinci Application Response OAuth Redirect Uris"
+              },
+              "scopes": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "flow_analytics",
+                    "offline_access",
+                    "openid",
+                    "profile"
+                  ],
+                  "type": "string",
+                  "title": "DaVinci Application Response OAuth Scope"
+                },
+                "default": [
+                  "openid",
+                  "profile"
+                ],
+                "title": "DaVinci Application Response OAuth Scopes"
+              },
+              "spJwksOpenid": {
+                "type": "string",
+                "title": "DaVinci Application Response OAuth Sp Jwks Openid"
+              },
+              "spjwksUrl": {
+                "type": "string",
+                "title": "DaVinci Application Response OAuth Spjwks Url"
+              }
+            },
+            "required": [
+              "clientSecret"
+            ],
+            "title": "DaVinci Application Response OAuth"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Application Response Created At"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Application Response Updated At"
+          }
+        },
+        "required": [
+          "_links",
+          "apiKey",
+          "environment",
+          "id",
+          "name",
+          "oauth"
+        ],
+        "title": "DaVinci Application Response"
+      },
+      "com.pingidentity.pingone.davinci.applications.response.ApplicationsResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Application Collection Response _links"
+          },
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "davinciApplications": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.applications.response.ApplicationResponse"
+                },
+                "title": "DaVinci Application Collection Response _embedded Davinci Applications"
+              }
+            },
+            "required": [
+              "davinciApplications"
+            ],
+            "title": "DaVinci Application Collection Response _embedded"
+          }
+        },
+        "required": [
+          "_links",
+          "_embedded"
+        ],
+        "title": "DaVinci Application Collection Response"
+      },
+      "com.pingidentity.pingone.davinci.connectorinstances.data.CloneConnectorInstance": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {},
+        "title": "DaVinci Connector Instance Clone Request"
+      },
+      "com.pingidentity.pingone.davinci.connectorinstances.data.CreateConnectorInstance": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "maxLength": 256,
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Connector Instance Create Request Name"
+          },
+          "connector": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.DaVinci"
+          },
+          "properties": {
+            "type": "object",
+            "title": "DaVinci Connector Instance Create Request"
+          }
+        },
+        "required": [
+          "name",
+          "connector"
+        ],
+        "title": "DaVinci Connector Instance Create Request"
+      },
+      "com.pingidentity.pingone.davinci.connectorinstances.data.UpdateConnectorInstance": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "maxLength": 256,
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Connector Instance Replace Request Name"
+          },
+          "connector": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.DaVinci"
+          },
+          "properties": {
+            "type": "object",
+            "title": "DaVinci Connector Instance Replace Request"
+          }
+        },
+        "required": [
+          "name",
+          "connector"
+        ],
+        "x-immutable": [
+          "connector"
+        ],
+        "title": "DaVinci Connector Instance Replace Request"
+      },
+      "com.pingidentity.pingone.davinci.connectorinstances.response.ConnectorInstanceResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "connectorInstance.clone": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "applications": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "deviceAuthenticationPolicies": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "gateways": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "notificationsPolicies": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self",
+              "connectorInstance.clone"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Connector Instance Response _links"
+          },
+          "connector": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.DaVinci.RO"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Connector Instance Response Id"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Connector Instance Response Name"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Connector Instance Response Created At"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true,
+            "title": "DaVinci Connector Instance Response"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Connector Instance Response Updated At"
+          }
+        },
+        "required": [
+          "_links",
+          "connector",
+          "environment",
+          "id",
+          "name"
+        ],
+        "title": "DaVinci Connector Instance Response"
+      },
+      "com.pingidentity.pingone.davinci.connectorinstances.response.ConnectorInstancesResponse": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "connectorInstances": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectorinstances.response.ConnectorInstanceResponse"
+                },
+                "title": "DaVinci Connector Instance Collection Response _embedded Connector Instances"
+              }
+            },
+            "required": [
+              "connectorInstances"
+            ],
+            "title": "DaVinci Connector Instance Collection Response _embedded"
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Connector Instance Collection Response _links"
+          }
+        },
+        "required": [
+          "_embedded",
+          "_links"
+        ],
+        "title": "DaVinci Connector Instance Collection Response"
+      },
+      "com.pingidentity.pingone.davinci.connectors.response.ConnectorDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "environment": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO"
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Connector Details Response _links"
+          },
+          "accountConfigView": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": true,
+                  "title": "DaVinci Connector Details Response Account Config View Item Item"
+                },
+                "title": "DaVinci Connector Details Response Account Config View Item"
+              },
+              "componentViewSize": {
+                "type": "string",
+                "title": "DaVinci Connector Details Response Account Config View Component View Size"
+              }
+            },
+            "required": [
+              "items"
+            ],
+            "title": "DaVinci Connector Details Response Account Config View"
+          },
+          "capabilities": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "patternProperties": {
+                "^[0-9]+$": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "properties": {
+                    "flowConfigView": {
+                      "type": "object",
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {},
+                            "additionalProperties": true,
+                            "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Flow Config View Item Item"
+                          },
+                          "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Flow Config View Item"
+                        }
+                      },
+                      "required": [
+                        "items"
+                      ],
+                      "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Flow Config View"
+                    },
+                    "globalOutputSchema": {
+                      "type": "object",
+                      "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Global Output Schema"
+                    },
+                    "inputs": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Input"
+                      },
+                      "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Inputs"
+                    },
+                    "respondToUser": {
+                      "type": "boolean",
+                      "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Respond To User"
+                    },
+                    "subTitle": {
+                      "type": "string",
+                      "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Sub Title"
+                    },
+                    "title": {
+                      "type": "string",
+                      "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Title"
+                    },
+                    "type": {
+                      "type": "string",
+                      "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Type"
+                    },
+                    "userViews": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` User View"
+                      },
+                      "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` User Views"
+                    }
+                  },
+                  "title": "DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$`"
+                }
+              },
+              "title": "DaVinci Connector Details Response Capabilities Additional Properties"
+            },
+            "title": "DaVinci Connector Details Response Capabilities"
+          },
+          "credentialsView": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": true,
+                  "title": "DaVinci Connector Details Response Credentials View Item Item"
+                },
+                "title": "DaVinci Connector Details Response Credentials View Item"
+              }
+            },
+            "required": [
+              "items"
+            ],
+            "title": "DaVinci Connector Details Response Credentials View"
+          },
+          "flowSections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Connector Details Response Flow Section Name"
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Connector Details Response Flow Section Value"
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ],
+              "title": "DaVinci Connector Details Response Flow Section"
+            },
+            "title": "DaVinci Connector Details Response Flow Sections"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true,
+            "title": "DaVinci Connector Details Response"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Connector Details Response Section Name"
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Connector Details Response Section Value"
+                },
+                "default": {
+                  "type": "boolean",
+                  "title": "DaVinci Connector Details Response Section Default"
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ],
+              "title": "DaVinci Connector Details Response Section"
+            },
+            "title": "DaVinci Connector Details Response Sections"
+          }
+        },
+        "required": [
+          "environment"
+        ],
+        "title": "DaVinci Connector Details Response"
+      },
+      "com.pingidentity.pingone.davinci.connectors.response.ConnectorMinimalResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Connector Minimal Response _links"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "minLength": 1,
+            "title": "DaVinci Connector Minimal Response Created At"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Connector Minimal Response Description"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Connector Minimal Response Id"
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "colors": {
+                "type": "object",
+                "properties": {
+                  "canvas": {
+                    "type": "string",
+                    "title": "DaVinci Connector Minimal Response Metadata Colors Canvas"
+                  },
+                  "canvasText": {
+                    "type": "string",
+                    "title": "DaVinci Connector Minimal Response Metadata Colors Canvas Text"
+                  },
+                  "dark": {
+                    "type": "string",
+                    "title": "DaVinci Connector Minimal Response Metadata Colors Dark"
+                  }
+                },
+                "title": "DaVinci Connector Minimal Response Metadata Colors"
+              },
+              "logos": {
+                "type": "object",
+                "properties": {
+                  "canvas": {
+                    "type": "object",
+                    "properties": {
+                      "imageFileName": {
+                        "type": "string",
+                        "title": "DaVinci Connector Minimal Response Metadata Logos Canvas Image File Name"
+                      }
+                    },
+                    "title": "DaVinci Connector Minimal Response Metadata Logos Canvas"
+                  }
+                },
+                "title": "DaVinci Connector Minimal Response Metadata Logos"
+              },
+              "type": {
+                "enum": [
+                  "core",
+                  "ping",
+                  "service"
+                ],
+                "type": "string",
+                "title": "DaVinci Connector Minimal Response Metadata Type"
+              },
+              "vendor": {
+                "type": "string",
+                "title": "DaVinci Connector Minimal Response Metadata Vendor"
+              }
+            },
+            "title": "DaVinci Connector Minimal Response Metadata"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Connector Minimal Response Name"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "minLength": 1,
+            "title": "DaVinci Connector Minimal Response Updated At"
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Connector Minimal Response Version"
+          }
+        },
+        "required": [
+          "_links",
+          "createdAt",
+          "description",
+          "environment",
+          "id",
+          "metadata",
+          "name",
+          "updatedAt",
+          "version"
+        ],
+        "title": "DaVinci Connector Minimal Response"
+      },
+      "com.pingidentity.pingone.davinci.connectors.response.ConnectorsMinimalResponse": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "connectors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.connectors.response.ConnectorMinimalResponse"
+                },
+                "title": "DaVinci Connector Collection Minimal Response _embedded Connectors"
+              }
+            },
+            "required": [
+              "connectors"
+            ],
+            "title": "DaVinci Connector Collection Minimal Response _embedded"
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Connector Collection Minimal Response _links"
+          }
+        },
+        "required": [
+          "_embedded",
+          "_links"
+        ],
+        "title": "DaVinci Connector Collection Minimal Response"
+      },
+      "com.pingidentity.pingone.davinci.flowpolicies.data.CreateFlowPolicy": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "flowDistributions": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9-_]+$",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Policy Create Request Flow Distribution Id"
+                },
+                "version": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Create Request Flow Distribution Version"
+                },
+                "ip": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "title": "DaVinci Flow Policy Create Request Flow Distribution Ip Item"
+                  },
+                  "title": "DaVinci Flow Policy Create Request Flow Distribution Ip"
+                },
+                "successNodes": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "pattern": "^[a-zA-Z0-9]+$",
+                        "type": "string",
+                        "minLength": 1,
+                        "title": "DaVinci Flow Policy Create Request Flow Distribution Success Node Id"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "title": "DaVinci Flow Policy Create Request Flow Distribution Success Node"
+                  },
+                  "title": "DaVinci Flow Policy Create Request Flow Distribution Success Nodes"
+                },
+                "weight": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Create Request Flow Distribution Weight"
+                }
+              },
+              "required": [
+                "id",
+                "version"
+              ],
+              "title": "DaVinci Flow Policy Create Request Flow Distribution"
+            },
+            "title": "DaVinci Flow Policy Create Request Flow Distributions"
+          },
+          "name": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "maxLength": 256,
+            "type": "string",
+            "default": "New Policy",
+            "title": "DaVinci Flow Policy Create Request Name"
+          },
+          "status": {
+            "enum": [
+              "disabled",
+              "enabled"
+            ],
+            "type": "string",
+            "default": "enabled",
+            "title": "DaVinci Flow Policy Create Request Status"
+          },
+          "trigger": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "configuration": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "mfa": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration MFA Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "minLength": 0,
+                        "maxLength": 100000,
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration MFA Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 0,
+                        "maxLength": 50,
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration MFA Time Format"
+                      }
+                    },
+                    "title": "DaVinci Flow Policy Create Request Trigger Configuration MFA"
+                  },
+                  "pwd": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration Password Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "minLength": 0,
+                        "maxLength": 100000,
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration Password Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 0,
+                        "maxLength": 50,
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration Password Time Format"
+                      }
+                    },
+                    "title": "DaVinci Flow Policy Create Request Trigger Configuration Password"
+                  }
+                },
+                "title": "DaVinci Flow Policy Create Request Trigger Configuration"
+              },
+              "type": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 50,
+                "enum": [
+                  "AUTHENTICATION"
+                ],
+                "default": "AUTHENTICATION",
+                "title": "DaVinci Flow Policy Create Request Trigger Type"
+              }
+            },
+            "title": "DaVinci Flow Policy Create Request Trigger"
+          }
+        },
+        "required": [
+          "flowDistributions"
+        ],
+        "title": "DaVinci Flow Policy Create Request"
+      },
+      "com.pingidentity.pingone.davinci.flowpolicies.data.UpdateFlowPolicy": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "maxLength": 256,
+            "type": "string",
+            "default": "New Policy",
+            "minLength": 1,
+            "title": "DaVinci Flow Policy Replace Request Name"
+          },
+          "flowDistributions": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Policy Replace Request Flow Distribution Id"
+                },
+                "version": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Replace Request Flow Distribution Version"
+                },
+                "ip": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "title": "DaVinci Flow Policy Replace Request Flow Distribution Ip Item"
+                  },
+                  "title": "DaVinci Flow Policy Replace Request Flow Distribution Ip"
+                },
+                "successNodes": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "pattern": "^[a-zA-Z0-9]+$",
+                        "type": "string",
+                        "minLength": 1,
+                        "title": "DaVinci Flow Policy Replace Request Flow Distribution Success Node Id"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "title": "DaVinci Flow Policy Replace Request Flow Distribution Success Node"
+                  },
+                  "title": "DaVinci Flow Policy Replace Request Flow Distribution Success Nodes"
+                },
+                "weight": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Replace Request Flow Distribution Weight"
+                }
+              },
+              "required": [
+                "id",
+                "version"
+              ],
+              "title": "DaVinci Flow Policy Replace Request Flow Distribution"
+            },
+            "title": "DaVinci Flow Policy Replace Request Flow Distributions"
+          },
+          "status": {
+            "enum": [
+              "disabled",
+              "enabled"
+            ],
+            "type": "string",
+            "default": "enabled",
+            "title": "DaVinci Flow Policy Replace Request Status"
+          },
+          "trigger": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "configuration": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "mfa": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration MFA Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "minLength": 0,
+                        "maxLength": 100000,
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration MFA Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 0,
+                        "maxLength": 50,
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration MFA Time Format"
+                      }
+                    },
+                    "title": "DaVinci Flow Policy Replace Request Trigger Configuration MFA"
+                  },
+                  "pwd": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration Password Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "minLength": 0,
+                        "maxLength": 100000,
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration Password Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 0,
+                        "maxLength": 50,
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration Password Time Format"
+                      }
+                    },
+                    "title": "DaVinci Flow Policy Replace Request Trigger Configuration Password"
+                  }
+                },
+                "title": "DaVinci Flow Policy Replace Request Trigger Configuration"
+              },
+              "type": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 50,
+                "enum": [
+                  "AUTHENTICATION"
+                ],
+                "default": "AUTHENTICATION",
+                "title": "DaVinci Flow Policy Replace Request Trigger Type"
+              }
+            },
+            "title": "DaVinci Flow Policy Replace Request Trigger"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "DaVinci Flow Policy Replace Request"
+      },
+      "com.pingidentity.pingone.davinci.flowpolicies.response.FlowPoliciesResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "self",
+              "environment"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Flow Policy Collection _links"
+          },
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "flowPolicies": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse"
+                },
+                "title": "DaVinci Flow Policy Collection _embedded Flow Policies"
+              }
+            },
+            "required": [
+              "flowPolicies"
+            ],
+            "title": "DaVinci Flow Policy Collection _embedded"
+          }
+        },
+        "required": [
+          "_links",
+          "_embedded"
+        ],
+        "title": "DaVinci Flow Policy Collection"
+      },
+      "com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyEventsResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "self",
+              "environment"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Flow Policy Events Collection _links"
+          },
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "events": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "environment": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Policy Events Collection _embedded Event Environment Id"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "title": "DaVinci Flow Policy Events Collection _embedded Event Environment"
+                    },
+                    "flow": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Policy Events Collection _embedded Event Flow Id"
+                        },
+                        "version": {
+                          "type": "number",
+                          "title": "DaVinci Flow Policy Events Collection _embedded Event Flow Version"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "title": "DaVinci Flow Policy Events Collection _embedded Event Flow"
+                    },
+                    "events": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "title": "DaVinci Flow Policy Events Collection _embedded Event Event Id"
+                          },
+                          "timestamp": {
+                            "type": "string",
+                            "minLength": 1,
+                            "title": "DaVinci Flow Policy Events Collection _embedded Event Event Timestamp"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "timestamp"
+                        ],
+                        "title": "DaVinci Flow Policy Events Collection _embedded Event Event"
+                      },
+                      "title": "DaVinci Flow Policy Events Collection _embedded Event Events"
+                    },
+                    "successCount": {
+                      "type": "number",
+                      "title": "DaVinci Flow Policy Events Collection _embedded Event Success Count"
+                    },
+                    "totalCount": {
+                      "type": "number",
+                      "title": "DaVinci Flow Policy Events Collection _embedded Event Total Count"
+                    }
+                  },
+                  "required": [
+                    "environment",
+                    "flow"
+                  ],
+                  "title": "DaVinci Flow Policy Events Collection _embedded Event"
+                },
+                "title": "DaVinci Flow Policy Events Collection _embedded Events"
+              }
+            },
+            "required": [
+              "events"
+            ],
+            "title": "DaVinci Flow Policy Events Collection _embedded"
+          }
+        },
+        "required": [
+          "_links",
+          "_embedded"
+        ],
+        "title": "DaVinci Flow Policy Events Collection"
+      },
+      "com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.<index>": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "version.<flowId>.<index>": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "self",
+              "environment"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Flow Policy Response _links"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO"
+          },
+          "flowDistributions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Policy Response Flow Distribution Id"
+                },
+                "version": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Response Flow Distribution Version"
+                },
+                "ip": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "title": "DaVinci Flow Policy Response Flow Distribution Ip Item"
+                  },
+                  "title": "DaVinci Flow Policy Response Flow Distribution Ip"
+                },
+                "successNodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "minLength": 1,
+                        "title": "DaVinci Flow Policy Response Flow Distribution Success Node Id"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "title": "DaVinci Flow Policy Response Flow Distribution Success Node"
+                  },
+                  "title": "DaVinci Flow Policy Response Flow Distribution Success Nodes"
+                },
+                "weight": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Response Flow Distribution Weight"
+                }
+              },
+              "required": [
+                "id",
+                "version"
+              ],
+              "title": "DaVinci Flow Policy Response Flow Distribution"
+            },
+            "title": "DaVinci Flow Policy Response Flow Distributions"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Flow Policy Response Id"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Flow Policy Response Name"
+          },
+          "status": {
+            "enum": [
+              "disabled",
+              "enabled"
+            ],
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Flow Policy Response Status"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Flow Policy Response Created At"
+          },
+          "trigger": {
+            "type": "object",
+            "properties": {
+              "configuration": {
+                "type": "object",
+                "properties": {
+                  "mfa": {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Response Trigger Configuration MFA Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "title": "DaVinci Flow Policy Response Trigger Configuration MFA Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 1,
+                        "title": "DaVinci Flow Policy Response Trigger Configuration MFA Time Format"
+                      }
+                    },
+                    "required": [
+                      "enabled",
+                      "time",
+                      "timeFormat"
+                    ],
+                    "title": "DaVinci Flow Policy Response Trigger Configuration MFA"
+                  },
+                  "pwd": {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Response Trigger Configuration Password Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "title": "DaVinci Flow Policy Response Trigger Configuration Password Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 1,
+                        "title": "DaVinci Flow Policy Response Trigger Configuration Password Time Format"
+                      }
+                    },
+                    "required": [
+                      "enabled",
+                      "time",
+                      "timeFormat"
+                    ],
+                    "title": "DaVinci Flow Policy Response Trigger Configuration Password"
+                  }
+                },
+                "required": [
+                  "mfa",
+                  "pwd"
+                ],
+                "title": "DaVinci Flow Policy Response Trigger Configuration"
+              },
+              "type": {
+                "type": "string",
+                "title": "DaVinci Flow Policy Response Trigger Type"
+              }
+            },
+            "title": "DaVinci Flow Policy Response Trigger"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Flow Policy Response Updated At"
+          }
+        },
+        "required": [
+          "_links",
+          "environment",
+          "flowDistributions",
+          "id",
+          "name",
+          "status"
+        ],
+        "title": "DaVinci Flow Policy Response"
+      },
+      "com.pingidentity.pingone.davinci.variables.data.CreateVariable": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "maxLength": 256,
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Variable Create Request Name"
+          },
+          "context": {
+            "type": "string",
+            "enum": [
+              "company",
+              "flow",
+              "flowInstance",
+              "user"
+            ],
+            "minLength": 1,
+            "title": "DaVinci Variable Create Request Context"
+          },
+          "dataType": {
+            "type": "string",
+            "enum": [
+              "boolean",
+              "number",
+              "object",
+              "secret",
+              "string"
+            ],
+            "minLength": 1,
+            "title": "DaVinci Variable Create Request Data Type"
+          },
+          "mutable": {
+            "type": "boolean",
+            "title": "DaVinci Variable Create Request Mutable"
+          },
+          "displayName": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "maxLength": 256,
+            "type": "string",
+            "title": "DaVinci Variable Create Request Display Name"
+          },
+          "flow": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.DaVinci"
+          },
+          "max": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 2000,
+            "title": "DaVinci Variable Create Request Max"
+          },
+          "min": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0,
+            "title": "DaVinci Variable Create Request Min"
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Variable Create Request Value Choice 1"
+              },
+              {
+                "type": "number",
+                "title": "DaVinci Variable Create Request Value Choice 2"
+              },
+              {
+                "type": "object",
+                "title": "DaVinci Variable Create Request Value Choice 3"
+              },
+              {
+                "type": "string",
+                "title": "DaVinci Variable Create Request Value Choice 4"
+              }
+            ],
+            "title": "DaVinci Variable Create Request Value"
+          }
+        },
+        "required": [
+          "name",
+          "context",
+          "dataType",
+          "mutable"
+        ],
+        "title": "DaVinci Variable Create Request"
+      },
+      "com.pingidentity.pingone.davinci.variables.data.UpdateVariable": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "maxLength": 256,
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Variable Replace Request Name"
+          },
+          "context": {
+            "type": "string",
+            "enum": [
+              "company",
+              "flow",
+              "flowInstance",
+              "user"
+            ],
+            "minLength": 1,
+            "title": "DaVinci Variable Replace Request Context"
+          },
+          "dataType": {
+            "type": "string",
+            "enum": [
+              "boolean",
+              "number",
+              "object",
+              "secret",
+              "string"
+            ],
+            "minLength": 1,
+            "title": "DaVinci Variable Replace Request Data Type"
+          },
+          "mutable": {
+            "type": "boolean",
+            "title": "DaVinci Variable Replace Request Mutable"
+          },
+          "displayName": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "minLength": 0,
+            "maxLength": 256,
+            "type": "string",
+            "title": "DaVinci Variable Replace Request Display Name"
+          },
+          "flow": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.DaVinci"
+          },
+          "max": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 2000,
+            "title": "DaVinci Variable Replace Request Max"
+          },
+          "min": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0,
+            "title": "DaVinci Variable Replace Request Min"
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Variable Replace Request Value Choice 1"
+              },
+              {
+                "type": "number",
+                "title": "DaVinci Variable Replace Request Value Choice 2"
+              },
+              {
+                "type": "object",
+                "title": "DaVinci Variable Replace Request Value Choice 3"
+              },
+              {
+                "type": "string",
+                "title": "DaVinci Variable Replace Request Value Choice 4"
+              }
+            ],
+            "title": "DaVinci Variable Replace Request Value"
+          }
+        },
+        "required": [
+          "name",
+          "context",
+          "dataType",
+          "mutable"
+        ],
+        "x-immutable": [
+          "name",
+          "flow",
+          "context"
+        ],
+        "title": "DaVinci Variable Replace Request"
+      },
+      "com.pingidentity.pingone.davinci.variables.response.VariableResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Variable Response _links"
+          },
+          "dataType": {
+            "enum": [
+              "array",
+              "boolean",
+              "button",
+              "list",
+              "listInt",
+              "mapping",
+              "number",
+              "object",
+              "propertyGroup",
+              "screenConfig",
+              "secret",
+              "skConnectorList",
+              "skEvent",
+              "string",
+              "timestamp"
+            ],
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Variable Response Data Type"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "DaVinci Variable Response Id"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Variable Response Name"
+          },
+          "context": {
+            "type": "string",
+            "title": "DaVinci Variable Response Context"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Variable Response Created At"
+          },
+          "displayName": {
+            "type": "string",
+            "title": "DaVinci Variable Response Display Name"
+          },
+          "flow": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.DaVinci.RO"
+          },
+          "max": {
+            "type": "number",
+            "title": "DaVinci Variable Response Max"
+          },
+          "min": {
+            "type": "number",
+            "title": "DaVinci Variable Response Min"
+          },
+          "mutable": {
+            "type": "boolean",
+            "title": "DaVinci Variable Response Mutable"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Variable Response Updated At"
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Variable Response Value Choice 1"
+              },
+              {
+                "type": "number",
+                "title": "DaVinci Variable Response Value Choice 2"
+              },
+              {
+                "type": "object",
+                "title": "DaVinci Variable Response Value Choice 3"
+              },
+              {
+                "type": "string",
+                "title": "DaVinci Variable Response Value Choice 4"
+              }
+            ],
+            "title": "DaVinci Variable Response Value"
+          }
+        },
+        "required": [
+          "_links",
+          "dataType",
+          "environment",
+          "id",
+          "name"
+        ],
+        "title": "DaVinci Variable Response"
+      },
+      "com.pingidentity.pingone.davinci.variables.response.VariablesResponse": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "variables": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.variables.response.VariableResponse"
+                },
+                "title": "DaVinci Variable Collection Response _embedded Variables"
+              }
+            },
+            "required": [
+              "variables"
+            ],
+            "title": "DaVinci Variable Collection Response _embedded"
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "next": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Variable Collection Response _links"
+          },
+          "size": {
+            "type": "number",
+            "title": "DaVinci Variable Collection Response Size"
+          },
+          "count": {
+            "type": "number",
+            "title": "DaVinci Variable Collection Response Count"
+          }
+        },
+        "required": [
+          "_embedded",
+          "_links",
+          "size",
+          "count"
+        ],
+        "title": "DaVinci Variable Collection Response"
+      }
+    },
+    "parameters": {
+      "com.pingidentity.header.ExternalSessionID": {
+        "schema": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": "X-Ping-External-Session-ID",
+        "in": "header"
+      },
+      "com.pingidentity.header.ExternalTransactionID": {
+        "schema": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": "X-Ping-External-Transaction-ID",
+        "in": "header"
+      },
+      "com.pingidentity.path.environments.environmentID": {
+        "name": "environmentID",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "com.pingidentity.path.environments.connectorInstances.connectorInstanceID": {
+        "name": "connectorInstanceID",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))"
+        }
+      },
+      "com.pingidentity.path.environments.variables.variableID": {
+        "name": "variableID",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "com.pingidentity.path.environments.connectors.connectorID": {
+        "name": "connectorID",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "com.pingidentity.path.environments.davinciApplications.davinciApplicationID": {
+        "name": "davinciApplicationID",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))"
+        }
+      },
+      "com.pingidentity.path.environments.davinciApplications.flowPolicies.flowPolicyID": {
+        "name": "flowPolicyID",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))"
+        }
+      }
+    },
+    "responses": {
+      "http.400.BadRequest": {
+        "description": "Bad Request",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.400"
+            }
+          }
+        }
+      },
+      "http.401.Unauthorized": {
+        "description": "Unauthorized",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.401"
+            }
+          }
+        }
+      },
+      "http.403.Forbidden.P14C63085": {
+        "description": "Forbidden - Note: This may occur if the environment doesn't exist. Check for environment existence with GET /environments/{environmentID} first.",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.403"
+            }
+          }
+        },
+        "x-pingone-p14c-63085": true
+      },
+      "http.403.Forbidden.P14C63085.DOCS8830": {
+        "description": "Forbidden - Note: This may occur if the environment doesn't exist. Check for environment existence with GET /environments/{environmentID} first. - Note: This may be due to eventual consistency if the environment was recently created. Try again after a short delay.",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.403"
+            }
+          }
+        },
+        "x-pingone-p14c-63085": true,
+        "x-pingone-docs-8830": true
+      },
+      "http.404.NotFound": {
+        "description": "Not Found",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.404"
+            }
+          }
+        }
+      },
+      "http.404.NotFound.DOCS8830": {
+        "description": "Not Found - Note: This may be due to eventual consistency if the environment was recently created. Try again after a short delay.",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.404"
+            }
+          }
+        },
+        "x-pingone-docs-8830": true
+      },
+      "http.415.UnsupportedMediaType": {
+        "description": "Unsupported Media Type",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.415"
+            }
+          }
+        }
+      },
+      "http.429.TooManyRequests": {
+        "description": "Too Many Requests",
+        "headers": {
+          "Retry-After": {
+            "$ref": "#/components/headers/http.RetryAfter"
+          }
+        },
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.429"
+            }
+          }
+        }
+      },
+      "http.500.InternalServerError": {
+        "description": "Internal Server Error",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.500"
+            }
+          }
+        }
+      },
+      "http.502.BadGateway": {
+        "description": "Bad Gateway",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse"
+            }
+          }
+        }
+      },
+      "http.503.ServiceUnavailable": {
+        "description": "Service Unavailable",
+        "headers": {
+          "Retry-After": {
+            "$ref": "#/components/headers/http.RetryAfter"
+          }
+        },
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "headers": {
+      "http.RetryAfter": {
+        "schema": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Retry-After Header"
+        }
+      }
+    }
+  }
+}

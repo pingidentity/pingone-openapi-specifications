@@ -34,7 +34,9 @@ get:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:read:connections
   tags:
-    - DaVinci Connectors
+    - DaVinci Admin Connector Instances
+    - DaVinci Admin APIs
+    - PingOne DaVinci
 post:
   operationId: createConnectorInstance
   parameters:
@@ -78,4 +80,6 @@ post:
       $ref: ../components/responses/http.503.ServiceUnavailable.yaml
   x-permission: davinci:create:connections
   tags:
-    - DaVinci Connectors
+    - DaVinci Admin Connector Instances
+    - DaVinci Admin APIs
+    - PingOne DaVinci

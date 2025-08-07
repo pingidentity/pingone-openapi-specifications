@@ -26,14 +26,14 @@ Have you built something interesting with these specs? We'd love to hear about i
 
 ## Directory Structure
 
-Specifications are organized by OpenAPI version and the corresponding PingOne API subdomain.
+Specifications are organized by OpenAPI version and the corresponding PingOne API subdomain.  There are multiple variants of the same specification depending on the use case.
 
-The structure is: `./[OpenAPI Version]/[Subdomain]/openapi.yaml`
+The structure is: `./specifications/[OpenAPI Version]/[Subdomain]/[variant]/openapi.yaml`
 
-For example, the OpenAPI `3.1` specification for the management APIs (`api.pingone.com`) is located at:
+For example, the combined (full) OpenAPI `3.1` specification for the management APIs (`api.pingone.com`) is located at:
 
 ```bash
-./3.1/api/openapi.yaml
+.specifications/3.1/api/combined/openapi.yaml
 ```
 
 ## Contributing
@@ -44,7 +44,7 @@ Please use this repository's issue tracker to submit feedback, bug reports, or e
 
 ### Pull Request Guidelines
 
-Due to our automated generation process, **we cannot merge pull requests that modify the `openapi.yaml` or `openapi.json` specification files.** Any manual changes would be overwritten by our pipeline.
+Due to our automated generation process, **we cannot merge pull requests that modify the YAML or JSON specification files.** Any manual changes would be overwritten by our pipeline.
 
 We welcome pull requests for:
 
@@ -52,4 +52,4 @@ We welcome pull requests for:
   * Documentation updates
   * Other non-specification content
 
-**Note:** While we cannot merge pull requests that modify specifications, they can be a valuable way to illustrate a proposed change when you submit an issue. We will use the illustated changes in triage and close the pull request without merging to the main branch.
+**Note:** While we cannot merge pull requests that modify specifications, they can be a valuable way to illustrate a proposed change when you submit an issue. We will use the illustated changes in triage to port into the internal pipeline, however we will close the pull request without merging to the main branch.
