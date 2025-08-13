@@ -1,12 +1,12 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform User and Configuration Management API - SDK Generator
-  version: 2025.08.07-development
+  version: 2025.08.13-development
   description: PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.
   contact:
     name: Ping Identity Developer Experiences
     url: https://developer.pingidentity.com
-    email: developerexperiences@pingidentity.com
+    email: devex@pingidentity.com
   license:
     identifier: Apache-2.0
     name: Apache 2.0
@@ -45,7 +45,6 @@ paths:
       parameters:
         - name: expand
           in: query
-          required: true
           schema:
             type: string
         - name: filter
@@ -151,7 +150,6 @@ paths:
         - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
         - name: expand
           in: query
-          required: true
           schema:
             type: string
         - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
@@ -1674,7 +1672,7 @@ components:
             - value
           title: DaVinci Application Response Api Key
         environment:
-          $ref: '#/components/schemas/ResourceRelationshipRead-Only'
+          $ref: '#/components/schemas/ResourceRelationshipReadOnly'
         id:
           type: string
           minLength: 1
@@ -1803,7 +1801,7 @@ components:
       type: object
       properties:
         environment:
-          $ref: '#/components/schemas/ResourceRelationshipRead-Only'
+          $ref: '#/components/schemas/ResourceRelationshipReadOnly'
         _links:
           type: object
           properties:
@@ -2054,9 +2052,9 @@ components:
             $ref: '#/components/schemas/JSONHALLink'
           title: DaVinci Connector Instance Response _links
         connector:
-          $ref: '#/components/schemas/ResourceRelationshipDaVinciRead-Only'
+          $ref: '#/components/schemas/ResourceRelationshipDaVinciReadOnly'
         environment:
-          $ref: '#/components/schemas/ResourceRelationshipRead-Only'
+          $ref: '#/components/schemas/ResourceRelationshipReadOnly'
         id:
           type: string
           minLength: 1
@@ -2111,7 +2109,7 @@ components:
           minLength: 1
           title: DaVinci Connector Minimal Response Description
         environment:
-          $ref: '#/components/schemas/ResourceRelationshipRead-Only'
+          $ref: '#/components/schemas/ResourceRelationshipReadOnly'
         id:
           type: string
           minLength: 1
@@ -2188,9 +2186,12 @@ components:
               $ref: '#/components/schemas/JSONHALLink'
             environment:
               $ref: '#/components/schemas/JSONHALLink'
+            davinciApplication:
+              $ref: '#/components/schemas/JSONHALLink'
           required:
             - self
             - environment
+            - davinciApplication
           additionalProperties:
             $ref: '#/components/schemas/JSONHALLink'
           title: DaVinci Flow Policy Collection _links
@@ -2543,6 +2544,8 @@ components:
               $ref: '#/components/schemas/JSONHALLink'
             environment:
               $ref: '#/components/schemas/JSONHALLink'
+            davinciApplication:
+              $ref: '#/components/schemas/JSONHALLink'
             flow.<index>:
               $ref: '#/components/schemas/JSONHALLink'
             version.<flowId>.<index>:
@@ -2550,11 +2553,12 @@ components:
           required:
             - self
             - environment
+            - davinciApplication
           additionalProperties:
             $ref: '#/components/schemas/JSONHALLink'
           title: DaVinci Flow Policy Response _links
         environment:
-          $ref: '#/components/schemas/ResourceRelationshipRead-Only'
+          $ref: '#/components/schemas/ResourceRelationshipReadOnly'
         flowDistributions:
           type: array
           items:
@@ -2609,6 +2613,8 @@ components:
           type: string
           minLength: 1
           title: DaVinci Flow Policy Response Status
+        application:
+          $ref: '#/components/schemas/ResourceRelationshipDaVinciReadOnly'
         createdAt:
           type: string
           format: date-time
@@ -2891,7 +2897,7 @@ components:
           minLength: 1
           title: DaVinci Variable Response Data Type
         environment:
-          $ref: '#/components/schemas/ResourceRelationshipRead-Only'
+          $ref: '#/components/schemas/ResourceRelationshipReadOnly'
         id:
           type: string
           format: uuid
@@ -2912,7 +2918,7 @@ components:
           type: string
           title: DaVinci Variable Response Display Name
         flow:
-          $ref: '#/components/schemas/ResourceRelationshipDaVinciRead-Only'
+          $ref: '#/components/schemas/ResourceRelationshipDaVinciReadOnly'
         max:
           type: number
           title: DaVinci Variable Response Max
@@ -3065,7 +3071,7 @@ components:
         console:
           $ref: '#/components/schemas/EnvironmentBillOfMaterialsProductConsole'
         deployment:
-          $ref: '#/components/schemas/ResourceRelationshipRead-Only'
+          $ref: '#/components/schemas/ResourceRelationshipReadOnly'
         description:
           type: string
           title: Environment Bill of Materials Product Description
@@ -3610,7 +3616,7 @@ components:
           minLength: 1
           title: Environment Response Id
         organization:
-          $ref: '#/components/schemas/ResourceRelationshipRead-Only'
+          $ref: '#/components/schemas/ResourceRelationshipReadOnly'
         _embedded:
           type: object
           additionalProperties:
@@ -3939,7 +3945,7 @@ components:
       required:
         - id
       title: Resource Relationship DaVinci
-    ResourceRelationshipDaVinciRead-Only:
+    ResourceRelationshipDaVinciReadOnly:
       type: object
       properties:
         id:
@@ -3959,7 +3965,7 @@ components:
           readOnly: true
           title: Resource Relationship Generic Id
       title: Resource Relationship Generic
-    ResourceRelationshipRead-Only:
+    ResourceRelationshipReadOnly:
       type: object
       properties:
         id:

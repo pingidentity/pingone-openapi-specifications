@@ -1,12 +1,12 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform API
-  version: 2025.08.07-development
+  version: 2025.08.13-development
   description: PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.
   contact:
     name: Ping Identity Developer Experiences
     url: https://developer.pingidentity.com
-    email: developerexperiences@pingidentity.com
+    email: devex@pingidentity.com
   license:
     identifier: Apache-2.0
     name: Apache 2.0
@@ -2547,9 +2547,12 @@ components:
               $ref: '#/components/schemas/com.pingidentity.api.response.Link'
             environment:
               $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+            davinciApplication:
+              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
           required:
             - self
             - environment
+            - davinciApplication
           additionalProperties:
             $ref: '#/components/schemas/com.pingidentity.api.response.Link'
           title: DaVinci Flow Policy Collection _links
@@ -2662,6 +2665,8 @@ components:
               $ref: '#/components/schemas/com.pingidentity.api.response.Link'
             environment:
               $ref: '#/components/schemas/com.pingidentity.api.response.Link'
+            davinciApplication:
+              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
             flow.<index>:
               $ref: '#/components/schemas/com.pingidentity.api.response.Link'
             version.<flowId>.<index>:
@@ -2669,6 +2674,7 @@ components:
           required:
             - self
             - environment
+            - davinciApplication
           additionalProperties:
             $ref: '#/components/schemas/com.pingidentity.api.response.Link'
           title: DaVinci Flow Policy Response _links
@@ -2728,6 +2734,8 @@ components:
           type: string
           minLength: 1
           title: DaVinci Flow Policy Response Status
+        application:
+          $ref: '#/components/schemas/com.pingidentity.api.Relationship.DaVinci.RO'
         createdAt:
           type: string
           format: date-time

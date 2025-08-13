@@ -2,12 +2,12 @@
   "openapi": "3.1.1",
   "info": {
     "title": "PingOne Platform API",
-    "version": "2025.08.07-development",
+    "version": "2025.08.13-development",
     "description": "PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.",
     "contact": {
       "name": "Ping Identity Developer Experiences",
       "url": "https://developer.pingidentity.com",
-      "email": "developerexperiences@pingidentity.com"
+      "email": "devex@pingidentity.com"
     },
     "license": {
       "identifier": "Apache-2.0",
@@ -93,7 +93,6 @@
           {
             "name": "expand",
             "in": "query",
-            "required": true,
             "schema": {
               "type": "string"
             }
@@ -268,7 +267,6 @@
           {
             "name": "expand",
             "in": "query",
-            "required": true,
             "schema": {
               "type": "string"
             }
@@ -4377,11 +4375,15 @@
               },
               "environment": {
                 "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "davinciApplication": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
               }
             },
             "required": [
               "self",
-              "environment"
+              "environment",
+              "davinciApplication"
             ],
             "additionalProperties": {
               "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
@@ -4540,6 +4542,9 @@
               "environment": {
                 "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
               },
+              "davinciApplication": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
               "flow.<index>": {
                 "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
               },
@@ -4549,7 +4554,8 @@
             },
             "required": [
               "self",
-              "environment"
+              "environment",
+              "davinciApplication"
             ],
             "additionalProperties": {
               "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
@@ -4630,6 +4636,9 @@
             "type": "string",
             "minLength": 1,
             "title": "DaVinci Flow Policy Response Status"
+          },
+          "application": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.DaVinci.RO"
           },
           "createdAt": {
             "type": "string",

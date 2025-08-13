@@ -7,9 +7,12 @@ properties:
         $ref: ./com.pingidentity.api.response.Link.yaml
       environment:
         $ref: ./com.pingidentity.api.response.Link.yaml
+      davinciApplication:
+        $ref: ./com.pingidentity.api.response.Link.yaml
     required:
       - self
       - environment
+      - davinciApplication
     additionalProperties:
       $ref: ./com.pingidentity.api.response.Link.yaml
     title: DaVinci Flow Policy Collection _links

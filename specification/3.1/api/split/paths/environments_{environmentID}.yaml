@@ -5,7 +5,6 @@ get:
         ../components/parameters/com.pingidentity.path.environments.environmentID.yaml
     - name: expand
       in: query
-      required: true
       schema:
         type: string
     - $ref: ../components/parameters/com.pingidentity.header.ExternalSessionID.yaml
