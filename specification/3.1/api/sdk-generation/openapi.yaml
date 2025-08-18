@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform User and Configuration Management API - SDK Generator
-  version: 2025.08.17-beta
+  version: 2025.08.18-development
   description: PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.
   contact:
     name: Ping Identity Developer Experiences
@@ -28,6 +28,8 @@ security:
   - bearerAuth: []
   - oauth2: []
 tags:
+  - name: Configuration Management
+    description: Operations for managing PingOne configuration management actions
   - name: DaVinci Applications
     description: Operations for managing DaVinci applications and application flows policies
   - name: DaVinci Connectors
@@ -1205,7 +1207,7 @@ paths:
       x-feature-flag: p1ax-1984-configuration-promotion
       x-permission: promotion:create:snapshot
       tags:
-        - Environments
+        - Configuration Management
   /environments/{environmentID}/snapshots/{snapshotID}:
     get:
       operationId: getSnapshotById
@@ -1247,7 +1249,7 @@ paths:
       x-feature-flag: p1ax-1984-configuration-promotion
       x-permission: promotion:read:snapshot
       tags:
-        - Environments
+        - Configuration Management
   /environments/{environmentID}/snapshots/{snapshotID}/versions:
     get:
       operationId: getVersionsBySnapshotId
@@ -1283,7 +1285,7 @@ paths:
       x-feature-flag: p1ax-1984-configuration-promotion
       x-permission: promotion:read:snapshot
       tags:
-        - Environments
+        - Configuration Management
   /environments/{environmentID}/snapshots/{snapshotID}/versions/{versionID}:
     get:
       operationId: getVersionByIdUsingSnapshotId
@@ -1326,7 +1328,7 @@ paths:
       x-feature-flag: p1ax-1984-configuration-promotion
       x-permission: promotion:read:snapshot
       tags:
-        - Environments
+        - Configuration Management
   /environments/{environmentID}/totalIdentities:
     get:
       operationId: getTotalIdentities
