@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform User and Configuration Management API - SDK Generator
-  version: 2025.08.13-development
+  version: 2025.08.17-beta
   description: PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.
   contact:
     name: Ping Identity Developer Experiences
@@ -169,9 +169,9 @@ paths:
         '401':
           $ref: '#/components/responses/http.401.Unauthorized'
         '403':
-          $ref: '#/components/responses/http.403.Forbidden.P14C63085'
+          $ref: '#/components/responses/http.403.Forbidden'
         '404':
-          $ref: '#/components/responses/http.404.NotFound.DOCS8830'
+          $ref: '#/components/responses/http.404.NotFound'
         '429':
           $ref: '#/components/responses/http.429.TooManyRequests'
         '500':
@@ -1163,6 +1163,170 @@ paths:
       x-pingidentity-operation-action: rotate
       tags:
         - DaVinci Applications
+  /environments/{environmentID}/snapshots:
+    post:
+      operationId: createSnapshot
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - name: expand
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnapshotRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SnapshotView'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden.P14C63085.DOCS8830'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-feature-flag: p1ax-1984-configuration-promotion
+      x-permission: promotion:create:snapshot
+      tags:
+        - Environments
+  /environments/{environmentID}/snapshots/{snapshotID}:
+    get:
+      operationId: getSnapshotById
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.snapshots.snapshotID'
+        - name: expand
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: filter
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SnapshotView'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden.P14C63085'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-feature-flag: p1ax-1984-configuration-promotion
+      x-permission: promotion:read:snapshot
+      tags:
+        - Environments
+  /environments/{environmentID}/snapshots/{snapshotID}/versions:
+    get:
+      operationId: getVersionsBySnapshotId
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.snapshots.snapshotID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/SnapshotVersionCollectionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotVersionCollectionResponse'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden.P14C63085'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-feature-flag: p1ax-1984-configuration-promotion
+      x-permission: promotion:read:snapshot
+      tags:
+        - Environments
+  /environments/{environmentID}/snapshots/{snapshotID}/versions/{versionID}:
+    get:
+      operationId: getVersionByIdUsingSnapshotId
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.snapshots.snapshotID'
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.snapshots.versions.versionID'
+        - name: expand
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: filter
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SnapshotView'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden.P14C63085'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-feature-flag: p1ax-1984-configuration-promotion
+      x-permission: promotion:read:snapshot
+      tags:
+        - Environments
   /environments/{environmentID}/totalIdentities:
     get:
       operationId: getTotalIdentities
@@ -3713,11 +3877,6 @@ components:
       $schema: http://json-schema.org/draft/2020-12/schema#
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-          minLength: 1
-          title: Forbidden Error Id
         code:
           type: string
           enum:
@@ -3761,8 +3920,11 @@ components:
               - message
             title: Forbidden Error Detail
           title: Forbidden Error Details
+        id:
+          type: string
+          format: uuid
+          title: Forbidden Error Id
       required:
-        - id
         - code
         - message
       title: Forbidden Error
@@ -3977,6 +4139,140 @@ components:
       required:
         - id
       title: Resource Relationship Read-Only
+    SnapshotRequest:
+      required:
+        - baseResourceURL
+      type: object
+      properties:
+        baseResourceURL:
+          type: string
+          minLength: 1
+          title: Snapshot Request Base Resource URL
+      title: Snapshot Request
+    SnapshotResourceInformation:
+      type: object
+      properties:
+        category:
+          type: string
+          title: Snapshot Resource Information Category
+        id:
+          type: string
+          title: Snapshot Resource Information Id
+        name:
+          type: string
+          title: Snapshot Resource Information Name
+      title: Snapshot Resource Information
+    SnapshotVersionCollectionResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            versions:
+              type: array
+              items:
+                allOf:
+                  - $ref: '#/components/schemas/SnapshotView'
+                title: Snapshot Version Collection Response _embedded Version
+              title: Snapshot Version Collection Response _embedded Versions
+          title: Snapshot Version Collection Response _embedded
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/JSONHALLink'
+          additionalProperties:
+            $ref: '#/components/schemas/JSONHALLink'
+          title: Snapshot Version Collection Response _links
+        count:
+          type: integer
+          format: int32
+          title: Snapshot Version Collection Response Count
+        size:
+          type: integer
+          format: int32
+          title: Snapshot Version Collection Response Size
+      title: Snapshot Version Collection Response
+    SnapshotView:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          additionalProperties:
+            type: object
+            readOnly: true
+            title: Snapshot View _embedded Additional Properties
+          readOnly: true
+          title: Snapshot View _embedded
+        _links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/JSONHALLink'
+          additionalProperties:
+            $ref: '#/components/schemas/JSONHALLink'
+          readOnly: true
+          title: Snapshot View _links
+        completedAt:
+          type: string
+          format: date-time
+          title: Snapshot View Completed At
+        configuration:
+          type: string
+          title: Snapshot View Configuration
+        createdAt:
+          type: string
+          format: date-time
+          title: Snapshot View Created At
+        environment:
+          $ref: '#/components/schemas/ResourceRelationshipReadOnly'
+        error:
+          type: string
+          title: Snapshot View Error
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          title: Snapshot View Id
+        importMetadata:
+          type: object
+          additionalProperties:
+            type: object
+            title: Snapshot View Import Metadata Additional Properties
+          title: Snapshot View Import Metadata
+        referencedResources:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            title: Snapshot View Referenced Resource
+          title: Snapshot View Referenced Resources
+        resource:
+          $ref: '#/components/schemas/SnapshotResourceInformation'
+        resourceUrl:
+          type: string
+          title: Snapshot View Resource Url
+        snapshotId:
+          type: string
+          format: uuid
+          title: Snapshot View Snapshot Id
+        startedAt:
+          type: string
+          format: date-time
+          title: Snapshot View Started At
+        status:
+          type: string
+          enum:
+            - COMPLETE
+            - ERROR
+            - IN_PROGRESS
+            - WAITING
+          title: Snapshot View Status
+        versionedAt:
+          type: string
+          format: date-time
+          title: Snapshot View Versioned At
+      title: Snapshot View
     TooManyRequestsError:
       $schema: http://json-schema.org/draft/2020-12/schema#
       type: object
@@ -4203,6 +4499,20 @@ components:
       schema:
         type: string
         pattern: ^(?=\S)[\p{L}\p{M}\p{N}\p{So}/.'_ -]*(?!.*((<)|(\$\{)))
+    com.pingidentity.path.environments.snapshots.snapshotID:
+      name: snapshotID
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    com.pingidentity.path.environments.snapshots.versions.versionID:
+      name: versionID
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   responses:
     http.400.BadRequest:
       description: Bad Request
@@ -4316,3 +4626,5 @@ x-permissions:
   - name: orgmgt:delete:environment
   - name: orgmgt:read:environment
   - name: orgmgt:update:environment
+  - name: promotion:create:snapshot
+  - name: promotion:read:snapshot

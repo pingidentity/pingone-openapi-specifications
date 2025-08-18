@@ -1,0 +1,47 @@
+post:
+  operationId: createSnapshot
+  parameters:
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.environmentID.yaml
+    - name: expand
+      in: query
+      required: false
+      schema:
+        type: string
+    - $ref: ../components/parameters/com.pingidentity.header.ExternalSessionID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.header.ExternalTransactionID.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: >-
+            ../components/schemas/com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotRequest.yaml
+    required: true
+  responses:
+    '201':
+      description: Created
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotView.yaml
+    '400':
+      $ref: ../components/responses/http.400.BadRequest.yaml
+    '401':
+      $ref: ../components/responses/http.401.Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/http.403.Forbidden.P14C63085.DOCS8830.yaml
+    '429':
+      $ref: ../components/responses/http.429.TooManyRequests.yaml
+    '500':
+      $ref: ../components/responses/http.500.InternalServerError.yaml
+    '502':
+      $ref: ../components/responses/http.502.BadGateway.yaml
+    '503':
+      $ref: ../components/responses/http.503.ServiceUnavailable.yaml
+  x-feature-flag: p1ax-1984-configuration-promotion
+  x-permission: promotion:create:snapshot
+  tags:
+    - Configuration Management
+    - Snapshots

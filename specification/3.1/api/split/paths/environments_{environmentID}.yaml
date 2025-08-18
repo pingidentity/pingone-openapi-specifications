@@ -27,9 +27,9 @@ get:
     '401':
       $ref: ../components/responses/http.401.Unauthorized.yaml
     '403':
-      $ref: ../components/responses/http.403.Forbidden.P14C63085.yaml
+      $ref: ../components/responses/http.403.Forbidden.yaml
     '404':
-      $ref: ../components/responses/http.404.NotFound.DOCS8830.yaml
+      $ref: ../components/responses/http.404.NotFound.yaml
     '429':
       $ref: ../components/responses/http.429.TooManyRequests.yaml
     '500':

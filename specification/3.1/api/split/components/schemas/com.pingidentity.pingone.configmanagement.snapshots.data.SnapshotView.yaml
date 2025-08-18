@@ -1,0 +1,80 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    additionalProperties:
+      type: object
+      readOnly: true
+      title: Snapshot View _embedded Additional Properties
+    readOnly: true
+    title: Snapshot View _embedded
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    readOnly: true
+    title: Snapshot View _links
+  completedAt:
+    type: string
+    format: date-time
+    title: Snapshot View Completed At
+  configuration:
+    type: string
+    title: Snapshot View Configuration
+  createdAt:
+    type: string
+    format: date-time
+    title: Snapshot View Created At
+  environment:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  error:
+    type: string
+    title: Snapshot View Error
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+    title: Snapshot View Id
+  importMetadata:
+    type: object
+    additionalProperties:
+      type: object
+      title: Snapshot View Import Metadata Additional Properties
+    title: Snapshot View Import Metadata
+  referencedResources:
+    uniqueItems: true
+    type: array
+    items:
+      type: string
+      title: Snapshot View Referenced Resource
+    title: Snapshot View Referenced Resources
+  resource:
+    $ref: >-
+      ./com.pingidentity.pingone.configmanagement.snapshots.data.ResourceInformation.yaml
+  resourceUrl:
+    type: string
+    title: Snapshot View Resource Url
+  snapshotId:
+    type: string
+    format: uuid
+    title: Snapshot View Snapshot Id
+  startedAt:
+    type: string
+    format: date-time
+    title: Snapshot View Started At
+  status:
+    type: string
+    enum:
+      - COMPLETE
+      - ERROR
+      - IN_PROGRESS
+      - WAITING
+    title: Snapshot View Status
+  versionedAt:
+    type: string
+    format: date-time
+    title: Snapshot View Versioned At
+title: Snapshot View

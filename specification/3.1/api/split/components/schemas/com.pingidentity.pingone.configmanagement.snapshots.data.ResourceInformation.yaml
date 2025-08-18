@@ -1,0 +1,12 @@
+type: object
+properties:
+  category:
+    type: string
+    title: Snapshot Resource Information Category
+  id:
+    type: string
+    title: Snapshot Resource Information Id
+  name:
+    type: string
+    title: Snapshot Resource Information Name
+title: Snapshot Resource Information

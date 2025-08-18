@@ -1,0 +1,31 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    properties:
+      versions:
+        type: array
+        items:
+          allOf:
+            - $ref: >-
+                ./com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotView.yaml
+          title: Snapshot Version Collection Response _embedded Version
+        title: Snapshot Version Collection Response _embedded Versions
+    title: Snapshot Version Collection Response _embedded
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: Snapshot Version Collection Response _links
+  count:
+    type: integer
+    format: int32
+    title: Snapshot Version Collection Response Count
+  size:
+    type: integer
+    format: int32
+    title: Snapshot Version Collection Response Size
+title: Snapshot Version Collection Response

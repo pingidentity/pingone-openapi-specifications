@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform API
-  version: 2025.08.13-development
+  version: 2025.08.17-beta
   description: >-
     PingOne is a cloud-based framework for secure identity access management.
     The PingOne API gives developers the tools to integrate enterprise and
@@ -31,6 +31,8 @@ security:
   - bearerAuth: []
   - oauth2: []
 tags:
+  - name: Configuration Management
+    description: Operations for managing PingOne configuration management actions.
   - name: DaVinci Admin APIs
     description: >-
       The PingOne DaVinci Admin APIs provide access to DaVinci operations
@@ -54,6 +56,8 @@ tags:
       PingOne DaVinci is an orchestration platform that helps you design and
       create flows. Flows are constructed, logical paths that can contain both
       user-facing and backend elements.
+  - name: Snapshots
+    description: Operations for managing configuration management snapshots.
   - name: Total Identities
     description: Operations for retrieving PingOne directory total identity reports
 paths:
@@ -94,6 +98,15 @@ paths:
   /environments/{environmentID}/davinciApplications/{davinciApplicationID}/secret:
     $ref: >-
       paths/environments_{environmentID}_davinciApplications_{davinciApplicationID}_secret.yaml
+  /environments/{environmentID}/snapshots:
+    $ref: paths/environments_{environmentID}_snapshots.yaml
+  /environments/{environmentID}/snapshots/{snapshotID}:
+    $ref: paths/environments_{environmentID}_snapshots_{snapshotID}.yaml
+  /environments/{environmentID}/snapshots/{snapshotID}/versions:
+    $ref: paths/environments_{environmentID}_snapshots_{snapshotID}_versions.yaml
+  /environments/{environmentID}/snapshots/{snapshotID}/versions/{versionID}:
+    $ref: >-
+      paths/environments_{environmentID}_snapshots_{snapshotID}_versions_{versionID}.yaml
   /environments/{environmentID}/totalIdentities:
     $ref: paths/environments_{environmentID}_totalIdentities.yaml
   /environments/{environmentID}/variables:
@@ -139,3 +152,5 @@ x-permissions:
   - name: orgmgt:delete:environment
   - name: orgmgt:read:environment
   - name: orgmgt:update:environment
+  - name: promotion:create:snapshot
+  - name: promotion:read:snapshot

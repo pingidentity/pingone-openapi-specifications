@@ -1,0 +1,9 @@
+required:
+  - baseResourceURL
+type: object
+properties:
+  baseResourceURL:
+    type: string
+    minLength: 1
+    title: Snapshot Request Base Resource URL
+title: Snapshot Request

@@ -1,11 +1,6 @@
 $schema: http://json-schema.org/draft/2020-12/schema#
 type: object
 properties:
-  id:
-    type: string
-    format: uuid
-    minLength: 1
-    title: Forbidden Error Id
   code:
     type: string
     enum:
@@ -48,8 +43,11 @@ properties:
         - message
       title: Forbidden Error Detail
     title: Forbidden Error Details
+  id:
+    type: string
+    format: uuid
+    title: Forbidden Error Id
 required:
-  - id
   - code
   - message
 title: Forbidden Error

@@ -25,33 +25,40 @@ servers:
           - sg
         default: com
 tags:
-  - name: DaVinci Admin Connectors
-    description: Operations for managing DaVinci connectors and connector instances
+  - name: Configuration Management
+    description: Operations for managing PingOne configuration management actions.
 paths:
-  /environments/{environmentID}/connectors:
-    get:
-      operationId: getConnectors
+  /environments/{environmentID}/snapshots:
+    post:
+      operationId: createSnapshot
       parameters:
         - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - name: expand
+          in: query
+          required: false
+          schema:
+            type: string
         - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
         - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotRequest'
+        required: true
       responses:
-        '200':
-          description: Successful Operation.
+        '201':
+          description: Created
           content:
-            application/json:
+            '*/*':
               schema:
-                $ref: '#/components/schemas/com.pingidentity.pingone.davinci.connectors.response.ConnectorsMinimalResponse'
+                $ref: '#/components/schemas/com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotView'
         '400':
           $ref: '#/components/responses/http.400.BadRequest'
         '401':
           $ref: '#/components/responses/http.401.Unauthorized'
         '403':
           $ref: '#/components/responses/http.403.Forbidden.P14C63085.DOCS8830'
-        '404':
-          $ref: '#/components/responses/http.404.NotFound.DOCS8830'
-        '415':
-          $ref: '#/components/responses/http.415.UnsupportedMediaType'
         '429':
           $ref: '#/components/responses/http.429.TooManyRequests'
         '500':
@@ -60,36 +67,41 @@ paths:
           $ref: '#/components/responses/http.502.BadGateway'
         '503':
           $ref: '#/components/responses/http.503.ServiceUnavailable'
-      x-permission: davinci:read:connectors
+      x-feature-flag: p1ax-1984-configuration-promotion
+      x-permission: promotion:create:snapshot
       tags:
-        - DaVinci Admin Connectors
-        - DaVinci Admin APIs
-        - PingOne DaVinci
-  /environments/{environmentID}/connectors/{connectorID}:
+        - Configuration Management
+        - Snapshots
+  /environments/{environmentID}/snapshots/{snapshotID}:
     get:
-      operationId: getConnectorById
+      operationId: getSnapshotById
       parameters:
         - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
-        - $ref: '#/components/parameters/com.pingidentity.path.environments.connectors.connectorID'
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.snapshots.snapshotID'
+        - name: expand
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: filter
+          in: query
+          schema:
+            type: string
         - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
         - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
       responses:
         '200':
-          description: Successful Operation.
+          description: OK
           content:
-            application/json:
+            '*/*':
               schema:
-                $ref: '#/components/schemas/com.pingidentity.pingone.davinci.connectors.response.ConnectorMinimalResponse'
+                $ref: '#/components/schemas/com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotView'
         '400':
           $ref: '#/components/responses/http.400.BadRequest'
         '401':
           $ref: '#/components/responses/http.401.Unauthorized'
         '403':
           $ref: '#/components/responses/http.403.Forbidden.P14C63085'
-        '404':
-          $ref: '#/components/responses/http.404.NotFound'
-        '415':
-          $ref: '#/components/responses/http.415.UnsupportedMediaType'
         '429':
           $ref: '#/components/responses/http.429.TooManyRequests'
         '500':
@@ -98,36 +110,35 @@ paths:
           $ref: '#/components/responses/http.502.BadGateway'
         '503':
           $ref: '#/components/responses/http.503.ServiceUnavailable'
-      x-permission: davinci:read:connectors
+      x-feature-flag: p1ax-1984-configuration-promotion
+      x-permission: promotion:read:snapshot
       tags:
-        - DaVinci Admin Connectors
-        - DaVinci Admin APIs
-        - PingOne DaVinci
-  /environments/{environmentID}/connectors/{connectorID}/details:
+        - Configuration Management
+        - Snapshots
+  /environments/{environmentID}/snapshots/{snapshotID}/versions:
     get:
-      operationId: getDetailsByConnectorId
+      operationId: getVersionsBySnapshotId
       parameters:
         - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
-        - $ref: '#/components/parameters/com.pingidentity.path.environments.connectors.connectorID'
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.snapshots.snapshotID'
         - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
         - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
       responses:
         '200':
-          description: Successful Operation.
+          description: OK
           content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotsVersionsResponse'
             application/json:
               schema:
-                $ref: '#/components/schemas/com.pingidentity.pingone.davinci.connectors.response.ConnectorDetailsResponse'
+                $ref: '#/components/schemas/com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotsVersionsResponse'
         '400':
           $ref: '#/components/responses/http.400.BadRequest'
         '401':
           $ref: '#/components/responses/http.401.Unauthorized'
         '403':
           $ref: '#/components/responses/http.403.Forbidden.P14C63085'
-        '404':
-          $ref: '#/components/responses/http.404.NotFound'
-        '415':
-          $ref: '#/components/responses/http.415.UnsupportedMediaType'
         '429':
           $ref: '#/components/responses/http.429.TooManyRequests'
         '500':
@@ -136,11 +147,55 @@ paths:
           $ref: '#/components/responses/http.502.BadGateway'
         '503':
           $ref: '#/components/responses/http.503.ServiceUnavailable'
-      x-permission: davinci:read:connectors
+      x-feature-flag: p1ax-1984-configuration-promotion
+      x-permission: promotion:read:snapshot
       tags:
-        - DaVinci Admin Connectors
-        - DaVinci Admin APIs
-        - PingOne DaVinci
+        - Configuration Management
+        - Snapshots
+  /environments/{environmentID}/snapshots/{snapshotID}/versions/{versionID}:
+    get:
+      operationId: getVersionByIdUsingSnapshotId
+      parameters:
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.environmentID'
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.snapshots.snapshotID'
+        - $ref: '#/components/parameters/com.pingidentity.path.environments.snapshots.versions.versionID'
+        - name: expand
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: filter
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalSessionID'
+        - $ref: '#/components/parameters/com.pingidentity.header.ExternalTransactionID'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotView'
+        '400':
+          $ref: '#/components/responses/http.400.BadRequest'
+        '401':
+          $ref: '#/components/responses/http.401.Unauthorized'
+        '403':
+          $ref: '#/components/responses/http.403.Forbidden.P14C63085'
+        '429':
+          $ref: '#/components/responses/http.429.TooManyRequests'
+        '500':
+          $ref: '#/components/responses/http.500.InternalServerError'
+        '502':
+          $ref: '#/components/responses/http.502.BadGateway'
+        '503':
+          $ref: '#/components/responses/http.503.ServiceUnavailable'
+      x-feature-flag: p1ax-1984-configuration-promotion
+      x-permission: promotion:read:snapshot
+      tags:
+        - Configuration Management
+        - Snapshots
 components:
   securitySchemes:
     bearerAuth:
@@ -381,104 +436,6 @@ components:
         - code
         - message
       title: Forbidden Error
-    com.pingidentity.ApiErrorResponse.404:
-      $schema: http://json-schema.org/draft/2020-12/schema#
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          minLength: 1
-          title: Not Found Error Id
-        code:
-          type: string
-          enum:
-            - NOT_FOUND
-          minLength: 1
-          title: Not Found Error Code
-        message:
-          type: string
-          minLength: 1
-          title: Not Found Error Message
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-                minLength: 1
-                title: Not Found Error Detail Code
-              message:
-                type: string
-                minLength: 1
-                title: Not Found Error Detail Message
-              innerError:
-                type: object
-                additionalProperties: true
-                title: Not Found Error Detail Inner Error
-              target:
-                type: string
-                title: Not Found Error Detail Target
-            required:
-              - code
-              - message
-            title: Not Found Error Detail
-          title: Not Found Error Details
-      required:
-        - id
-        - code
-        - message
-      title: Not Found Error
-    com.pingidentity.ApiErrorResponse.415:
-      $schema: http://json-schema.org/draft/2020-12/schema#
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          minLength: 1
-          title: Unsupported Media Type Error Id
-        code:
-          type: string
-          enum:
-            - INVALID_REQUEST
-          minLength: 1
-          title: Unsupported Media Type Error Code
-        message:
-          type: string
-          minLength: 1
-          title: Unsupported Media Type Error Message
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-                minLength: 1
-                title: Unsupported Media Type Error Detail Code
-              message:
-                type: string
-                minLength: 1
-                title: Unsupported Media Type Error Detail Message
-              innerError:
-                type: object
-                additionalProperties: true
-                title: Unsupported Media Type Error Detail Inner Error
-              target:
-                type: string
-                title: Unsupported Media Type Error Detail Target
-            required:
-              - code
-              - message
-            title: Unsupported Media Type Error Detail
-          title: Unsupported Media Type Error Details
-      required:
-        - id
-        - code
-        - message
-      title: Unsupported Media Type Error
     com.pingidentity.ApiErrorResponse.429:
       $schema: http://json-schema.org/draft/2020-12/schema#
       type: object
@@ -649,281 +606,140 @@ components:
         - href
       readOnly: true
       title: JSON HAL Link
-    com.pingidentity.pingone.davinci.connectors.response.ConnectorDetailsResponse:
+    com.pingidentity.pingone.configmanagement.snapshots.data.ResourceInformation:
       type: object
       properties:
-        environment:
-          $ref: '#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO'
-        _links:
-          type: object
-          properties:
-            environment:
-              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
-            self:
-              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
-          required:
-            - environment
-            - self
-          additionalProperties:
-            $ref: '#/components/schemas/com.pingidentity.api.response.Link'
-          title: DaVinci Connector Details Response _links
-        accountConfigView:
-          type: object
-          properties:
-            items:
-              type: array
-              items:
-                type: object
-                properties: {}
-                additionalProperties: true
-                title: DaVinci Connector Details Response Account Config View Item Item
-              title: DaVinci Connector Details Response Account Config View Item
-            componentViewSize:
-              type: string
-              title: DaVinci Connector Details Response Account Config View Component View Size
-          required:
-            - items
-          title: DaVinci Connector Details Response Account Config View
-        capabilities:
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties: false
-            patternProperties:
-              ^[0-9]+$:
-                type: object
-                additionalProperties: true
-                properties:
-                  flowConfigView:
-                    type: object
-                    properties:
-                      items:
-                        type: array
-                        items:
-                          type: object
-                          properties: {}
-                          additionalProperties: true
-                          title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Flow Config View Item Item
-                        title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Flow Config View Item
-                    required:
-                      - items
-                    title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Flow Config View
-                  globalOutputSchema:
-                    type: object
-                    title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Global Output Schema
-                  inputs:
-                    type: array
-                    items:
-                      type: string
-                      title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Input
-                    title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Inputs
-                  respondToUser:
-                    type: boolean
-                    title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Respond To User
-                  subTitle:
-                    type: string
-                    title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Sub Title
-                  title:
-                    type: string
-                    title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Title
-                  type:
-                    type: string
-                    title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` Type
-                  userViews:
-                    type: array
-                    items:
-                      type: object
-                      title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` User View
-                    title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$` User Views
-                title: DaVinci Connector Details Response Capabilities Additional Properties Pattern Properties `^[0-9]+$`
-            title: DaVinci Connector Details Response Capabilities Additional Properties
-          title: DaVinci Connector Details Response Capabilities
-        credentialsView:
-          type: object
-          properties:
-            items:
-              type: array
-              items:
-                type: object
-                properties: {}
-                additionalProperties: true
-                title: DaVinci Connector Details Response Credentials View Item Item
-              title: DaVinci Connector Details Response Credentials View Item
-          required:
-            - items
-          title: DaVinci Connector Details Response Credentials View
-        flowSections:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                minLength: 1
-                title: DaVinci Connector Details Response Flow Section Name
-              value:
-                type: string
-                minLength: 1
-                title: DaVinci Connector Details Response Flow Section Value
-            required:
-              - name
-              - value
-            title: DaVinci Connector Details Response Flow Section
-          title: DaVinci Connector Details Response Flow Sections
-        properties:
-          type: object
-          properties: {}
-          additionalProperties: true
-          title: DaVinci Connector Details Response
-        sections:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                minLength: 1
-                title: DaVinci Connector Details Response Section Name
-              value:
-                type: string
-                minLength: 1
-                title: DaVinci Connector Details Response Section Value
-              default:
-                type: boolean
-                title: DaVinci Connector Details Response Section Default
-            required:
-              - name
-              - value
-            title: DaVinci Connector Details Response Section
-          title: DaVinci Connector Details Response Sections
+        category:
+          type: string
+          title: Snapshot Resource Information Category
+        id:
+          type: string
+          title: Snapshot Resource Information Id
+        name:
+          type: string
+          title: Snapshot Resource Information Name
+      title: Snapshot Resource Information
+    com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotRequest:
       required:
-        - environment
-      title: DaVinci Connector Details Response
-    com.pingidentity.pingone.davinci.connectors.response.ConnectorMinimalResponse:
+        - baseResourceURL
       type: object
       properties:
+        baseResourceURL:
+          type: string
+          minLength: 1
+          title: Snapshot Request Base Resource URL
+      title: Snapshot Request
+    com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotView:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          additionalProperties:
+            type: object
+            readOnly: true
+            title: Snapshot View _embedded Additional Properties
+          readOnly: true
+          title: Snapshot View _embedded
         _links:
           type: object
           properties:
-            environment:
-              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
             self:
               $ref: '#/components/schemas/com.pingidentity.api.response.Link'
-          required:
-            - environment
-            - self
           additionalProperties:
             $ref: '#/components/schemas/com.pingidentity.api.response.Link'
-          title: DaVinci Connector Minimal Response _links
+          readOnly: true
+          title: Snapshot View _links
+        completedAt:
+          type: string
+          format: date-time
+          title: Snapshot View Completed At
+        configuration:
+          type: string
+          title: Snapshot View Configuration
         createdAt:
           type: string
           format: date-time
-          minLength: 1
-          title: DaVinci Connector Minimal Response Created At
-        description:
-          type: string
-          minLength: 1
-          title: DaVinci Connector Minimal Response Description
+          title: Snapshot View Created At
         environment:
           $ref: '#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO'
+        error:
+          type: string
+          title: Snapshot View Error
         id:
           type: string
-          minLength: 1
-          title: DaVinci Connector Minimal Response Id
-        metadata:
+          format: uuid
+          readOnly: true
+          title: Snapshot View Id
+        importMetadata:
           type: object
-          properties:
-            colors:
-              type: object
-              properties:
-                canvas:
-                  type: string
-                  title: DaVinci Connector Minimal Response Metadata Colors Canvas
-                canvasText:
-                  type: string
-                  title: DaVinci Connector Minimal Response Metadata Colors Canvas Text
-                dark:
-                  type: string
-                  title: DaVinci Connector Minimal Response Metadata Colors Dark
-              title: DaVinci Connector Minimal Response Metadata Colors
-            logos:
-              type: object
-              properties:
-                canvas:
-                  type: object
-                  properties:
-                    imageFileName:
-                      type: string
-                      title: DaVinci Connector Minimal Response Metadata Logos Canvas Image File Name
-                  title: DaVinci Connector Minimal Response Metadata Logos Canvas
-              title: DaVinci Connector Minimal Response Metadata Logos
-            type:
-              enum:
-                - core
-                - ping
-                - service
-              type: string
-              title: DaVinci Connector Minimal Response Metadata Type
-            vendor:
-              type: string
-              title: DaVinci Connector Minimal Response Metadata Vendor
-          title: DaVinci Connector Minimal Response Metadata
-        name:
+          additionalProperties:
+            type: object
+            title: Snapshot View Import Metadata Additional Properties
+          title: Snapshot View Import Metadata
+        referencedResources:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            title: Snapshot View Referenced Resource
+          title: Snapshot View Referenced Resources
+        resource:
+          $ref: '#/components/schemas/com.pingidentity.pingone.configmanagement.snapshots.data.ResourceInformation'
+        resourceUrl:
           type: string
-          minLength: 1
-          title: DaVinci Connector Minimal Response Name
-        updatedAt:
+          title: Snapshot View Resource Url
+        snapshotId:
+          type: string
+          format: uuid
+          title: Snapshot View Snapshot Id
+        startedAt:
           type: string
           format: date-time
-          minLength: 1
-          title: DaVinci Connector Minimal Response Updated At
-        version:
+          title: Snapshot View Started At
+        status:
           type: string
-          minLength: 1
-          title: DaVinci Connector Minimal Response Version
-      required:
-        - _links
-        - createdAt
-        - description
-        - environment
-        - id
-        - metadata
-        - name
-        - updatedAt
-        - version
-      title: DaVinci Connector Minimal Response
-    com.pingidentity.pingone.davinci.connectors.response.ConnectorsMinimalResponse:
+          enum:
+            - COMPLETE
+            - ERROR
+            - IN_PROGRESS
+            - WAITING
+          title: Snapshot View Status
+        versionedAt:
+          type: string
+          format: date-time
+          title: Snapshot View Versioned At
+      title: Snapshot View
+    com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotsVersionsResponse:
       type: object
       properties:
         _embedded:
           type: object
           properties:
-            connectors:
+            versions:
               type: array
               items:
-                type: object
-                $ref: '#/components/schemas/com.pingidentity.pingone.davinci.connectors.response.ConnectorMinimalResponse'
-              title: DaVinci Connector Collection Minimal Response _embedded Connectors
-          required:
-            - connectors
-          title: DaVinci Connector Collection Minimal Response _embedded
+                allOf:
+                  - $ref: '#/components/schemas/com.pingidentity.pingone.configmanagement.snapshots.data.SnapshotView'
+                title: Snapshot Version Collection Response _embedded Version
+              title: Snapshot Version Collection Response _embedded Versions
+          title: Snapshot Version Collection Response _embedded
         _links:
           type: object
           properties:
-            environment:
-              $ref: '#/components/schemas/com.pingidentity.api.response.Link'
             self:
               $ref: '#/components/schemas/com.pingidentity.api.response.Link'
-          required:
-            - environment
-            - self
           additionalProperties:
             $ref: '#/components/schemas/com.pingidentity.api.response.Link'
-          title: DaVinci Connector Collection Minimal Response _links
-      required:
-        - _embedded
-        - _links
-      title: DaVinci Connector Collection Minimal Response
+          title: Snapshot Version Collection Response _links
+        count:
+          type: integer
+          format: int32
+          title: Snapshot Version Collection Response Count
+        size:
+          type: integer
+          format: int32
+          title: Snapshot Version Collection Response Size
+      title: Snapshot Version Collection Response
   parameters:
     com.pingidentity.header.ExternalSessionID:
       schema:
@@ -944,8 +760,15 @@ components:
       schema:
         type: string
         format: uuid
-    com.pingidentity.path.environments.connectors.connectorID:
-      name: connectorID
+    com.pingidentity.path.environments.snapshots.snapshotID:
+      name: snapshotID
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    com.pingidentity.path.environments.snapshots.versions.versionID:
+      name: versionID
       in: path
       required: true
       schema:
@@ -979,25 +802,6 @@ components:
             $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.403'
       x-pingone-p14c-63085: true
       x-pingone-docs-8830: true
-    http.404.NotFound:
-      description: Not Found
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.404'
-    http.404.NotFound.DOCS8830:
-      description: 'Not Found - Note: This may be due to eventual consistency if the environment was recently created. Try again after a short delay.'
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.404'
-      x-pingone-docs-8830: true
-    http.415.UnsupportedMediaType:
-      description: Unsupported Media Type
-      content:
-        '*/*':
-          schema:
-            $ref: '#/components/schemas/com.pingidentity.ApiErrorResponse.415'
     http.429.TooManyRequests:
       description: Too Many Requests
       headers:

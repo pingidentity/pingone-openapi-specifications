@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "PingOne Platform API",
-    "version": "2025.08.13-development",
+    "version": "2025.08.17-beta",
     "description": "PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.",
     "contact": {
       "name": "Ping Identity Developer Experiences",
@@ -478,12 +478,6 @@
         "$schema": "http://json-schema.org/draft/2020-12/schema#",
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "minLength": 1,
-            "title": "Forbidden Error Id"
-          },
           "code": {
             "type": "string",
             "enum": [
@@ -539,10 +533,14 @@
               "title": "Forbidden Error Detail"
             },
             "title": "Forbidden Error Details"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Forbidden Error Id"
           }
         },
         "required": [
-          "id",
           "code",
           "message"
         ],
