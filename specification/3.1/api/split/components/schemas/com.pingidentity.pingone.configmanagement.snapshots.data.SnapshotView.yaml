@@ -33,6 +33,10 @@ properties:
   error:
     type: string
     title: Snapshot View Error
+  errorCode:
+    type: integer
+    format: int32
+    title: Snapshot View Error Code
   id:
     type: string
     format: uuid

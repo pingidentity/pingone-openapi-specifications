@@ -92,6 +92,24 @@ properties:
   canUseDataBasedVerifications:
     type: boolean
     title: Environment Capabilities Can Use Data Based Verifications
+  canUseDataVerificationGroup1:
+    type: boolean
+    title: Environment Capabilities Can Use Data Verification Group 1
+  canUseDataVerificationGroup2:
+    type: boolean
+    title: Environment Capabilities Can Use Data Verification Group 2
+  canUseDataVerificationGroup3:
+    type: boolean
+    title: Environment Capabilities Can Use Data Verification Group 3
+  canUseDataVerificationGroup4:
+    type: boolean
+    title: Environment Capabilities Can Use Data Verification Group 4
+  canUseDataVerificationGroup5:
+    type: boolean
+    title: Environment Capabilities Can Use Data Verification Group 5
+  canUseDeviceReputationScoring:
+    type: boolean
+    title: Environment Capabilities Can Use Device Reputation Scoring
   canUseDigitalVerifications:
     type: boolean
     title: Environment Capabilities Can Use Digital Verifications
@@ -113,6 +131,9 @@ properties:
   canUseFraudDataEnrichment:
     type: boolean
     title: Environment Capabilities Can Use Fraud Data Enrichment
+  canUseGlobalWatchlist:
+    type: boolean
+    title: Environment Capabilities Can Use Global Watchlist
   canUseIdentities:
     type: boolean
     title: Environment Capabilities Can Use Identities
@@ -167,6 +188,9 @@ properties:
   canUseLdapGateway:
     type: boolean
     title: Environment Capabilities Can Use Ldap Gateway
+  canUseLiveAgent:
+    type: boolean
+    title: Environment Capabilities Can Use Live Agent
   canUseManualIDStepUpInspection:
     type: boolean
     title: Environment Capabilities Can Use Manual ID Step Up Inspection
@@ -209,6 +233,12 @@ properties:
   canUsePingIDApp:
     type: boolean
     title: Environment Capabilities Can Use Ping ID App
+  canUsePingIdDesktop:
+    type: boolean
+    title: Environment Capabilities Can Use Ping Id Desktop
+  canUsePingIdDesktopGen2:
+    type: boolean
+    title: Environment Capabilities Can Use Ping Id Desktop Gen 2
   canUsePingSmsAccount:
     type: boolean
     title: Environment Capabilities Can Use Ping Sms Account
@@ -224,6 +254,9 @@ properties:
   canUseRadiusGateway:
     type: boolean
     title: Environment Capabilities Can Use Radius Gateway
+  canUseScheduledFlows:
+    type: boolean
+    title: Environment Capabilities Can Use Scheduled Flows
   canUseSmsOtp:
     type: boolean
     title: Environment Capabilities Can Use Sms Otp

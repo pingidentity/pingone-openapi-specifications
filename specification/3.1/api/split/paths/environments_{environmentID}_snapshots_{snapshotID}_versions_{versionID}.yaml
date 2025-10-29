@@ -12,6 +12,11 @@ get:
       required: false
       schema:
         type: string
+    - name: attributes
+      in: query
+      required: true
+      schema:
+        type: string
     - name: filter
       in: query
       schema:
