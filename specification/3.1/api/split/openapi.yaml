@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform API
-  version: 2025.08.17-beta
+  version: 2025.10.29-beta
   description: >-
     PingOne is a cloud-based framework for secure identity access management.
     The PingOne API gives developers the tools to integrate enterprise and

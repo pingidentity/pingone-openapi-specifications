@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform User and Configuration Management API - SDK Generator
-  version: 2025.08.18-development
+  version: 2025.10.29-beta
   description: PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.
   contact:
     name: Ping Identity Developer Experiences
@@ -29,7 +29,7 @@ security:
   - oauth2: []
 tags:
   - name: Configuration Management
-    description: Operations for managing PingOne configuration management actions
+    description: Operations for managing PingOne configuration management actions.
   - name: DaVinci Applications
     description: Operations for managing DaVinci applications and application flows policies
   - name: DaVinci Connectors
@@ -1296,6 +1296,11 @@ paths:
         - name: expand
           in: query
           required: false
+          schema:
+            type: string
+        - name: attributes
+          in: query
+          required: true
           schema:
             type: string
         - name: filter
@@ -3430,6 +3435,24 @@ components:
         canUseDataBasedVerifications:
           type: boolean
           title: Environment Capabilities Can Use Data Based Verifications
+        canUseDataVerificationGroup1:
+          type: boolean
+          title: Environment Capabilities Can Use Data Verification Group 1
+        canUseDataVerificationGroup2:
+          type: boolean
+          title: Environment Capabilities Can Use Data Verification Group 2
+        canUseDataVerificationGroup3:
+          type: boolean
+          title: Environment Capabilities Can Use Data Verification Group 3
+        canUseDataVerificationGroup4:
+          type: boolean
+          title: Environment Capabilities Can Use Data Verification Group 4
+        canUseDataVerificationGroup5:
+          type: boolean
+          title: Environment Capabilities Can Use Data Verification Group 5
+        canUseDeviceReputationScoring:
+          type: boolean
+          title: Environment Capabilities Can Use Device Reputation Scoring
         canUseDigitalVerifications:
           type: boolean
           title: Environment Capabilities Can Use Digital Verifications
@@ -3451,6 +3474,9 @@ components:
         canUseFraudDataEnrichment:
           type: boolean
           title: Environment Capabilities Can Use Fraud Data Enrichment
+        canUseGlobalWatchlist:
+          type: boolean
+          title: Environment Capabilities Can Use Global Watchlist
         canUseIdentities:
           type: boolean
           title: Environment Capabilities Can Use Identities
@@ -3505,6 +3531,9 @@ components:
         canUseLdapGateway:
           type: boolean
           title: Environment Capabilities Can Use Ldap Gateway
+        canUseLiveAgent:
+          type: boolean
+          title: Environment Capabilities Can Use Live Agent
         canUseManualIDStepUpInspection:
           type: boolean
           title: Environment Capabilities Can Use Manual ID Step Up Inspection
@@ -3547,6 +3576,12 @@ components:
         canUsePingIDApp:
           type: boolean
           title: Environment Capabilities Can Use Ping ID App
+        canUsePingIdDesktop:
+          type: boolean
+          title: Environment Capabilities Can Use Ping Id Desktop
+        canUsePingIdDesktopGen2:
+          type: boolean
+          title: Environment Capabilities Can Use Ping Id Desktop Gen 2
         canUsePingSmsAccount:
           type: boolean
           title: Environment Capabilities Can Use Ping Sms Account
@@ -3562,6 +3597,9 @@ components:
         canUseRadiusGateway:
           type: boolean
           title: Environment Capabilities Can Use Radius Gateway
+        canUseScheduledFlows:
+          type: boolean
+          title: Environment Capabilities Can Use Scheduled Flows
         canUseSmsOtp:
           type: boolean
           title: Environment Capabilities Can Use Sms Otp
@@ -3657,10 +3695,42 @@ components:
           type: integer
           format: int64
           title: Environment License Quantities Number Of Account Ownership
+        numberOfDataVerificationGroup1:
+          type: integer
+          format: int64
+          title: Environment License Quantities Number Of Data Verification Group 1
+        numberOfDataVerificationGroup2:
+          type: integer
+          format: int64
+          title: Environment License Quantities Number Of Data Verification Group 2
+        numberOfDataVerificationGroup3:
+          type: integer
+          format: int64
+          title: Environment License Quantities Number Of Data Verification Group 3
+        numberOfDataVerificationGroup4:
+          type: integer
+          format: int64
+          title: Environment License Quantities Number Of Data Verification Group 4
+        numberOfDataVerificationGroup5:
+          type: integer
+          format: int64
+          title: Environment License Quantities Number Of Data Verification Group 5
         numberOfDataVerifications:
           type: integer
           format: int64
           title: Environment License Quantities Number Of Data Verifications
+        numberOfDeviceReputationScoring:
+          type: integer
+          format: int64
+          title: Environment License Quantities Number Of Device Reputation Scoring
+        numberOfGlobalWatchlist:
+          type: integer
+          format: int64
+          title: Environment License Quantities Number Of Global Watchlist
+        numberOfLiveAgent:
+          type: integer
+          format: int64
+          title: Environment License Quantities Number Of Live Agent
         rlgAnalyticsRpm:
           $ref: '#/components/schemas/EnvironmentAPILimit'
         rlgAppRegRpm:
@@ -3668,6 +3738,10 @@ components:
         rlgAuditRps:
           $ref: '#/components/schemas/EnvironmentAPILimit'
         rlgAuthnRps:
+          $ref: '#/components/schemas/EnvironmentAPILimit'
+        rlgAuthnStartRps:
+          $ref: '#/components/schemas/EnvironmentAPILimit'
+        rlgAuthzBulkRps:
           $ref: '#/components/schemas/EnvironmentAPILimit'
         rlgAuthzRps:
           $ref: '#/components/schemas/EnvironmentAPILimit'
@@ -3696,6 +3770,8 @@ components:
         rlgMfaPollingRps:
           $ref: '#/components/schemas/EnvironmentAPILimit'
         rlgMfaRps:
+          $ref: '#/components/schemas/EnvironmentAPILimit'
+        rlgPrivilegeRps:
           $ref: '#/components/schemas/EnvironmentAPILimit'
         rlgRiskEvalsRps:
           $ref: '#/components/schemas/EnvironmentAPILimit'
@@ -4231,6 +4307,10 @@ components:
         error:
           type: string
           title: Snapshot View Error
+        errorCode:
+          type: integer
+          format: int32
+          title: Snapshot View Error Code
         id:
           type: string
           format: uuid

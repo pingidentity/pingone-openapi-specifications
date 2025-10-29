@@ -8,10 +8,42 @@ properties:
     type: integer
     format: int64
     title: Environment License Quantities Number Of Account Ownership
+  numberOfDataVerificationGroup1:
+    type: integer
+    format: int64
+    title: Environment License Quantities Number Of Data Verification Group 1
+  numberOfDataVerificationGroup2:
+    type: integer
+    format: int64
+    title: Environment License Quantities Number Of Data Verification Group 2
+  numberOfDataVerificationGroup3:
+    type: integer
+    format: int64
+    title: Environment License Quantities Number Of Data Verification Group 3
+  numberOfDataVerificationGroup4:
+    type: integer
+    format: int64
+    title: Environment License Quantities Number Of Data Verification Group 4
+  numberOfDataVerificationGroup5:
+    type: integer
+    format: int64
+    title: Environment License Quantities Number Of Data Verification Group 5
   numberOfDataVerifications:
     type: integer
     format: int64
     title: Environment License Quantities Number Of Data Verifications
+  numberOfDeviceReputationScoring:
+    type: integer
+    format: int64
+    title: Environment License Quantities Number Of Device Reputation Scoring
+  numberOfGlobalWatchlist:
+    type: integer
+    format: int64
+    title: Environment License Quantities Number Of Global Watchlist
+  numberOfLiveAgent:
+    type: integer
+    format: int64
+    title: Environment License Quantities Number Of Live Agent
   rlgAnalyticsRpm:
     $ref: >-
       ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
@@ -22,6 +54,12 @@ properties:
     $ref: >-
       ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
   rlgAuthnRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgAuthnStartRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgAuthzBulkRps:
     $ref: >-
       ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
   rlgAuthzRps:
@@ -64,6 +102,9 @@ properties:
     $ref: >-
       ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
   rlgMfaRps:
+    $ref: >-
+      ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
+  rlgPrivilegeRps:
     $ref: >-
       ./com.pingidentity.pingone.orgmgt.environments.capabilities.api.model.ApiLimit.yaml
   rlgRiskEvalsRps:

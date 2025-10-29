@@ -1,6 +1,6 @@
 
 ## API Coverage Summary
-Total Endpoints: 626
+Total Endpoints: 623
 - Documentation Coverage: 100.0%
 - Final Spec Coverage: 5.3%
 - Content Type Match Coverage: 0.0% (of 253 operations requiring content types)
@@ -154,7 +154,6 @@ Total Endpoints: 626
 | `/environments/{id}/customDomains/{id}#certificate.import`                                   | `POST`   | ✅                  | ❌               | ❌                    |
 | `/environments/{id}/customDomains/{id}#domainname.verify`                                    | `POST`   | ✅                  | ❌               | ❌                    |
 | `/environments/{id}/dataExplorations`                                                        | `POST`   | ✅                  | ❌               | ❌                    |
-| `/environments/{id}/dataExplorations/{id}`                                                   | `GET`    | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/dataExplorations/{id}/entries`                                           | `GET`    | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/davinciApplications`                                                     | `GET`    | ✅                  | ✅               | N/A                  |
 | `/environments/{id}/davinciApplications`                                                     | `POST`   | ✅                  | ✅               | ❌                    |
@@ -193,7 +192,6 @@ Total Endpoints: 626
 | `/environments/{id}/emailDomains/{id}/trustedEmails/{id}`                                    | `DELETE` | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/emailDomains/{id}/trustedEmails/{id}`                                    | `GET`    | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/emailDomains/{id}/trustedEmails/{id}`                                    | `POST`   | ✅                  | ❌               | ❌                    |
-| `/environments/{id}/fido2Policies`                                                           | `GET`    | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/fido2Policies`                                                           | `POST`   | ✅                  | ❌               | ❌                    |
 | `/environments/{id}/fido2Policies/{id}`                                                      | `DELETE` | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/fido2Policies/{id}`                                                      | `GET`    | ✅                  | ❌               | N/A                  |
@@ -269,7 +267,6 @@ Total Endpoints: 626
 | `/environments/{id}/integrations/{id}/versions`                                              | `GET`    | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/integrations/{id}/versions/{id}`                                         | `GET`    | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/integrations/{id}/versions/{id}/asset`                                   | `GET`    | ✅                  | ❌               | N/A                  |
-| `/environments/{id}/integrations/{id}/versions/{id}/attributes`                              | `GET`    | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/integrations/{id}/versions/{id}/attributes/{id}`                         | `GET`    | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/keyRotationPolicies`                                                     | `GET`    | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/keyRotationPolicies`                                                     | `POST`   | ✅                  | ❌               | ❌                    |
