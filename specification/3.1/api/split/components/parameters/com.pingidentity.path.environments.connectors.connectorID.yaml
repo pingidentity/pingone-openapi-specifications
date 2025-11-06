@@ -3,4 +3,4 @@ in: path
 required: true
 schema:
   type: string
-  format: uuid
+  pattern: ^(?=\S)[\p{L}\p{M}\p{N}\p{So}/.'_ -]*(?!.*((<)|(\$\{)))

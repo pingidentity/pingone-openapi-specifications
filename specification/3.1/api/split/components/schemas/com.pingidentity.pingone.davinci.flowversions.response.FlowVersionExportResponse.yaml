@@ -1,0 +1,119 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Export Flow Version Response _links
+  environment:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 1
+        title: DaVinci Export Flow Version Response Environment Id
+    required:
+      - id
+    title: DaVinci Export Flow Version Response Environment
+  flow:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 1
+        title: DaVinci Export Flow Version Response Flow Id
+      name:
+        type: string
+        minLength: 1
+        title: DaVinci Export Flow Version Response Flow Name
+    required:
+      - id
+      - name
+    title: DaVinci Export Flow Version Response Flow
+  publishedVersion:
+    type: number
+    title: DaVinci Export Flow Version Response Published Version
+  version:
+    type: number
+    title: DaVinci Export Flow Version Response Version
+  alias:
+    type: string
+    title: DaVinci Export Flow Version Response Alias
+  clonedFrom:
+    type: number
+    title: DaVinci Export Flow Version Response Cloned From
+  color:
+    type: string
+    title: DaVinci Export Flow Version Response Color
+  connectors:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: DaVinci Export Flow Version Response Connector Id
+      required:
+        - id
+      title: DaVinci Export Flow Version Response Connector
+    title: DaVinci Export Flow Version Response Connectors
+  createdAt:
+    type: string
+    format: date-time
+    title: DaVinci Export Flow Version Response Created At
+  deployedAt:
+    type: string
+    format: date-time
+    title: DaVinci Export Flow Version Response Deployed At
+  description:
+    type: string
+    title: DaVinci Export Flow Version Response Description
+  enabled:
+    type: boolean
+    title: DaVinci Export Flow Version Response Enabled
+  graphData:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.GraphData.yaml
+  inputSchema:
+    $ref: >-
+      ./com.pingidentity.pingone.davinci.flows.response.fragment.InputSchema.yaml
+  outputSchema:
+    $ref: >-
+      ./com.pingidentity.pingone.davinci.flows.response.fragment.OutputSchema.yaml
+  settings:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.Settings.yaml
+  trigger:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.Trigger.yaml
+  updatedAt:
+    type: string
+    format: date-time
+    title: DaVinci Export Flow Version Response Updated At
+  updates:
+    type: array
+    items:
+      type: string
+      title: DaVinci Export Flow Version Response Update
+    title: DaVinci Export Flow Version Response Updates
+  variables:
+    type: array
+    items:
+      type: object
+      properties: {}
+      additionalProperties: true
+      title: DaVinci Export Flow Version Response Variable
+    title: DaVinci Export Flow Version Response Variables
+required:
+  - _links
+  - environment
+  - flow
+  - publishedVersion
+  - version
+title: DaVinci Export Flow Version Response

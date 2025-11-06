@@ -30,7 +30,7 @@ get:
     '401':
       $ref: ../components/responses/http.401.Unauthorized.yaml
     '403':
-      $ref: ../components/responses/http.403.Forbidden.P14C63085.yaml
+      $ref: ../components/responses/http.403.Forbidden.P14C63085.DOCS8830.yaml
     '429':
       $ref: ../components/responses/http.429.TooManyRequests.yaml
     '500':

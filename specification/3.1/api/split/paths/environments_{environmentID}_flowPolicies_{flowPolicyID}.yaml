@@ -1,0 +1,42 @@
+get:
+  operationId: getFlowPolicyById
+  parameters:
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.environmentID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.path.environments.flowPolicies.flowPolicyID.yaml
+    - $ref: ../components/parameters/com.pingidentity.header.ExternalSessionID.yaml
+    - $ref: >-
+        ../components/parameters/com.pingidentity.header.ExternalTransactionID.yaml
+  responses:
+    '200':
+      description: OK
+      content:
+        application/hal+json:
+          schema:
+            $ref: >-
+              ../components/schemas/com.pingidentity.pingone.application.flowPolicyAssignment.model.FlowPolicyDTO.yaml
+        application/json:
+          schema:
+            $ref: >-
+              ../components/schemas/com.pingidentity.pingone.application.flowPolicyAssignment.model.FlowPolicyDTO.yaml
+    '400':
+      $ref: ../components/responses/http.400.BadRequest.yaml
+    '401':
+      $ref: ../components/responses/http.401.Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/http.403.Forbidden.P14C63085.DOCS8830.yaml
+    '404':
+      $ref: ../components/responses/http.404.NotFound.DOCS8830.yaml
+    '429':
+      $ref: ../components/responses/http.429.TooManyRequests.yaml
+    '500':
+      $ref: ../components/responses/http.500.InternalServerError.yaml
+    '502':
+      $ref: ../components/responses/http.502.BadGateway.yaml
+    '503':
+      $ref: ../components/responses/http.503.ServiceUnavailable.yaml
+  x-permission: flowPolicies:read:flowPolicy
+  tags:
+    - Flow Policies
+    - Environment Management

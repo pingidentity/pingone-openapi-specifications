@@ -1,0 +1,34 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    properties:
+      flows:
+        type: array
+        items:
+          $ref: ./com.pingidentity.pingone.davinci.flows.response.FlowResponse.yaml
+        title: DaVinci Flow Collection _embedded Flows
+    required:
+      - flows
+    title: DaVinci Flow Collection _embedded
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Flow Collection _links
+  count:
+    type: number
+    title: DaVinci Flow Collection Count
+required:
+  - _embedded
+  - _links
+  - count
+title: DaVinci Flow Collection

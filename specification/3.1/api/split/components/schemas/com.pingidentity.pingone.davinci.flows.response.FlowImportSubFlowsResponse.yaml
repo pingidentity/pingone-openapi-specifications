@@ -1,0 +1,14 @@
+type: object
+allOf:
+  - $ref: ./com.pingidentity.pingone.davinci.flows.response.FlowImportResponse.yaml
+  - type: object
+    properties:
+      _embedded:
+        type: array
+        items:
+          type: object
+          $ref: >-
+            ./com.pingidentity.pingone.davinci.flows.response.FlowImportResponse.yaml
+        title: DaVinci Import Subflows Response Base 2 _embedded
+    title: DaVinci Import Subflows Response Base 2
+title: DaVinci Import Subflows Response

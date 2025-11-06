@@ -1,0 +1,9 @@
+type: object
+properties:
+  id:
+    type: string
+    title: PingOne Application Flow Policy Assignment Application Id
+  name:
+    type: string
+    title: PingOne Application Flow Policy Assignment Application Name
+title: PingOne Application Flow Policy Assignment Application

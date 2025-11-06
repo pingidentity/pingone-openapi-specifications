@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform API
-  version: 2025.10.29-beta
+  version: 2025.11.05-beta
   description: >-
     PingOne is a cloud-based framework for secure identity access management.
     The PingOne API gives developers the tools to integrate enterprise and
@@ -45,10 +45,18 @@ tags:
     description: Operations for managing DaVinci connectors and connector instances
   - name: DaVinci Admin Connectors
     description: Operations for managing DaVinci connectors and connector instances
+  - name: DaVinci Admin Flow Versions
+    description: Operations for managing DaVinci flow versions
+  - name: DaVinci Admin Flows
+    description: Operations for managing DaVinci flows
   - name: DaVinci Admin Variables
     description: Operations for managing DaVinci variables
+  - name: Environment Management
+    description: Operations for managing the PingOne tenant and tenant environments.
   - name: Environments
     description: Operations for managing PingOne environments
+  - name: Flow Policies
+    description: Operations for managing flow policies in a PingOne environment.
   - name: Metrics
     description: Operations that support retrieving metrics
   - name: PingOne DaVinci
@@ -98,6 +106,31 @@ paths:
   /environments/{environmentID}/davinciApplications/{davinciApplicationID}/secret:
     $ref: >-
       paths/environments_{environmentID}_davinciApplications_{davinciApplicationID}_secret.yaml
+  /environments/{environmentID}/flowPolicies/{flowPolicyID}:
+    $ref: paths/environments_{environmentID}_flowPolicies_{flowPolicyID}.yaml
+  /environments/{environmentID}/flows:
+    $ref: paths/environments_{environmentID}_flows.yaml
+  /environments/{environmentID}/flows/{flowID}:
+    $ref: paths/environments_{environmentID}_flows_{flowID}.yaml
+  /environments/{environmentID}/flows/{flowID}#clone+json:
+    $ref: paths/environments_{environmentID}_flows_{flowID}#clone+json.yaml
+  /environments/{environmentID}/flows/{flowID}#deploy+json:
+    $ref: paths/environments_{environmentID}_flows_{flowID}#deploy+json.yaml
+  /environments/{environmentID}/flows/{flowID}#validate+json:
+    $ref: paths/environments_{environmentID}_flows_{flowID}#validate+json.yaml
+  /environments/{environmentID}/flows/{flowID}/enabled:
+    $ref: paths/environments_{environmentID}_flows_{flowID}_enabled.yaml
+  /environments/{environmentID}/flows/{flowID}/versions:
+    $ref: paths/environments_{environmentID}_flows_{flowID}_versions.yaml
+  /environments/{environmentID}/flows/{flowID}/versions/{versionID}:
+    $ref: >-
+      paths/environments_{environmentID}_flows_{flowID}_versions_{versionID}.yaml
+  /environments/{environmentID}/flows/{flowID}/versions/{versionID}/alias:
+    $ref: >-
+      paths/environments_{environmentID}_flows_{flowID}_versions_{versionID}_alias.yaml
+  /environments/{environmentID}/flows/{flowID}/versions/{versionID}/details:
+    $ref: >-
+      paths/environments_{environmentID}_flows_{flowID}_versions_{versionID}_details.yaml
   /environments/{environmentID}/snapshots:
     $ref: paths/environments_{environmentID}_snapshots.yaml
   /environments/{environmentID}/snapshots/{snapshotID}:
@@ -134,20 +167,28 @@ x-permissions:
   - name: davinci:create:applications
   - name: davinci:create:connections
   - name: davinci:create:constructs
+  - name: davinci:create:dvFlows
   - name: davinci:create:flowPolicies
   - name: davinci:delete:applications
   - name: davinci:delete:connections
   - name: davinci:delete:constructs
+  - name: davinci:delete:dvFlows
   - name: davinci:delete:flowPolicies
+  - name: davinci:delete:flowVersions
   - name: davinci:read:applications
   - name: davinci:read:connections
   - name: davinci:read:connectors
   - name: davinci:read:constructs
+  - name: davinci:read:dvFlows
   - name: davinci:read:flowPolicies
+  - name: davinci:read:flowVersions
   - name: davinci:update:applications
   - name: davinci:update:connections
   - name: davinci:update:constructs
+  - name: davinci:update:dvFlows
   - name: davinci:update:flowPolicies
+  - name: davinci:update:flowVersions
+  - name: flowPolicies:read:flowPolicy
   - name: orgmgt:create:environment
   - name: orgmgt:delete:environment
   - name: orgmgt:read:environment

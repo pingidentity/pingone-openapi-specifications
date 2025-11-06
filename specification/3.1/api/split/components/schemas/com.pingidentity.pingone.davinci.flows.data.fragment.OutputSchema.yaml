@@ -1,0 +1,26 @@
+type: object
+properties:
+  output:
+    type: object
+    properties:
+      properties:
+        type: object
+        properties: {}
+        additionalProperties: true
+        title: DaVinci Flow Output Schema Request Output Properties
+      type:
+        type: string
+        enum:
+          - object
+        minLength: 1
+        title: DaVinci Flow Output Schema Request Output Type
+      additionalProperties:
+        type: boolean
+        title: DaVinci Flow Output Schema Request Output Additional Properties
+    required:
+      - properties
+      - type
+    title: DaVinci Flow Output Schema Request Output
+required:
+  - output
+title: DaVinci Flow Output Schema Request

@@ -11,7 +11,7 @@ properties:
     $ref: ./com.pingidentity.api.Relationship.DaVinci.yaml
   properties:
     type: object
-    title: DaVinci Connector Instance Replace Request
+    title: DaVinci Connector Instance Replace Request Properties
 required:
   - name
   - connector

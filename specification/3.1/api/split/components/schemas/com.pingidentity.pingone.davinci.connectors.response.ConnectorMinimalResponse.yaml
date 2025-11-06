@@ -18,10 +18,6 @@ properties:
     format: date-time
     minLength: 1
     title: DaVinci Connector Minimal Response Created At
-  description:
-    type: string
-    minLength: 1
-    title: DaVinci Connector Minimal Response Description
   environment:
     $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
   id:
@@ -72,23 +68,23 @@ properties:
     type: string
     minLength: 1
     title: DaVinci Connector Minimal Response Name
-  updatedAt:
-    type: string
-    format: date-time
-    minLength: 1
-    title: DaVinci Connector Minimal Response Updated At
   version:
     type: string
     minLength: 1
     title: DaVinci Connector Minimal Response Version
+  description:
+    type: string
+    title: DaVinci Connector Minimal Response Description
+  updatedAt:
+    type: string
+    format: date-time
+    title: DaVinci Connector Minimal Response Updated At
 required:
   - _links
   - createdAt
-  - description
   - environment
   - id
   - metadata
   - name
-  - updatedAt
   - version
 title: DaVinci Connector Minimal Response

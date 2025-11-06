@@ -1,0 +1,30 @@
+type: object
+additionalProperties: true
+properties:
+  name:
+    pattern: ^\s*([\p{L}\p{M}\p{N}\p{So}/.'_-]).?(?!.*((<)|(\$\{)))
+    maxLength: 256
+    type: string
+    minLength: 1
+    title: DaVinci Flow Replace Request Name
+  color:
+    type: string
+    title: DaVinci Flow Replace Request Color
+  description:
+    type: string
+    pattern: ^\s*[\p{L}\p{M}\p{N}\p{So}/.'_ -]*(?!.*((<)|(\$\{)))
+    maxLength: 1024
+    title: DaVinci Flow Replace Request Description
+  graphData:
+    $ref: ./com.pingidentity.pingone.davinci.flows.data.fragment.GraphData.yaml
+  inputSchema:
+    $ref: ./com.pingidentity.pingone.davinci.flows.data.fragment.InputSchema.yaml
+  outputSchema:
+    $ref: ./com.pingidentity.pingone.davinci.flows.data.fragment.OutputSchema.yaml
+  settings:
+    $ref: ./com.pingidentity.pingone.davinci.flows.data.fragment.Settings.yaml
+  trigger:
+    $ref: ./com.pingidentity.pingone.davinci.flows.data.fragment.Trigger.yaml
+required:
+  - name
+title: DaVinci Flow Replace Request

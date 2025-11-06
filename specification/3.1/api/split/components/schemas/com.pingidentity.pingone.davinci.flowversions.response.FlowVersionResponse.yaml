@@ -1,0 +1,76 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      details:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.export:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.revert:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+      - details
+      - flow.export
+      - flow.revert
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Flow Version Response _links
+  environment:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 1
+        title: DaVinci Flow Version Response Environment Id
+    required:
+      - id
+    title: DaVinci Flow Version Response Environment
+  flow:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 1
+        title: DaVinci Flow Version Response Flow Id
+      name:
+        type: string
+        minLength: 1
+        title: DaVinci Flow Version Response Flow Name
+    required:
+      - id
+      - name
+    title: DaVinci Flow Version Response Flow
+  version:
+    type: number
+    title: DaVinci Flow Version Response Version
+  alias:
+    type: string
+    title: DaVinci Flow Version Response Alias
+  clonedFrom:
+    type: number
+    title: DaVinci Flow Version Response Cloned From
+  createdAt:
+    type: string
+    format: date-time
+    title: DaVinci Flow Version Response Created At
+  deployedAt:
+    type: string
+    format: date-time
+    title: DaVinci Flow Version Response Deployed At
+  updatedAt:
+    type: string
+    format: date-time
+    title: DaVinci Flow Version Response Updated At
+required:
+  - _links
+  - environment
+  - flow
+  - version
+title: DaVinci Flow Version Response

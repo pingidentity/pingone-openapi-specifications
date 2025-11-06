@@ -1,0 +1,55 @@
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - AUTHENTICATION
+      - SCHEDULE
+    minLength: 1
+    title: DaVinci Flow Trigger Response Type
+  configuration:
+    type: object
+    properties:
+      mfa:
+        type: object
+        properties:
+          enabled:
+            type: boolean
+            title: DaVinci Flow Trigger Response Configuration MFA Enabled
+          time:
+            type: number
+            title: DaVinci Flow Trigger Response Configuration MFA Time
+          timeFormat:
+            type: string
+            minLength: 1
+            title: DaVinci Flow Trigger Response Configuration MFA Time Format
+        required:
+          - enabled
+          - time
+          - timeFormat
+        title: DaVinci Flow Trigger Response Configuration MFA
+      pwd:
+        type: object
+        properties:
+          enabled:
+            type: boolean
+            title: DaVinci Flow Trigger Response Configuration Password Enabled
+          time:
+            type: number
+            title: DaVinci Flow Trigger Response Configuration Password Time
+          timeFormat:
+            type: string
+            minLength: 1
+            title: DaVinci Flow Trigger Response Configuration Password Time Format
+        required:
+          - enabled
+          - time
+          - timeFormat
+        title: DaVinci Flow Trigger Response Configuration Password
+    required:
+      - mfa
+      - pwd
+    title: DaVinci Flow Trigger Response Configuration
+required:
+  - type
+title: DaVinci Flow Trigger Response

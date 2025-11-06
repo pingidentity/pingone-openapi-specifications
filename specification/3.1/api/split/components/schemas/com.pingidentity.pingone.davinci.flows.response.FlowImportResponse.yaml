@@ -1,0 +1,123 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      connectorInstances:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      connectors:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.deploy:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.clone:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.enabled:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.export:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.validate:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+      - connectorInstances
+      - connectors
+      - flow.deploy
+      - flow.clone
+      - flow.enabled
+      - flow.export
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Import Flow Response _links
+  environment:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  flow:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 1
+        title: DaVinci Import Flow Response Flow Id
+      name:
+        type: string
+        minLength: 1
+        title: DaVinci Import Flow Response Flow Name
+    required:
+      - id
+      - name
+    title: DaVinci Import Flow Response Flow
+  publishedVersion:
+    type: number
+    title: DaVinci Import Flow Response Published Version
+  version:
+    type: number
+    title: DaVinci Import Flow Response Version
+  alias:
+    type: string
+    title: DaVinci Import Flow Response Alias
+  clonedFrom:
+    type: number
+    title: DaVinci Import Flow Response Cloned From
+  color:
+    type: string
+    title: DaVinci Import Flow Response Color
+  connectors:
+    type: array
+    items:
+      $ref: ./com.pingidentity.api.Relationship.DaVinci.RO.yaml
+    title: DaVinci Import Flow Response Connectors
+  createdAt:
+    type: string
+    format: date-time
+    title: DaVinci Import Flow Response Created At
+  deployedAt:
+    type: string
+    format: date-time
+    title: DaVinci Import Flow Response Deployed At
+  description:
+    type: string
+    title: DaVinci Import Flow Response Description
+  enabled:
+    type: boolean
+    title: DaVinci Import Flow Response Enabled
+  graphData:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.GraphData.yaml
+  inputSchema:
+    $ref: >-
+      ./com.pingidentity.pingone.davinci.flows.response.fragment.InputSchema.yaml
+  outputSchema:
+    $ref: >-
+      ./com.pingidentity.pingone.davinci.flows.response.fragment.OutputSchema.yaml
+  settings:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.Settings.yaml
+  trigger:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.Trigger.yaml
+  updatedAt:
+    type: string
+    format: date-time
+    title: DaVinci Import Flow Response Updated At
+  updates:
+    type: array
+    items:
+      type: string
+      title: DaVinci Import Flow Response Update
+    title: DaVinci Import Flow Response Updates
+  variables:
+    type: array
+    items:
+      type: object
+      properties: {}
+      additionalProperties: true
+      title: DaVinci Import Flow Response Variable
+    title: DaVinci Import Flow Response Variables
+required:
+  - _links
+  - environment
+  - flow
+  - publishedVersion
+  - version
+title: DaVinci Import Flow Response

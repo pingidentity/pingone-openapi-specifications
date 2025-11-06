@@ -1,9 +1,9 @@
 
 ## API Coverage Summary
-Total Endpoints: 623
+Total Endpoints: 628
 - Documentation Coverage: 100.0%
-- Final Spec Coverage: 5.3%
-- Content Type Match Coverage: 0.0% (of 253 operations requiring content types)
+- Final Spec Coverage: 7.6%
+- Content Type Match Coverage: 0.0% (of 258 operations requiring content types)
 
 ## API Audit Report
 | Path                                                                                         | Method   | In Documentation   | In Final Spec   | Content Type Match   |
@@ -201,20 +201,25 @@ Total Endpoints: 623
 | `/environments/{id}/fidoDevicesMetadata/{id}`                                                | `DELETE` | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/fidoDevicesMetadata/{id}`                                                | `GET`    | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/flowPolicies`                                                            | `GET`    | ✅                  | ❌               | N/A                  |
-| `/environments/{id}/flowPolicies/{id}`                                                       | `GET`    | ✅                  | ❌               | N/A                  |
-| `/environments/{id}/flows`                                                                   | `GET`    | ✅                  | ❌               | N/A                  |
-| `/environments/{id}/flows`                                                                   | `POST`   | ✅                  | ❌               | ❌                    |
-| `/environments/{id}/flows/{id}`                                                              | `DELETE` | ✅                  | ❌               | N/A                  |
-| `/environments/{id}/flows/{id}`                                                              | `GET`    | ✅                  | ❌               | N/A                  |
+| `/environments/{id}/flowPolicies/{id}`                                                       | `GET`    | ✅                  | ✅               | N/A                  |
+| `/environments/{id}/flows`                                                                   | `GET`    | ✅                  | ✅               | N/A                  |
+| `/environments/{id}/flows`                                                                   | `POST`   | ✅                  | ✅               | ❌                    |
+| `/environments/{id}/flows#import+json`                                                       | `POST`   | ✅                  | ❌               | ❌                    |
+| `/environments/{id}/flows#import.legacy+json`                                                | `POST`   | ✅                  | ❌               | ❌                    |
+| `/environments/{id}/flows/{id}`                                                              | `DELETE` | ✅                  | ✅               | N/A                  |
+| `/environments/{id}/flows/{id}`                                                              | `GET`    | ✅                  | ✅               | N/A                  |
 | `/environments/{id}/flows/{id}`                                                              | `POST`   | ✅                  | ❌               | ❌                    |
-| `/environments/{id}/flows/{id}`                                                              | `PUT`    | ✅                  | ❌               | ❌                    |
-| `/environments/{id}/flows/{id}/enabled`                                                      | `PUT`    | ✅                  | ❌               | ❌                    |
-| `/environments/{id}/flows/{id}/versions`                                                     | `GET`    | ✅                  | ❌               | N/A                  |
-| `/environments/{id}/flows/{id}/versions/{id}`                                                | `DELETE` | ✅                  | ❌               | N/A                  |
-| `/environments/{id}/flows/{id}/versions/{id}`                                                | `GET`    | ✅                  | ❌               | N/A                  |
+| `/environments/{id}/flows/{id}`                                                              | `PUT`    | ✅                  | ✅               | ❌                    |
+| `/environments/{id}/flows/{id}#clone+json`                                                   | `POST`   | ✅                  | ✅               | ❌                    |
+| `/environments/{id}/flows/{id}#deploy+json`                                                  | `POST`   | ✅                  | ✅               | ❌                    |
+| `/environments/{id}/flows/{id}#validate+json`                                                | `POST`   | ✅                  | ✅               | ❌                    |
+| `/environments/{id}/flows/{id}/enabled`                                                      | `PUT`    | ✅                  | ✅               | ❌                    |
+| `/environments/{id}/flows/{id}/versions`                                                     | `GET`    | ✅                  | ✅               | N/A                  |
+| `/environments/{id}/flows/{id}/versions/{id}`                                                | `DELETE` | ✅                  | ✅               | N/A                  |
+| `/environments/{id}/flows/{id}/versions/{id}`                                                | `GET`    | ✅                  | ✅               | N/A                  |
 | `/environments/{id}/flows/{id}/versions/{id}`                                                | `POST`   | ✅                  | ❌               | ❌                    |
-| `/environments/{id}/flows/{id}/versions/{id}/alias`                                          | `PUT`    | ✅                  | ❌               | ❌                    |
-| `/environments/{id}/flows/{id}/versions/{id}/details`                                        | `GET`    | ✅                  | ❌               | N/A                  |
+| `/environments/{id}/flows/{id}/versions/{id}/alias`                                          | `PUT`    | ✅                  | ✅               | ❌                    |
+| `/environments/{id}/flows/{id}/versions/{id}/details`                                        | `GET`    | ✅                  | ✅               | N/A                  |
 | `/environments/{id}/forms`                                                                   | `GET`    | ✅                  | ❌               | N/A                  |
 | `/environments/{id}/forms`                                                                   | `POST`   | ✅                  | ❌               | ❌                    |
 | `/environments/{id}/forms/{id}`                                                              | `DELETE` | ✅                  | ❌               | N/A                  |

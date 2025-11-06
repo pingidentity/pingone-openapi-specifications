@@ -1,0 +1,8 @@
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - AUTHENTICATION
+    title: DaVinci Flow Policy Trigger Type
+title: DaVinci Flow Policy Trigger

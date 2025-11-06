@@ -152,7 +152,7 @@ properties:
     type: object
     properties: {}
     additionalProperties: true
-    title: DaVinci Connector Details Response
+    title: DaVinci Connector Details Response Properties
   sections:
     type: array
     items:

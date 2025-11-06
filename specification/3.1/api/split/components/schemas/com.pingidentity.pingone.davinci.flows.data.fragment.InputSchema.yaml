@@ -1,0 +1,52 @@
+type: array
+items:
+  type: object
+  properties:
+    propertyName:
+      type: string
+      minLength: 1
+      title: DaVinci Flow Input Schema Request Item Property Name
+    preferredDataType:
+      type: string
+      enum:
+        - array
+        - boolean
+        - number
+        - object
+        - string
+      minLength: 1
+      title: DaVinci Flow Input Schema Request Item Preferred Data Type
+    description:
+      type: string
+      title: DaVinci Flow Input Schema Request Item Description
+    isExpanded:
+      type: boolean
+      title: DaVinci Flow Input Schema Request Item Is Expanded
+    preferredControlType:
+      type: string
+      enum:
+        - button
+        - colorPicker
+        - contentEditableTextArea
+        - cssArea
+        - dropDown
+        - dropDownMultiSelect
+        - dropDownMultiSelect2
+        - dropDownWithCreate
+        - functionArgumentList
+        - keyValueList
+        - label
+        - radioSelect
+        - textArea
+        - textField
+        - textFieldArrayView
+        - toggleSwitch
+      title: DaVinci Flow Input Schema Request Item Preferred Control Type
+    required:
+      type: boolean
+      title: DaVinci Flow Input Schema Request Item Required
+  required:
+    - propertyName
+    - preferredDataType
+  title: DaVinci Flow Input Schema Request Item
+title: DaVinci Flow Input Schema Request

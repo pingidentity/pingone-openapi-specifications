@@ -1,0 +1,15 @@
+type: object
+allOf:
+  - $ref: >-
+      ./com.pingidentity.pingone.davinci.flowversions.response.FlowVersionExportResponse.yaml
+  - type: object
+    properties:
+      _embedded:
+        type: array
+        items:
+          type: object
+          $ref: >-
+            ./com.pingidentity.pingone.davinci.flowversions.response.FlowVersionExportResponse.yaml
+        title: DaVinci Export Flow Version Subflows Response Base 2 _embedded
+    title: DaVinci Export Flow Version Subflows Response Base 2
+title: DaVinci Export Flow Version Subflows Response

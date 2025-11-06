@@ -1,0 +1,143 @@
+type: object
+additionalProperties: true
+properties:
+  csp:
+    type: string
+    title: DaVinci Flow Settings Response Csp
+  css:
+    type: string
+    title: DaVinci Flow Settings Response Css
+  cssLinks:
+    type: array
+    items:
+      type: string
+      title: DaVinci Flow Settings Response Css Link
+    title: DaVinci Flow Settings Response Css Links
+  customErrorScreenBrandLogoUrl:
+    type: string
+    title: DaVinci Flow Settings Response Custom Error Screen Brand Logo Url
+  customErrorShowFooter:
+    type: boolean
+    title: DaVinci Flow Settings Response Custom Error Show Footer
+  customFaviconLink:
+    type: string
+    title: DaVinci Flow Settings Response Custom Favicon Link
+  customLogoURLSelection:
+    type: integer
+    title: DaVinci Flow Settings Response Custom Logo URL Selection
+  customTitle:
+    type: string
+    title: DaVinci Flow Settings Response Custom Title
+  defaultErrorScreenBrandLogo:
+    type: boolean
+    title: DaVinci Flow Settings Response Default Error Screen Brand Logo
+  flowHttpTimeoutInSeconds:
+    type: integer
+    title: DaVinci Flow Settings Response Flow Http Timeout In Seconds
+  flowTimeoutInSeconds:
+    type: number
+    title: DaVinci Flow Settings Response Flow Timeout In Seconds
+  intermediateLoadingScreenCSS:
+    oneOf:
+      - type: string
+        title: >-
+          DaVinci Flow Settings Response Intermediate Loading Screen CSS Choice
+          1
+      - type: object
+        title: >-
+          DaVinci Flow Settings Response Intermediate Loading Screen CSS Choice
+          2
+    title: DaVinci Flow Settings Response Intermediate Loading Screen CSS
+  intermediateLoadingScreenHTML:
+    oneOf:
+      - type: string
+        title: >-
+          DaVinci Flow Settings Response Intermediate Loading Screen HTML Choice
+          1
+      - type: object
+        title: >-
+          DaVinci Flow Settings Response Intermediate Loading Screen HTML Choice
+          2
+    title: DaVinci Flow Settings Response Intermediate Loading Screen HTML
+  jsCustomFlowPlayer:
+    type: string
+    title: DaVinci Flow Settings Response Js Custom Flow Player
+  jsLinks:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      properties:
+        crossorigin:
+          type: string
+          minLength: 1
+          title: DaVinci Flow Settings Response Js Link Crossorigin
+        defer:
+          type: boolean
+          title: DaVinci Flow Settings Response Js Link Defer
+        integrity:
+          type: string
+          minLength: 1
+          title: DaVinci Flow Settings Response Js Link Integrity
+        label:
+          type: string
+          minLength: 1
+          title: DaVinci Flow Settings Response Js Link Label
+        referrerpolicy:
+          type: string
+          minLength: 1
+          title: DaVinci Flow Settings Response Js Link Referrerpolicy
+        type:
+          type: string
+          minLength: 1
+          title: DaVinci Flow Settings Response Js Link Type
+        value:
+          type: string
+          minLength: 1
+          title: DaVinci Flow Settings Response Js Link Value
+      required:
+        - crossorigin
+        - defer
+        - integrity
+        - label
+        - referrerpolicy
+        - type
+        - value
+      title: DaVinci Flow Settings Response Js Link
+    title: DaVinci Flow Settings Response Js Links
+  logLevel:
+    type: integer
+    minimum: 1
+    maximum: 4
+    title: DaVinci Flow Settings Response Log Level
+  requireAuthenticationToInitiate:
+    type: boolean
+    title: DaVinci Flow Settings Response Require Authentication To Initiate
+  scrubSensitiveInfo:
+    type: boolean
+    title: DaVinci Flow Settings Response Scrub Sensitive Info
+  sensitiveInfoFields:
+    type: array
+    items:
+      type: string
+      title: DaVinci Flow Settings Response Sensitive Info Field
+    title: DaVinci Flow Settings Response Sensitive Info Fields
+  useCSP:
+    type: boolean
+    title: DaVinci Flow Settings Response Use CSP
+  useCustomCSS:
+    type: boolean
+    title: DaVinci Flow Settings Response Use Custom CSS
+  useCustomFlowPlayer:
+    type: boolean
+    title: DaVinci Flow Settings Response Use Custom Flow Player
+  useCustomScript:
+    type: boolean
+    title: DaVinci Flow Settings Response Use Custom Script
+  useIntermediateLoadingScreen:
+    type: boolean
+    title: DaVinci Flow Settings Response Use Intermediate Loading Screen
+  validateOnSave:
+    type: boolean
+    title: DaVinci Flow Settings Response Validate On Save
+title: DaVinci Flow Settings Response

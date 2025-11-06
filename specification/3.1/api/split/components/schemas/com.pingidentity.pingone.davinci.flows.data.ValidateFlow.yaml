@@ -1,0 +1,6 @@
+type: object
+additionalProperties: true
+properties:
+  graphData:
+    $ref: ./com.pingidentity.pingone.davinci.flows.data.fragment.GraphData.yaml
+title: DaVinci Flow Validate Request

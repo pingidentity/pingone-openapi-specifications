@@ -1,0 +1,3586 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "PingOne Platform API",
+    "version": "2025.11.05-beta",
+    "description": "PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.",
+    "contact": {
+      "name": "Ping Identity Developer Experiences",
+      "url": "https://developer.pingidentity.com",
+      "email": "devex@pingidentity.com"
+    },
+    "license": {
+      "identifier": "Apache-2.0",
+      "name": "Apache 2.0"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.pingone.{tld}/{basePath}",
+      "variables": {
+        "basePath": {
+          "default": "v1"
+        },
+        "tld": {
+          "enum": [
+            "eu",
+            "com",
+            "asia",
+            "com.au",
+            "ca",
+            "sg"
+          ],
+          "default": "com"
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "Flow Policies",
+      "description": "Operations for managing flow policies in a PingOne environment."
+    }
+  ],
+  "paths": {
+    "/environments/{environmentID}/davinciApplications/{davinciApplicationID}/flowPolicies": {
+      "get": {
+        "operationId": "getFlowPoliciesByDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPoliciesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "post": {
+        "operationId": "createFlowPolicyByDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.data.CreateFlowPolicy"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created the resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:create:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/davinciApplications/{davinciApplicationID}/flowPolicies/{flowPolicyID}": {
+      "get": {
+        "operationId": "getFlowPolicyByIdUsingDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.flowPolicies.flowPolicyID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "put": {
+        "operationId": "replaceFlowPolicyByIdUsingDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.flowPolicies.flowPolicyID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.data.UpdateFlowPolicy"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:update:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteFlowPolicyByIdUsingDavinciApplicationId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.flowPolicies.flowPolicyID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully removed. No content."
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:delete:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/davinciApplications/{davinciApplicationID}/flowPolicies/{flowPolicyID}/events": {
+      "get": {
+        "operationId": "getEventsByDavinciApplicationIdAndFlowPolicyId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.davinciApplicationID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.davinciApplications.flowPolicies.flowPolicyID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyEventsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/http.415.UnsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "davinci:read:flowPolicies",
+        "tags": [
+          "DaVinci Admin Application Flow Policies",
+          "DaVinci Admin APIs",
+          "PingOne DaVinci"
+        ]
+      }
+    },
+    "/environments/{environmentID}/flowPolicies/{flowPolicyID}": {
+      "get": {
+        "operationId": "getFlowPolicyById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.environmentID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.path.environments.flowPolicies.flowPolicyID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalSessionID"
+          },
+          {
+            "$ref": "#/components/parameters/com.pingidentity.header.ExternalTransactionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.application.flowPolicyAssignment.model.FlowPolicyDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.application.flowPolicyAssignment.model.FlowPolicyDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/http.400.BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/http.401.Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/http.403.Forbidden.P14C63085.DOCS8830"
+          },
+          "404": {
+            "$ref": "#/components/responses/http.404.NotFound.DOCS8830"
+          },
+          "429": {
+            "$ref": "#/components/responses/http.429.TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/http.500.InternalServerError"
+          },
+          "502": {
+            "$ref": "#/components/responses/http.502.BadGateway"
+          },
+          "503": {
+            "$ref": "#/components/responses/http.503.ServiceUnavailable"
+          }
+        },
+        "x-permission": "flowPolicies:read:flowPolicy",
+        "tags": [
+          "Flow Policies",
+          "Environment Management"
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "/as/token",
+            "scopes": {}
+          },
+          "authorizationCode": {
+            "authorizationUrl": "/as/authorize",
+            "tokenUrl": "/as/token",
+            "refreshUrl": "/as/token",
+            "scopes": {}
+          }
+        }
+      }
+    },
+    "schemas": {
+      "com.pingidentity.ApiErrorResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "General Error Code"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.pingidentity.ErrorDetail"
+            },
+            "title": "General Error Details"
+          },
+          "id": {
+            "type": "string",
+            "title": "General Error Id"
+          },
+          "message": {
+            "type": "string",
+            "title": "General Error Message"
+          }
+        },
+        "title": "General Error"
+      },
+      "com.pingidentity.ApiErrorResponse.400": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Bad Request Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "INVALID_DATA",
+              "INVALID_REQUEST",
+              "REQUEST_FAILED"
+            ],
+            "minLength": 1,
+            "title": "Bad Request Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Bad Request Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "ACCOUNT_NOT_USABLE",
+                    "CONSTRAINT_VIOLATION",
+                    "EMPTY_VALUE",
+                    "INVALID_FILTER",
+                    "INVALID_OTP",
+                    "INVALID_PARAMETER",
+                    "INVALID_VALUE",
+                    "MFA_AUTH_METHODS_CONFLICT",
+                    "NO_PASSWORD",
+                    "OUT_OF_RANGE",
+                    "REQUIRED_VALUE",
+                    "SIZE_LIMIT_EXCEEDED",
+                    "UNIQUENESS_VIOLATION"
+                  ],
+                  "minLength": 1,
+                  "title": "Bad Request Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Bad Request Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "properties": {
+                    "allowedPattern": {
+                      "type": "string",
+                      "title": "Bad Request Error Detail Inner Error Allowed Pattern"
+                    },
+                    "allowedValues": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "title": "Bad Request Error Detail Inner Error Allowed Value"
+                      },
+                      "title": "Bad Request Error Detail Inner Error Allowed Values"
+                    },
+                    "claim": {
+                      "type": "string",
+                      "title": "Bad Request Error Detail Inner Error Claim"
+                    },
+                    "existingId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "title": "Bad Request Error Detail Inner Error Existing Id"
+                    },
+                    "maximumValue": {
+                      "type": "number",
+                      "title": "Bad Request Error Detail Inner Error Maximum Value"
+                    },
+                    "quotaLimit": {
+                      "type": "number",
+                      "title": "Bad Request Error Detail Inner Error Quota Limit"
+                    },
+                    "quotaResetTime": {
+                      "type": "string",
+                      "format": "date-time",
+                      "title": "Bad Request Error Detail Inner Error Quota Reset Time"
+                    },
+                    "rangeMaximumValue": {
+                      "type": "number",
+                      "title": "Bad Request Error Detail Inner Error Range Maximum Value"
+                    },
+                    "rangeMinimumValue": {
+                      "type": "number",
+                      "title": "Bad Request Error Detail Inner Error Range Minimum Value"
+                    }
+                  },
+                  "additionalProperties": true,
+                  "title": "Bad Request Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Bad Request Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Bad Request Error Detail"
+            },
+            "title": "Bad Request Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Bad Request Error"
+      },
+      "com.pingidentity.ApiErrorResponse.401": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Unauthorized Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "ACCESS_FAILED"
+            ],
+            "minLength": 1,
+            "title": "Unauthorized Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Unauthorized Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "INSUFFICIENT_PERMISSIONS",
+                    "INVALID_TOKEN"
+                  ],
+                  "minLength": 1,
+                  "title": "Unauthorized Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Unauthorized Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Unauthorized Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Unauthorized Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Unauthorized Error Detail"
+            },
+            "title": "Unauthorized Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Unauthorized Error"
+      },
+      "com.pingidentity.ApiErrorResponse.403": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "ACCESS_FAILED"
+            ],
+            "minLength": 1,
+            "title": "Forbidden Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Forbidden Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "INSUFFICIENT_PERMISSIONS",
+                    "LICENSE_EXCEEDED"
+                  ],
+                  "minLength": 1,
+                  "title": "Forbidden Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Forbidden Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "properties": {
+                    "quotaLimit": {
+                      "type": "number",
+                      "title": "Forbidden Error Detail Inner Error Quota Limit"
+                    }
+                  },
+                  "additionalProperties": true,
+                  "title": "Forbidden Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Forbidden Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Forbidden Error Detail"
+            },
+            "title": "Forbidden Error Details"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Forbidden Error Id"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "Forbidden Error"
+      },
+      "com.pingidentity.ApiErrorResponse.404": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Not Found Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "NOT_FOUND"
+            ],
+            "minLength": 1,
+            "title": "Not Found Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Not Found Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Not Found Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Not Found Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Not Found Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Not Found Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Not Found Error Detail"
+            },
+            "title": "Not Found Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Not Found Error"
+      },
+      "com.pingidentity.ApiErrorResponse.415": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Unsupported Media Type Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "INVALID_REQUEST"
+            ],
+            "minLength": 1,
+            "title": "Unsupported Media Type Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Unsupported Media Type Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Unsupported Media Type Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Unsupported Media Type Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Unsupported Media Type Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Unsupported Media Type Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Unsupported Media Type Error Detail"
+            },
+            "title": "Unsupported Media Type Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Unsupported Media Type Error"
+      },
+      "com.pingidentity.ApiErrorResponse.429": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Too Many Requests Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "REQUEST_LIMITED"
+            ],
+            "minLength": 1,
+            "title": "Too Many Requests Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Too Many Requests Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "LIMIT_EXCEEDED",
+                    "QUOTA_EXCEEDED"
+                  ],
+                  "minLength": 1,
+                  "title": "Too Many Requests Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Too Many Requests Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "properties": {
+                    "quotaLimit": {
+                      "type": "number",
+                      "title": "Too Many Requests Error Detail Inner Error Quota Limit"
+                    },
+                    "quotaResetTime": {
+                      "type": "string",
+                      "format": "date-time",
+                      "title": "Too Many Requests Error Detail Inner Error Quota Reset Time"
+                    },
+                    "retryAfter": {
+                      "type": "string",
+                      "format": "date-time",
+                      "title": "Too Many Requests Error Detail Inner Error Retry After"
+                    }
+                  },
+                  "additionalProperties": true,
+                  "title": "Too Many Requests Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Too Many Requests Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Too Many Requests Error Detail"
+            },
+            "title": "Too Many Requests Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Too Many Requests Error"
+      },
+      "com.pingidentity.ApiErrorResponse.500": {
+        "$schema": "http://json-schema.org/draft/2020-12/schema#",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "title": "Internal Server Error Id"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNEXPECTED_ERROR"
+            ],
+            "minLength": 1,
+            "title": "Internal Server Error Code"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Internal Server Error Message"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Internal Server Error Detail Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Internal Server Error Detail Message"
+                },
+                "innerError": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Internal Server Error Detail Inner Error"
+                },
+                "target": {
+                  "type": "string",
+                  "title": "Internal Server Error Detail Target"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "title": "Internal Server Error Detail"
+            },
+            "title": "Internal Server Error Details"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "message"
+        ],
+        "title": "Internal Server Error"
+      },
+      "com.pingidentity.ErrorDetail": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "General Error Detail Code"
+          },
+          "innerError": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "title": "General Error Detail Inner Error Additional Properties"
+            },
+            "title": "General Error Detail Inner Error"
+          },
+          "message": {
+            "type": "string",
+            "title": "General Error Detail Message"
+          },
+          "target": {
+            "type": "string",
+            "title": "General Error Detail Target"
+          }
+        },
+        "title": "General Error Detail"
+      },
+      "com.pingidentity.api.Relationship.DaVinci.RO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "readOnly": true,
+            "minLength": 1,
+            "title": "Resource Relationship DaVinci Read-Only Id"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "Resource Relationship DaVinci Read-Only"
+      },
+      "com.pingidentity.api.Relationship.PingOne.RO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true,
+            "minLength": 1,
+            "title": "Resource Relationship Read-Only Id"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "Resource Relationship Read-Only"
+      },
+      "com.pingidentity.api.response.Link": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "minLength": 1,
+            "title": "JSON HAL Link Href"
+          },
+          "name": {
+            "type": "string",
+            "title": "JSON HAL Link Name"
+          },
+          "profile": {
+            "type": "string",
+            "format": "uri",
+            "title": "JSON HAL Link Profile"
+          },
+          "title": {
+            "type": "string",
+            "format": "uri",
+            "title": "JSON HAL Link Title"
+          },
+          "type": {
+            "type": "string",
+            "title": "JSON HAL Link Type"
+          }
+        },
+        "required": [
+          "href"
+        ],
+        "readOnly": true,
+        "title": "JSON HAL Link"
+      },
+      "com.pingidentity.pingone.application.flowPolicyAssignment.model.FlowApplication": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "PingOne Application Flow Policy Assignment Application Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "PingOne Application Flow Policy Assignment Application Name"
+          }
+        },
+        "title": "PingOne Application Flow Policy Assignment Application"
+      },
+      "com.pingidentity.pingone.application.flowPolicyAssignment.model.FlowPolicyDTO": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true,
+            "minLength": 1,
+            "title": "PingOne Application DaVinci Flow Policy Id"
+          },
+          "_embedded": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "readOnly": true,
+              "title": "PingOne Application DaVinci Flow Policy _embedded Additional Properties"
+            },
+            "readOnly": true,
+            "title": "PingOne Application DaVinci Flow Policy _embedded"
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "readOnly": true,
+            "title": "PingOne Application DaVinci Flow Policy _links"
+          },
+          "application": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.application.flowPolicyAssignment.model.FlowApplication"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "PingOne Application DaVinci Flow Policy Enabled"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO"
+          },
+          "name": {
+            "type": "string",
+            "title": "PingOne Application DaVinci Flow Policy Name"
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.flowpolicy.davinci.model.Trigger"
+          }
+        },
+        "title": "PingOne Application DaVinci Flow Policy"
+      },
+      "com.pingidentity.pingone.davinci.flowpolicies.data.CreateFlowPolicy": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "flowDistributions": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9-_]+$",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Policy Create Request Flow Distribution Id"
+                },
+                "version": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Create Request Flow Distribution Version"
+                },
+                "ip": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "title": "DaVinci Flow Policy Create Request Flow Distribution Ip Item"
+                  },
+                  "title": "DaVinci Flow Policy Create Request Flow Distribution Ip"
+                },
+                "successNodes": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "pattern": "^[a-zA-Z0-9]+$",
+                        "type": "string",
+                        "minLength": 1,
+                        "title": "DaVinci Flow Policy Create Request Flow Distribution Success Node Id"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "title": "DaVinci Flow Policy Create Request Flow Distribution Success Node"
+                  },
+                  "title": "DaVinci Flow Policy Create Request Flow Distribution Success Nodes"
+                },
+                "weight": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Create Request Flow Distribution Weight"
+                }
+              },
+              "required": [
+                "id",
+                "version"
+              ],
+              "title": "DaVinci Flow Policy Create Request Flow Distribution"
+            },
+            "title": "DaVinci Flow Policy Create Request Flow Distributions"
+          },
+          "name": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "maxLength": 256,
+            "type": "string",
+            "default": "New Policy",
+            "title": "DaVinci Flow Policy Create Request Name"
+          },
+          "status": {
+            "enum": [
+              "disabled",
+              "enabled"
+            ],
+            "type": "string",
+            "default": "enabled",
+            "title": "DaVinci Flow Policy Create Request Status"
+          },
+          "trigger": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "configuration": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "mfa": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration MFA Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "minLength": 0,
+                        "maxLength": 100000,
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration MFA Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 0,
+                        "maxLength": 50,
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration MFA Time Format"
+                      }
+                    },
+                    "title": "DaVinci Flow Policy Create Request Trigger Configuration MFA"
+                  },
+                  "pwd": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration Password Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "minLength": 0,
+                        "maxLength": 100000,
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration Password Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 0,
+                        "maxLength": 50,
+                        "title": "DaVinci Flow Policy Create Request Trigger Configuration Password Time Format"
+                      }
+                    },
+                    "title": "DaVinci Flow Policy Create Request Trigger Configuration Password"
+                  }
+                },
+                "title": "DaVinci Flow Policy Create Request Trigger Configuration"
+              },
+              "type": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 50,
+                "enum": [
+                  "AUTHENTICATION"
+                ],
+                "default": "AUTHENTICATION",
+                "title": "DaVinci Flow Policy Create Request Trigger Type"
+              }
+            },
+            "title": "DaVinci Flow Policy Create Request Trigger"
+          }
+        },
+        "required": [
+          "flowDistributions"
+        ],
+        "title": "DaVinci Flow Policy Create Request"
+      },
+      "com.pingidentity.pingone.davinci.flowpolicies.data.UpdateFlowPolicy": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "maxLength": 256,
+            "type": "string",
+            "default": "New Policy",
+            "minLength": 1,
+            "title": "DaVinci Flow Policy Replace Request Name"
+          },
+          "flowDistributions": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Policy Replace Request Flow Distribution Id"
+                },
+                "version": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Replace Request Flow Distribution Version"
+                },
+                "ip": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "title": "DaVinci Flow Policy Replace Request Flow Distribution Ip Item"
+                  },
+                  "title": "DaVinci Flow Policy Replace Request Flow Distribution Ip"
+                },
+                "successNodes": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "pattern": "^[a-zA-Z0-9]+$",
+                        "type": "string",
+                        "minLength": 1,
+                        "title": "DaVinci Flow Policy Replace Request Flow Distribution Success Node Id"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "title": "DaVinci Flow Policy Replace Request Flow Distribution Success Node"
+                  },
+                  "title": "DaVinci Flow Policy Replace Request Flow Distribution Success Nodes"
+                },
+                "weight": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Replace Request Flow Distribution Weight"
+                }
+              },
+              "required": [
+                "id",
+                "version"
+              ],
+              "title": "DaVinci Flow Policy Replace Request Flow Distribution"
+            },
+            "title": "DaVinci Flow Policy Replace Request Flow Distributions"
+          },
+          "status": {
+            "enum": [
+              "disabled",
+              "enabled"
+            ],
+            "type": "string",
+            "default": "enabled",
+            "title": "DaVinci Flow Policy Replace Request Status"
+          },
+          "trigger": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "configuration": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "mfa": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration MFA Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "minLength": 0,
+                        "maxLength": 100000,
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration MFA Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 0,
+                        "maxLength": 50,
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration MFA Time Format"
+                      }
+                    },
+                    "title": "DaVinci Flow Policy Replace Request Trigger Configuration MFA"
+                  },
+                  "pwd": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration Password Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "minLength": 0,
+                        "maxLength": 100000,
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration Password Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 0,
+                        "maxLength": 50,
+                        "title": "DaVinci Flow Policy Replace Request Trigger Configuration Password Time Format"
+                      }
+                    },
+                    "title": "DaVinci Flow Policy Replace Request Trigger Configuration Password"
+                  }
+                },
+                "title": "DaVinci Flow Policy Replace Request Trigger Configuration"
+              },
+              "type": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 50,
+                "enum": [
+                  "AUTHENTICATION"
+                ],
+                "default": "AUTHENTICATION",
+                "title": "DaVinci Flow Policy Replace Request Trigger Type"
+              }
+            },
+            "title": "DaVinci Flow Policy Replace Request Trigger"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "DaVinci Flow Policy Replace Request"
+      },
+      "com.pingidentity.pingone.davinci.flowpolicies.response.FlowPoliciesResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "davinciApplication": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "self",
+              "environment",
+              "davinciApplication"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Flow Policy Collection _links"
+          },
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "flowPolicies": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse"
+                },
+                "title": "DaVinci Flow Policy Collection _embedded Flow Policies"
+              }
+            },
+            "required": [
+              "flowPolicies"
+            ],
+            "title": "DaVinci Flow Policy Collection _embedded"
+          }
+        },
+        "required": [
+          "_links",
+          "_embedded"
+        ],
+        "title": "DaVinci Flow Policy Collection"
+      },
+      "com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyEventsResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "self",
+              "environment"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Flow Policy Events Collection _links"
+          },
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "events": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "environment": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Policy Events Collection _embedded Event Environment Id"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "title": "DaVinci Flow Policy Events Collection _embedded Event Environment"
+                    },
+                    "flow": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Policy Events Collection _embedded Event Flow Id"
+                        },
+                        "version": {
+                          "type": "number",
+                          "title": "DaVinci Flow Policy Events Collection _embedded Event Flow Version"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "title": "DaVinci Flow Policy Events Collection _embedded Event Flow"
+                    },
+                    "events": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "title": "DaVinci Flow Policy Events Collection _embedded Event Event Id"
+                          },
+                          "timestamp": {
+                            "type": "string",
+                            "minLength": 1,
+                            "title": "DaVinci Flow Policy Events Collection _embedded Event Event Timestamp"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "timestamp"
+                        ],
+                        "title": "DaVinci Flow Policy Events Collection _embedded Event Event"
+                      },
+                      "title": "DaVinci Flow Policy Events Collection _embedded Event Events"
+                    },
+                    "successCount": {
+                      "type": "number",
+                      "title": "DaVinci Flow Policy Events Collection _embedded Event Success Count"
+                    },
+                    "totalCount": {
+                      "type": "number",
+                      "title": "DaVinci Flow Policy Events Collection _embedded Event Total Count"
+                    }
+                  },
+                  "required": [
+                    "environment",
+                    "flow"
+                  ],
+                  "title": "DaVinci Flow Policy Events Collection _embedded Event"
+                },
+                "title": "DaVinci Flow Policy Events Collection _embedded Events"
+              }
+            },
+            "required": [
+              "events"
+            ],
+            "title": "DaVinci Flow Policy Events Collection _embedded"
+          }
+        },
+        "required": [
+          "_links",
+          "_embedded"
+        ],
+        "title": "DaVinci Flow Policy Events Collection"
+      },
+      "com.pingidentity.pingone.davinci.flowpolicies.response.FlowPolicyResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "davinciApplication": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.<index>": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "version.<flowId>.<index>": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "self",
+              "environment",
+              "davinciApplication"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Flow Policy Response _links"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO"
+          },
+          "flowDistributions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Policy Response Flow Distribution Id"
+                },
+                "version": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Response Flow Distribution Version"
+                },
+                "ip": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "title": "DaVinci Flow Policy Response Flow Distribution Ip Item"
+                  },
+                  "title": "DaVinci Flow Policy Response Flow Distribution Ip"
+                },
+                "successNodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "minLength": 1,
+                        "title": "DaVinci Flow Policy Response Flow Distribution Success Node Id"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "title": "DaVinci Flow Policy Response Flow Distribution Success Node"
+                  },
+                  "title": "DaVinci Flow Policy Response Flow Distribution Success Nodes"
+                },
+                "weight": {
+                  "type": "number",
+                  "title": "DaVinci Flow Policy Response Flow Distribution Weight"
+                }
+              },
+              "required": [
+                "id",
+                "version"
+              ],
+              "title": "DaVinci Flow Policy Response Flow Distribution"
+            },
+            "title": "DaVinci Flow Policy Response Flow Distributions"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Flow Policy Response Id"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Flow Policy Response Name"
+          },
+          "status": {
+            "enum": [
+              "disabled",
+              "enabled"
+            ],
+            "type": "string",
+            "minLength": 1,
+            "title": "DaVinci Flow Policy Response Status"
+          },
+          "application": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.DaVinci.RO"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Flow Policy Response Created At"
+          },
+          "trigger": {
+            "type": "object",
+            "properties": {
+              "configuration": {
+                "type": "object",
+                "properties": {
+                  "mfa": {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Response Trigger Configuration MFA Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "title": "DaVinci Flow Policy Response Trigger Configuration MFA Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 1,
+                        "title": "DaVinci Flow Policy Response Trigger Configuration MFA Time Format"
+                      }
+                    },
+                    "required": [
+                      "enabled",
+                      "time",
+                      "timeFormat"
+                    ],
+                    "title": "DaVinci Flow Policy Response Trigger Configuration MFA"
+                  },
+                  "pwd": {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "DaVinci Flow Policy Response Trigger Configuration Password Enabled"
+                      },
+                      "time": {
+                        "type": "number",
+                        "title": "DaVinci Flow Policy Response Trigger Configuration Password Time"
+                      },
+                      "timeFormat": {
+                        "type": "string",
+                        "minLength": 1,
+                        "title": "DaVinci Flow Policy Response Trigger Configuration Password Time Format"
+                      }
+                    },
+                    "required": [
+                      "enabled",
+                      "time",
+                      "timeFormat"
+                    ],
+                    "title": "DaVinci Flow Policy Response Trigger Configuration Password"
+                  }
+                },
+                "required": [
+                  "mfa",
+                  "pwd"
+                ],
+                "title": "DaVinci Flow Policy Response Trigger Configuration"
+              },
+              "type": {
+                "type": "string",
+                "title": "DaVinci Flow Policy Response Trigger Type"
+              }
+            },
+            "title": "DaVinci Flow Policy Response Trigger"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Flow Policy Response Updated At"
+          }
+        },
+        "required": [
+          "_links",
+          "environment",
+          "flowDistributions",
+          "id",
+          "name",
+          "status"
+        ],
+        "title": "DaVinci Flow Policy Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.FlowImportResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "connectorInstances": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "connectors": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.deploy": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.clone": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.enabled": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.export": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.validate": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self",
+              "connectorInstances",
+              "connectors",
+              "flow.deploy",
+              "flow.clone",
+              "flow.enabled",
+              "flow.export"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Import Flow Response _links"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO"
+          },
+          "flow": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Import Flow Response Flow Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Import Flow Response Flow Name"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ],
+            "title": "DaVinci Import Flow Response Flow"
+          },
+          "publishedVersion": {
+            "type": "number",
+            "title": "DaVinci Import Flow Response Published Version"
+          },
+          "version": {
+            "type": "number",
+            "title": "DaVinci Import Flow Response Version"
+          },
+          "alias": {
+            "type": "string",
+            "title": "DaVinci Import Flow Response Alias"
+          },
+          "clonedFrom": {
+            "type": "number",
+            "title": "DaVinci Import Flow Response Cloned From"
+          },
+          "color": {
+            "type": "string",
+            "title": "DaVinci Import Flow Response Color"
+          },
+          "connectors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.pingidentity.api.Relationship.DaVinci.RO"
+            },
+            "title": "DaVinci Import Flow Response Connectors"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Import Flow Response Created At"
+          },
+          "deployedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Import Flow Response Deployed At"
+          },
+          "description": {
+            "type": "string",
+            "title": "DaVinci Import Flow Response Description"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "DaVinci Import Flow Response Enabled"
+          },
+          "graphData": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.GraphData"
+          },
+          "inputSchema": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.InputSchema"
+          },
+          "outputSchema": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.OutputSchema"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.Settings"
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.Trigger"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Import Flow Response Updated At"
+          },
+          "updates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "DaVinci Import Flow Response Update"
+            },
+            "title": "DaVinci Import Flow Response Updates"
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true,
+              "title": "DaVinci Import Flow Response Variable"
+            },
+            "title": "DaVinci Import Flow Response Variables"
+          }
+        },
+        "required": [
+          "_links",
+          "environment",
+          "flow",
+          "publishedVersion",
+          "version"
+        ],
+        "title": "DaVinci Import Flow Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.FlowImportSubFlowsResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.FlowImportResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "_embedded": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.FlowImportResponse"
+                },
+                "title": "DaVinci Import Subflows Response Base 2 _embedded"
+              }
+            },
+            "title": "DaVinci Import Subflows Response Base 2"
+          }
+        ],
+        "title": "DaVinci Import Subflows Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.fragment.GraphData": {
+        "type": "object",
+        "properties": {
+          "boxSelectionEnabled": {
+            "type": "boolean",
+            "title": "DaVinci Flow Graph Data Response Box Selection Enabled"
+          },
+          "elements": {
+            "type": "object",
+            "properties": {
+              "nodes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": true,
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Id"
+                        },
+                        "nodeType": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Node Type"
+                        },
+                        "capabilityName": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Capability Name"
+                        },
+                        "connectionId": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Connection Id"
+                        },
+                        "connectorId": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Connector Id"
+                        },
+                        "idUnique": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Id Unique"
+                        },
+                        "label": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Label"
+                        },
+                        "linterError": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string",
+                                "minLength": 1,
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Code"
+                              },
+                              "message": {
+                                "type": "string",
+                                "minLength": 1,
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Message"
+                              },
+                              "type": {
+                                "type": "string",
+                                "minLength": 1,
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Type"
+                              },
+                              "recommendation": {
+                                "type": "string",
+                                "minLength": 1,
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Recommendation"
+                              },
+                              "flowId": {
+                                "type": "string",
+                                "minLength": 1,
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Flow Id"
+                              },
+                              "nodeId": {
+                                "type": "string",
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Node Id"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "message",
+                              "type",
+                              "recommendation",
+                              "flowId"
+                            ],
+                            "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item"
+                          },
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error"
+                        },
+                        "name": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Name"
+                        },
+                        "properties": {
+                          "type": "object",
+                          "additionalProperties": true,
+                          "properties": {
+                            "backgroundColor": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Background Color Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Background Color"
+                            },
+                            "code": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Code Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Code"
+                            },
+                            "customCSS": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom CSS Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom CSS"
+                            },
+                            "customHTML": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom HTML Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom HTML"
+                            },
+                            "customScript": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom Script Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom Script"
+                            },
+                            "formFieldsList": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "preferredDataType": {
+                                        "type": [
+                                          "array",
+                                          "boolean",
+                                          "integer",
+                                          "number",
+                                          "object",
+                                          "string"
+                                        ],
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value Item Preferred Data Type"
+                                      },
+                                      "propertyName": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value Item Property Name"
+                                      },
+                                      "preferredControlType": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value Item Preferred Control Type"
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value Item Value"
+                                      }
+                                    },
+                                    "required": [
+                                      "preferredDataType",
+                                      "propertyName"
+                                    ],
+                                    "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value Item"
+                                  },
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List"
+                            },
+                            "inputSchema": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Input Schema Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Input Schema"
+                            },
+                            "message": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Message Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Message"
+                            },
+                            "nodeTitle": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Node Title Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Node Title"
+                            },
+                            "outputSchema": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Output Schema Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Output Schema"
+                            },
+                            "saveVariables": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": true,
+                                    "properties": {
+                                      "name": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Name"
+                                      },
+                                      "key": {
+                                        "type": "number",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Key"
+                                      },
+                                      "label": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Label"
+                                      },
+                                      "nameDefault": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Name Default"
+                                      },
+                                      "type": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Type"
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Value"
+                                      }
+                                    },
+                                    "required": [
+                                      "name"
+                                    ],
+                                    "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item"
+                                  },
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables"
+                            },
+                            "showContinueButton": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "boolean",
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Show Continue Button Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Show Continue Button"
+                            },
+                            "type": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Type Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Type"
+                            },
+                            "variableInputList": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "name": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value Item Name"
+                                      },
+                                      "preferredDataType": {
+                                        "type": [
+                                          "array",
+                                          "boolean",
+                                          "integer",
+                                          "number",
+                                          "object",
+                                          "string"
+                                        ],
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value Item Preferred Data Type"
+                                      },
+                                      "preferredControlType": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value Item Preferred Control Type"
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value Item Value"
+                                      }
+                                    },
+                                    "required": [
+                                      "name",
+                                      "preferredDataType"
+                                    ],
+                                    "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value Item"
+                                  },
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List"
+                            }
+                          },
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Properties"
+                        },
+                        "status": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Status"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Type"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "nodeType"
+                      ],
+                      "title": "DaVinci Flow Graph Data Response Elements Node Data"
+                    },
+                    "grabbable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Grabbable"
+                    },
+                    "group": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "DaVinci Flow Graph Data Response Elements Node Group"
+                    },
+                    "locked": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Locked"
+                    },
+                    "pannable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Pannable"
+                    },
+                    "position": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "number",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Position X"
+                        },
+                        "y": {
+                          "type": "number",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Position Y"
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y"
+                      ],
+                      "title": "DaVinci Flow Graph Data Response Elements Node Position"
+                    },
+                    "removed": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Removed"
+                    },
+                    "selectable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Selectable"
+                    },
+                    "selected": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Selected"
+                    },
+                    "classes": {
+                      "type": "string",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Classes"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "grabbable",
+                    "group",
+                    "locked",
+                    "pannable",
+                    "position",
+                    "removed",
+                    "selectable",
+                    "selected"
+                  ],
+                  "title": "DaVinci Flow Graph Data Response Elements Node"
+                },
+                "title": "DaVinci Flow Graph Data Response Elements Nodes"
+              },
+              "edges": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Edge Data Id"
+                        },
+                        "source": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Edge Data Source"
+                        },
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Edge Data Target"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "source",
+                        "target"
+                      ],
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Data"
+                    },
+                    "grabbable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Grabbable"
+                    },
+                    "group": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Group"
+                    },
+                    "locked": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Locked"
+                    },
+                    "pannable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Pannable"
+                    },
+                    "position": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "number",
+                          "title": "DaVinci Flow Graph Data Response Elements Edge Position X"
+                        },
+                        "y": {
+                          "type": "number",
+                          "title": "DaVinci Flow Graph Data Response Elements Edge Position Y"
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y"
+                      ],
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Position"
+                    },
+                    "removed": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Removed"
+                    },
+                    "selectable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Selectable"
+                    },
+                    "selected": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Selected"
+                    },
+                    "classes": {
+                      "type": "string",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Classes"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "grabbable",
+                    "group",
+                    "locked",
+                    "pannable",
+                    "position",
+                    "removed",
+                    "selectable",
+                    "selected"
+                  ],
+                  "title": "DaVinci Flow Graph Data Response Elements Edge"
+                },
+                "title": "DaVinci Flow Graph Data Response Elements Edges"
+              }
+            },
+            "required": [
+              "nodes"
+            ],
+            "title": "DaVinci Flow Graph Data Response Elements"
+          },
+          "maxZoom": {
+            "type": "number",
+            "format": "bigFloat",
+            "title": "DaVinci Flow Graph Data Response Max Zoom"
+          },
+          "minZoom": {
+            "type": "number",
+            "format": "bigFloat",
+            "title": "DaVinci Flow Graph Data Response Min Zoom"
+          },
+          "pan": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number",
+                "title": "DaVinci Flow Graph Data Response Pan X"
+              },
+              "y": {
+                "type": "number",
+                "title": "DaVinci Flow Graph Data Response Pan Y"
+              }
+            },
+            "required": [
+              "x",
+              "y"
+            ],
+            "title": "DaVinci Flow Graph Data Response Pan"
+          },
+          "panningEnabled": {
+            "type": "boolean",
+            "title": "DaVinci Flow Graph Data Response Panning Enabled"
+          },
+          "renderer": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Flow Graph Data Response Renderer Name"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "title": "DaVinci Flow Graph Data Response Renderer"
+          },
+          "userPanningEnabled": {
+            "type": "boolean",
+            "title": "DaVinci Flow Graph Data Response User Panning Enabled"
+          },
+          "userZoomingEnabled": {
+            "type": "boolean",
+            "title": "DaVinci Flow Graph Data Response User Zooming Enabled"
+          },
+          "zoom": {
+            "type": "number",
+            "title": "DaVinci Flow Graph Data Response Zoom"
+          },
+          "allLinterErrors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Message"
+                },
+                "type": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Type"
+                },
+                "recommendation": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Recommendation"
+                },
+                "flowId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Flow Id"
+                },
+                "nodeId": {
+                  "type": "string",
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Node Id"
+                }
+              },
+              "required": [
+                "code",
+                "message",
+                "type",
+                "recommendation",
+                "flowId"
+              ],
+              "title": "DaVinci Flow Graph Data Response All Linter Error"
+            },
+            "title": "DaVinci Flow Graph Data Response All Linter Errors"
+          },
+          "data": {
+            "type": "object",
+            "title": "DaVinci Flow Graph Data Response Data"
+          },
+          "zoomingEnabled": {
+            "type": "boolean",
+            "title": "DaVinci Flow Graph Data Response Zooming Enabled"
+          }
+        },
+        "required": [
+          "boxSelectionEnabled",
+          "elements",
+          "maxZoom",
+          "minZoom",
+          "pan",
+          "panningEnabled",
+          "renderer",
+          "userPanningEnabled",
+          "userZoomingEnabled",
+          "zoom"
+        ],
+        "title": "DaVinci Flow Graph Data Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.fragment.InputSchema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "preferredControlType": {
+              "type": "string",
+              "minLength": 1,
+              "title": "DaVinci Flow Input Schema Response Item Preferred Control Type"
+            },
+            "preferredDataType": {
+              "type": "string",
+              "enum": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ],
+              "minLength": 1,
+              "title": "DaVinci Flow Input Schema Response Item Preferred Data Type"
+            },
+            "propertyName": {
+              "type": "string",
+              "minLength": 1,
+              "title": "DaVinci Flow Input Schema Response Item Property Name"
+            },
+            "description": {
+              "type": "string",
+              "title": "DaVinci Flow Input Schema Response Item Description"
+            },
+            "isExpanded": {
+              "type": "boolean",
+              "title": "DaVinci Flow Input Schema Response Item Is Expanded"
+            },
+            "required": {
+              "type": "boolean",
+              "title": "DaVinci Flow Input Schema Response Item Required"
+            }
+          },
+          "required": [
+            "preferredControlType",
+            "preferredDataType",
+            "propertyName"
+          ],
+          "title": "DaVinci Flow Input Schema Response Item"
+        },
+        "title": "DaVinci Flow Input Schema Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.fragment.OutputSchema": {
+        "type": "object",
+        "properties": {
+          "output": {
+            "type": "object",
+            "properties": {
+              "properties": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true,
+                "title": "DaVinci Flow Output Schema Response Output Properties"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "object"
+                ],
+                "minLength": 1,
+                "title": "DaVinci Flow Output Schema Response Output Type"
+              },
+              "additionalProperties": {
+                "type": "boolean",
+                "title": "DaVinci Flow Output Schema Response Output Additional Properties"
+              }
+            },
+            "required": [
+              "properties",
+              "type"
+            ],
+            "title": "DaVinci Flow Output Schema Response Output"
+          }
+        },
+        "required": [
+          "output"
+        ],
+        "title": "DaVinci Flow Output Schema Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.fragment.Settings": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "csp": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Csp"
+          },
+          "css": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Css"
+          },
+          "cssLinks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "DaVinci Flow Settings Response Css Link"
+            },
+            "title": "DaVinci Flow Settings Response Css Links"
+          },
+          "customErrorScreenBrandLogoUrl": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Custom Error Screen Brand Logo Url"
+          },
+          "customErrorShowFooter": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Custom Error Show Footer"
+          },
+          "customFaviconLink": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Custom Favicon Link"
+          },
+          "customLogoURLSelection": {
+            "type": "integer",
+            "title": "DaVinci Flow Settings Response Custom Logo URL Selection"
+          },
+          "customTitle": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Custom Title"
+          },
+          "defaultErrorScreenBrandLogo": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Default Error Screen Brand Logo"
+          },
+          "flowHttpTimeoutInSeconds": {
+            "type": "integer",
+            "title": "DaVinci Flow Settings Response Flow Http Timeout In Seconds"
+          },
+          "flowTimeoutInSeconds": {
+            "type": "number",
+            "title": "DaVinci Flow Settings Response Flow Timeout In Seconds"
+          },
+          "intermediateLoadingScreenCSS": {
+            "oneOf": [
+              {
+                "type": "string",
+                "title": "DaVinci Flow Settings Response Intermediate Loading Screen CSS Choice 1"
+              },
+              {
+                "type": "object",
+                "title": "DaVinci Flow Settings Response Intermediate Loading Screen CSS Choice 2"
+              }
+            ],
+            "title": "DaVinci Flow Settings Response Intermediate Loading Screen CSS"
+          },
+          "intermediateLoadingScreenHTML": {
+            "oneOf": [
+              {
+                "type": "string",
+                "title": "DaVinci Flow Settings Response Intermediate Loading Screen HTML Choice 1"
+              },
+              {
+                "type": "object",
+                "title": "DaVinci Flow Settings Response Intermediate Loading Screen HTML Choice 2"
+              }
+            ],
+            "title": "DaVinci Flow Settings Response Intermediate Loading Screen HTML"
+          },
+          "jsCustomFlowPlayer": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Js Custom Flow Player"
+          },
+          "jsLinks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "crossorigin": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Crossorigin"
+                },
+                "defer": {
+                  "type": "boolean",
+                  "title": "DaVinci Flow Settings Response Js Link Defer"
+                },
+                "integrity": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Integrity"
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Label"
+                },
+                "referrerpolicy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Referrerpolicy"
+                },
+                "type": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Type"
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Value"
+                }
+              },
+              "required": [
+                "crossorigin",
+                "defer",
+                "integrity",
+                "label",
+                "referrerpolicy",
+                "type",
+                "value"
+              ],
+              "title": "DaVinci Flow Settings Response Js Link"
+            },
+            "title": "DaVinci Flow Settings Response Js Links"
+          },
+          "logLevel": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4,
+            "title": "DaVinci Flow Settings Response Log Level"
+          },
+          "requireAuthenticationToInitiate": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Require Authentication To Initiate"
+          },
+          "scrubSensitiveInfo": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Scrub Sensitive Info"
+          },
+          "sensitiveInfoFields": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "DaVinci Flow Settings Response Sensitive Info Field"
+            },
+            "title": "DaVinci Flow Settings Response Sensitive Info Fields"
+          },
+          "useCSP": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Use CSP"
+          },
+          "useCustomCSS": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Use Custom CSS"
+          },
+          "useCustomFlowPlayer": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Use Custom Flow Player"
+          },
+          "useCustomScript": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Use Custom Script"
+          },
+          "useIntermediateLoadingScreen": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Use Intermediate Loading Screen"
+          },
+          "validateOnSave": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Validate On Save"
+          }
+        },
+        "title": "DaVinci Flow Settings Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.fragment.Trigger": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "AUTHENTICATION",
+              "SCHEDULE"
+            ],
+            "minLength": 1,
+            "title": "DaVinci Flow Trigger Response Type"
+          },
+          "configuration": {
+            "type": "object",
+            "properties": {
+              "mfa": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "title": "DaVinci Flow Trigger Response Configuration MFA Enabled"
+                  },
+                  "time": {
+                    "type": "number",
+                    "title": "DaVinci Flow Trigger Response Configuration MFA Time"
+                  },
+                  "timeFormat": {
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "DaVinci Flow Trigger Response Configuration MFA Time Format"
+                  }
+                },
+                "required": [
+                  "enabled",
+                  "time",
+                  "timeFormat"
+                ],
+                "title": "DaVinci Flow Trigger Response Configuration MFA"
+              },
+              "pwd": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "title": "DaVinci Flow Trigger Response Configuration Password Enabled"
+                  },
+                  "time": {
+                    "type": "number",
+                    "title": "DaVinci Flow Trigger Response Configuration Password Time"
+                  },
+                  "timeFormat": {
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "DaVinci Flow Trigger Response Configuration Password Time Format"
+                  }
+                },
+                "required": [
+                  "enabled",
+                  "time",
+                  "timeFormat"
+                ],
+                "title": "DaVinci Flow Trigger Response Configuration Password"
+              }
+            },
+            "required": [
+              "mfa",
+              "pwd"
+            ],
+            "title": "DaVinci Flow Trigger Response Configuration"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "DaVinci Flow Trigger Response"
+      },
+      "com.pingidentity.pingone.davinci.flowversions.response.FlowVersionExportResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Export Flow Version Response _links"
+          },
+          "environment": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Export Flow Version Response Environment Id"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "title": "DaVinci Export Flow Version Response Environment"
+          },
+          "flow": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Export Flow Version Response Flow Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Export Flow Version Response Flow Name"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ],
+            "title": "DaVinci Export Flow Version Response Flow"
+          },
+          "publishedVersion": {
+            "type": "number",
+            "title": "DaVinci Export Flow Version Response Published Version"
+          },
+          "version": {
+            "type": "number",
+            "title": "DaVinci Export Flow Version Response Version"
+          },
+          "alias": {
+            "type": "string",
+            "title": "DaVinci Export Flow Version Response Alias"
+          },
+          "clonedFrom": {
+            "type": "number",
+            "title": "DaVinci Export Flow Version Response Cloned From"
+          },
+          "color": {
+            "type": "string",
+            "title": "DaVinci Export Flow Version Response Color"
+          },
+          "connectors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Export Flow Version Response Connector Id"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "title": "DaVinci Export Flow Version Response Connector"
+            },
+            "title": "DaVinci Export Flow Version Response Connectors"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Export Flow Version Response Created At"
+          },
+          "deployedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Export Flow Version Response Deployed At"
+          },
+          "description": {
+            "type": "string",
+            "title": "DaVinci Export Flow Version Response Description"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "DaVinci Export Flow Version Response Enabled"
+          },
+          "graphData": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.GraphData"
+          },
+          "inputSchema": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.InputSchema"
+          },
+          "outputSchema": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.OutputSchema"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.Settings"
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.Trigger"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Export Flow Version Response Updated At"
+          },
+          "updates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "DaVinci Export Flow Version Response Update"
+            },
+            "title": "DaVinci Export Flow Version Response Updates"
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true,
+              "title": "DaVinci Export Flow Version Response Variable"
+            },
+            "title": "DaVinci Export Flow Version Response Variables"
+          }
+        },
+        "required": [
+          "_links",
+          "environment",
+          "flow",
+          "publishedVersion",
+          "version"
+        ],
+        "title": "DaVinci Export Flow Version Response"
+      },
+      "com.pingidentity.pingone.davinci.flowversions.response.FlowVersionExportSubflowsResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowversions.response.FlowVersionExportResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "_embedded": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowversions.response.FlowVersionExportResponse"
+                },
+                "title": "DaVinci Export Flow Version Subflows Response Base 2 _embedded"
+              }
+            },
+            "title": "DaVinci Export Flow Version Subflows Response Base 2"
+          }
+        ],
+        "title": "DaVinci Export Flow Version Subflows Response"
+      },
+      "com.pingidentity.pingone.flowpolicy.davinci.model.Trigger": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "AUTHENTICATION"
+            ],
+            "title": "DaVinci Flow Policy Trigger Type"
+          }
+        },
+        "title": "DaVinci Flow Policy Trigger"
+      }
+    },
+    "parameters": {
+      "com.pingidentity.header.ExternalSessionID": {
+        "schema": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": "X-Ping-External-Session-ID",
+        "in": "header"
+      },
+      "com.pingidentity.header.ExternalTransactionID": {
+        "schema": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": "X-Ping-External-Transaction-ID",
+        "in": "header"
+      },
+      "com.pingidentity.path.environments.environmentID": {
+        "name": "environmentID",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "com.pingidentity.path.environments.davinciApplications.davinciApplicationID": {
+        "name": "davinciApplicationID",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))"
+        }
+      },
+      "com.pingidentity.path.environments.davinciApplications.flowPolicies.flowPolicyID": {
+        "name": "flowPolicyID",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))"
+        }
+      },
+      "com.pingidentity.path.environments.flowPolicies.flowPolicyID": {
+        "name": "flowPolicyID",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))"
+        }
+      }
+    },
+    "responses": {
+      "http.400.BadRequest": {
+        "description": "Bad Request",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.400"
+            }
+          }
+        }
+      },
+      "http.401.Unauthorized": {
+        "description": "Unauthorized",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.401"
+            }
+          }
+        }
+      },
+      "http.403.Forbidden.P14C63085": {
+        "description": "Forbidden - Note: This may occur if the environment doesn't exist. Check for environment existence with GET /environments/{environmentID} first.",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.403"
+            }
+          }
+        },
+        "x-pingone-p14c-63085": true
+      },
+      "http.403.Forbidden.P14C63085.DOCS8830": {
+        "description": "Forbidden - Note: This may occur if the environment doesn't exist. Check for environment existence with GET /environments/{environmentID} first. - Note: This may be due to eventual consistency if the environment was recently created. Try again after a short delay.",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.403"
+            }
+          }
+        },
+        "x-pingone-p14c-63085": true,
+        "x-pingone-docs-8830": true
+      },
+      "http.404.NotFound": {
+        "description": "Not Found",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.404"
+            }
+          }
+        }
+      },
+      "http.404.NotFound.DOCS8830": {
+        "description": "Not Found - Note: This may be due to eventual consistency if the environment was recently created. Try again after a short delay.",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.404"
+            }
+          }
+        },
+        "x-pingone-docs-8830": true
+      },
+      "http.415.UnsupportedMediaType": {
+        "description": "Unsupported Media Type",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.415"
+            }
+          }
+        }
+      },
+      "http.429.TooManyRequests": {
+        "description": "Too Many Requests",
+        "headers": {
+          "Retry-After": {
+            "$ref": "#/components/headers/http.RetryAfter"
+          }
+        },
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.429"
+            }
+          }
+        }
+      },
+      "http.500.InternalServerError": {
+        "description": "Internal Server Error",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse.500"
+            }
+          }
+        }
+      },
+      "http.502.BadGateway": {
+        "description": "Bad Gateway",
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse"
+            }
+          }
+        }
+      },
+      "http.503.ServiceUnavailable": {
+        "description": "Service Unavailable",
+        "headers": {
+          "Retry-After": {
+            "$ref": "#/components/headers/http.RetryAfter"
+          }
+        },
+        "content": {
+          "*/*": {
+            "schema": {
+              "$ref": "#/components/schemas/com.pingidentity.ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "headers": {
+      "http.RetryAfter": {
+        "schema": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Retry-After Header"
+        }
+      }
+    }
+  }
+}

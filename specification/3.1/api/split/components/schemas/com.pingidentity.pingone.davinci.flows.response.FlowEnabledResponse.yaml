@@ -1,0 +1,20 @@
+type: object
+additionalProperties: false
+properties:
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - self
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Flow Enabled Response _links
+  enabled:
+    type: boolean
+    title: DaVinci Flow Enabled Response Enabled
+required:
+  - _links
+  - enabled
+title: DaVinci Flow Enabled Response

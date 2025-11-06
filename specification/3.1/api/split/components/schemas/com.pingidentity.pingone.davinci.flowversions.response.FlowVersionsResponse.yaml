@@ -1,0 +1,32 @@
+type: object
+properties:
+  _embedded:
+    type: object
+    properties:
+      versions:
+        type: array
+        items:
+          type: object
+          $ref: >-
+            ./com.pingidentity.pingone.davinci.flowversions.response.FlowVersionResponse.yaml
+        title: DaVinci Flow Version Collection Response _embedded Versions
+    required:
+      - versions
+    title: DaVinci Flow Version Collection Response _embedded
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Flow Version Collection Response _links
+required:
+  - _embedded
+  - _links
+title: DaVinci Flow Version Collection Response

@@ -1,0 +1,40 @@
+required:
+  - id
+type: object
+properties:
+  id:
+    type: string
+    readOnly: true
+    minLength: 1
+    title: PingOne Application DaVinci Flow Policy Id
+  _embedded:
+    type: object
+    additionalProperties:
+      type: object
+      readOnly: true
+      title: PingOne Application DaVinci Flow Policy _embedded Additional Properties
+    readOnly: true
+    title: PingOne Application DaVinci Flow Policy _embedded
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    readOnly: true
+    title: PingOne Application DaVinci Flow Policy _links
+  application:
+    $ref: >-
+      ./com.pingidentity.pingone.application.flowPolicyAssignment.model.FlowApplication.yaml
+  enabled:
+    type: boolean
+    title: PingOne Application DaVinci Flow Policy Enabled
+  environment:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  name:
+    type: string
+    title: PingOne Application DaVinci Flow Policy Name
+  trigger:
+    $ref: ./com.pingidentity.pingone.flowpolicy.davinci.model.Trigger.yaml
+title: PingOne Application DaVinci Flow Policy

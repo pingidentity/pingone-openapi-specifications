@@ -1,0 +1,101 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      connectorInstances:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      connectors:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.deploy:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.clone:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.enabled:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      version:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.validate:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+      - connectorInstances
+      - connectors
+      - flow.deploy
+      - flow.clone
+      - flow.enabled
+      - version
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Flow Response _links
+  environment:
+    $ref: ./com.pingidentity.api.Relationship.PingOne.RO.yaml
+  id:
+    type: string
+    minLength: 1
+    title: DaVinci Flow Response Id
+  name:
+    type: string
+    minLength: 1
+    title: DaVinci Flow Response Name
+  color:
+    type: string
+    title: DaVinci Flow Response Color
+  connectors:
+    type: array
+    items:
+      $ref: ./com.pingidentity.api.Relationship.DaVinci.RO.yaml
+    title: DaVinci Flow Response Connectors
+  createdAt:
+    type: string
+    format: date-time
+    title: DaVinci Flow Response Created At
+  currentVersion:
+    type: number
+    title: DaVinci Flow Response Current Version
+  deployedAt:
+    type: string
+    format: date-time
+    title: DaVinci Flow Response Deployed At
+  description:
+    type: string
+    title: DaVinci Flow Response Description
+  dvlinterErrorCount:
+    type: number
+    title: DaVinci Flow Response Dvlinter Error Count
+  dvlinterWarningCount:
+    type: number
+    title: DaVinci Flow Response Dvlinter Warning Count
+  enabled:
+    type: boolean
+    title: DaVinci Flow Response Enabled
+  graphData:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.GraphData.yaml
+  inputSchema:
+    $ref: >-
+      ./com.pingidentity.pingone.davinci.flows.response.fragment.InputSchema.yaml
+  outputSchema:
+    $ref: >-
+      ./com.pingidentity.pingone.davinci.flows.response.fragment.OutputSchema.yaml
+  publishedVersion:
+    type: number
+    title: DaVinci Flow Response Published Version
+  settings:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.Settings.yaml
+  trigger:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.Trigger.yaml
+  updatedAt:
+    type: string
+    format: date-time
+    title: DaVinci Flow Response Updated At
+required:
+  - _links
+  - environment
+  - id
+  - name
+title: DaVinci Flow Response

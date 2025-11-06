@@ -1,0 +1,26 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flowVersion:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+      - flowVersion
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Flow Version Alias Response _links
+  alias:
+    type: string
+    minLength: 1
+    title: DaVinci Flow Version Alias Response Alias
+required:
+  - _links
+  - alias
+title: DaVinci Flow Version Alias Response

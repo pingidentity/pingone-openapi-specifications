@@ -1,0 +1,12 @@
+type: object
+additionalProperties: true
+properties:
+  alias:
+    pattern: ^(?=\S)[\p{L}\p{M}\p{N}\p{So}/.'_ -]*(?!.*((<)|(\$\{)))
+    maxLength: 256
+    type: string
+    minLength: 1
+    title: DaVinci Flow Version Alias Request Alias
+required:
+  - alias
+title: DaVinci Flow Version Alias Request

@@ -1,0 +1,343 @@
+type: object
+properties:
+  _links:
+    type: object
+    properties:
+      environment:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      self:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.export:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      flow.revert:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      connectorInstances.<nodeId>:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+      variables.<nodeId>.<index>:
+        $ref: ./com.pingidentity.api.response.Link.yaml
+    required:
+      - environment
+      - self
+      - flow.export
+      - flow.revert
+    additionalProperties:
+      $ref: ./com.pingidentity.api.response.Link.yaml
+    title: DaVinci Flow Version Detail Response _links
+  alias:
+    type: string
+    title: DaVinci Flow Version Detail Response Alias
+  color:
+    type: string
+    title: DaVinci Flow Version Detail Response Color
+  connectors:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: DaVinci Flow Version Detail Response Connector Id
+      required:
+        - id
+      title: DaVinci Flow Version Detail Response Connector
+    title: DaVinci Flow Version Detail Response Connectors
+  createdAt:
+    type: string
+    format: date-time
+    title: DaVinci Flow Version Detail Response Created At
+  deployedAt:
+    type: string
+    format: date-time
+    title: DaVinci Flow Version Detail Response Deployed At
+  description:
+    type: string
+    title: DaVinci Flow Version Detail Response Description
+  enabled:
+    type: boolean
+    title: DaVinci Flow Version Detail Response Enabled
+  flow:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 1
+        title: DaVinci Flow Version Detail Response Flow Id
+      name:
+        type: string
+        minLength: 1
+        title: DaVinci Flow Version Detail Response Flow Name
+    required:
+      - id
+      - name
+    title: DaVinci Flow Version Detail Response Flow
+  graphData:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.GraphData.yaml
+  inputSchema:
+    $ref: >-
+      ./com.pingidentity.pingone.davinci.flows.response.fragment.InputSchema.yaml
+  outputSchema:
+    $ref: >-
+      ./com.pingidentity.pingone.davinci.flows.response.fragment.OutputSchema.yaml
+  settings:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.Settings.yaml
+  skcomponents:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          title: DaVinci Flow Version Detail Response Skcomponent Id
+        name:
+          type: string
+          title: DaVinci Flow Version Detail Response Skcomponent Name
+        nodeId:
+          type: string
+          title: DaVinci Flow Version Detail Response Skcomponent Node Id
+        options:
+          type: object
+          properties:
+            appSessionId:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options App
+                Session Id
+            appid:
+              type: string
+              title: DaVinci Flow Version Detail Response Skcomponent Options Appid
+            appsecret:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options
+                Appsecret
+            browsertoken:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options
+                Browsertoken
+            buttonImage:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Button
+                Image
+            buttonImageClass:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Button
+                Image Class
+            buttonImagePlacement:
+              type: string
+              enum:
+                - left
+                - right
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Button
+                Image Placement
+            buttonType:
+              type: string
+              enum:
+                - back-to-previous
+                - form-submit
+                - mfa-reset
+                - next-event
+                - nuance-audio
+                - otp
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Button
+                Type
+            cdn:
+              type: string
+              title: DaVinci Flow Version Detail Response Skcomponent Options Cdn
+            class:
+              type: string
+              title: DaVinci Flow Version Detail Response Skcomponent Options Class
+            collectBehavioralData:
+              type: boolean
+              default: true
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Collect
+                Behavioral Data
+            contentType:
+              type: string
+              enum:
+                - image
+                - text
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Content
+                Type
+            createP1User:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options CreateP
+                1 User
+            customLoadingIndicator:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Custom
+                Loading Indicator
+            customLoadingIndicatorClass:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Custom
+                Loading Indicator Class
+            defaultLoadingColor:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Default
+                Loading Color
+            environmentId:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options
+                Environment Id
+            errorId:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Error
+                Id
+            form:
+              type: string
+              title: DaVinci Flow Version Detail Response Skcomponent Options Form
+            height:
+              type: string
+              default: 600px
+              title: DaVinci Flow Version Detail Response Skcomponent Options Height
+            host:
+              type: string
+              title: DaVinci Flow Version Detail Response Skcomponent Options Host
+            id:
+              type: string
+              title: DaVinci Flow Version Detail Response Skcomponent Options Id
+            identityProviderId:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options
+                Identity Provider Id
+            identityProviderIdEntry:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options
+                Identity Provider Id Entry
+            identityProviderType:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options
+                Identity Provider Type
+            idpConnector:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Idp
+                Connector
+            imgUrl:
+              type: string
+              title: DaVinci Flow Version Detail Response Skcomponent Options Img Url
+            label:
+              type: string
+              title: DaVinci Flow Version Detail Response Skcomponent Options Label
+            messageClass:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Message
+                Class
+            micUrl:
+              type: string
+              default: https://devsdk.singularkey.com/react-mic/latest/react-mic.js
+              title: DaVinci Flow Version Detail Response Skcomponent Options Mic Url
+            otpInput:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Otp
+                Input
+            pollChallengeStatus:
+              type: boolean
+              default: true
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Poll
+                Challenge Status
+            pollInterval:
+              type: integer
+              default: 2000
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Poll
+                Interval
+            pollRetries:
+              type: integer
+              default: 60
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Poll
+                Retries
+            populationId:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options
+                Population Id
+            populationIdEntry:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options
+                Population Id Entry
+            previewType:
+              type: string
+              enum:
+                - image
+                - text
+              default: image
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Preview
+                Type
+            propertyname:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options
+                Propertyname
+            returnUrl:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Return
+                Url
+            showPreview:
+              type: string
+              enum:
+                - 'no'
+                - 'yes'
+              default: 'yes'
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Show
+                Preview
+            siteKey:
+              type: string
+              title: >-
+                DaVinci Flow Version Detail Response Skcomponent Options Site
+                Key
+            userId:
+              type: string
+              title: DaVinci Flow Version Detail Response Skcomponent Options User Id
+            value:
+              type: string
+              title: DaVinci Flow Version Detail Response Skcomponent Options Value
+            width:
+              type: string
+              default: 600px
+              title: DaVinci Flow Version Detail Response Skcomponent Options Width
+          title: DaVinci Flow Version Detail Response Skcomponent Options
+      title: DaVinci Flow Version Detail Response Skcomponent
+    title: DaVinci Flow Version Detail Response Skcomponents
+  trigger:
+    $ref: ./com.pingidentity.pingone.davinci.flows.response.fragment.Trigger.yaml
+  updatedAt:
+    type: string
+    format: date-time
+    title: DaVinci Flow Version Detail Response Updated At
+  updates:
+    type: array
+    items:
+      type: string
+      title: DaVinci Flow Version Detail Response Update
+    title: DaVinci Flow Version Detail Response Updates
+  version:
+    type: number
+    title: DaVinci Flow Version Detail Response Version
+required:
+  - _links
+title: DaVinci Flow Version Detail Response

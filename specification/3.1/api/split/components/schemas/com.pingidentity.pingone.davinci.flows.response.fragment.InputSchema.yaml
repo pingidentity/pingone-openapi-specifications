@@ -1,0 +1,37 @@
+type: array
+items:
+  type: object
+  properties:
+    preferredControlType:
+      type: string
+      minLength: 1
+      title: DaVinci Flow Input Schema Response Item Preferred Control Type
+    preferredDataType:
+      type: string
+      enum:
+        - array
+        - boolean
+        - number
+        - object
+        - string
+      minLength: 1
+      title: DaVinci Flow Input Schema Response Item Preferred Data Type
+    propertyName:
+      type: string
+      minLength: 1
+      title: DaVinci Flow Input Schema Response Item Property Name
+    description:
+      type: string
+      title: DaVinci Flow Input Schema Response Item Description
+    isExpanded:
+      type: boolean
+      title: DaVinci Flow Input Schema Response Item Is Expanded
+    required:
+      type: boolean
+      title: DaVinci Flow Input Schema Response Item Required
+  required:
+    - preferredControlType
+    - preferredDataType
+    - propertyName
+  title: DaVinci Flow Input Schema Response Item
+title: DaVinci Flow Input Schema Response

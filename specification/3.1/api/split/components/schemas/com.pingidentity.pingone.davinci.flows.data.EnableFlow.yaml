@@ -1,0 +1,9 @@
+type: object
+additionalProperties: true
+properties:
+  enabled:
+    type: boolean
+    title: DaVinci Flow Enable Request Enabled
+required:
+  - enabled
+title: DaVinci Flow Enable Request

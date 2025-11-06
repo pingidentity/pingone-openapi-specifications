@@ -44,7 +44,7 @@ properties:
     type: object
     properties: {}
     additionalProperties: true
-    title: DaVinci Connector Instance Response
+    title: DaVinci Connector Instance Response Properties
   updatedAt:
     type: string
     format: date-time

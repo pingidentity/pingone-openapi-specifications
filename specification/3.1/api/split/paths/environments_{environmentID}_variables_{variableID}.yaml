@@ -21,9 +21,9 @@ get:
     '401':
       $ref: ../components/responses/http.401.Unauthorized.yaml
     '403':
-      $ref: ../components/responses/http.403.Forbidden.P14C63085.yaml
+      $ref: ../components/responses/http.403.Forbidden.P14C63085.DOCS8830.yaml
     '404':
-      $ref: ../components/responses/http.404.NotFound.yaml
+      $ref: ../components/responses/http.404.NotFound.DOCS8830.yaml
     '415':
       $ref: ../components/responses/http.415.UnsupportedMediaType.yaml
     '429':
@@ -69,9 +69,9 @@ put:
     '401':
       $ref: ../components/responses/http.401.Unauthorized.yaml
     '403':
-      $ref: ../components/responses/http.403.Forbidden.P14C63085.yaml
+      $ref: ../components/responses/http.403.Forbidden.P14C63085.DOCS8830.yaml
     '404':
-      $ref: ../components/responses/http.404.NotFound.yaml
+      $ref: ../components/responses/http.404.NotFound.DOCS8830.yaml
     '415':
       $ref: ../components/responses/http.415.UnsupportedMediaType.yaml
     '429':
@@ -105,9 +105,9 @@ delete:
     '401':
       $ref: ../components/responses/http.401.Unauthorized.yaml
     '403':
-      $ref: ../components/responses/http.403.Forbidden.P14C63085.yaml
+      $ref: ../components/responses/http.403.Forbidden.P14C63085.DOCS8830.yaml
     '404':
-      $ref: ../components/responses/http.404.NotFound.yaml
+      $ref: ../components/responses/http.404.NotFound.DOCS8830.yaml
     '415':
       $ref: ../components/responses/http.415.UnsupportedMediaType.yaml
     '429':

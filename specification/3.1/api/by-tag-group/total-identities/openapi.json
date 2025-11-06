@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "PingOne Platform API",
-    "version": "2025.10.29-beta",
+    "version": "2025.11.05-beta",
     "description": "PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.",
     "contact": {
       "name": "Ping Identity Developer Experiences",
@@ -597,6 +597,38 @@
         },
         "title": "General Error Detail"
       },
+      "com.pingidentity.api.Relationship.DaVinci.RO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(?=\\S)[\\p{L}\\p{M}\\p{N}\\p{So}/.'_ -]*(?!.*((<)|(\\$\\{)))",
+            "readOnly": true,
+            "minLength": 1,
+            "title": "Resource Relationship DaVinci Read-Only Id"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "Resource Relationship DaVinci Read-Only"
+      },
+      "com.pingidentity.api.Relationship.PingOne.RO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true,
+            "minLength": 1,
+            "title": "Resource Relationship Read-Only Id"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "Resource Relationship Read-Only"
+      },
       "com.pingidentity.api.response.Link": {
         "type": "object",
         "properties": {
@@ -630,6 +662,1439 @@
         ],
         "readOnly": true,
         "title": "JSON HAL Link"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.FlowImportResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "connectorInstances": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "connectors": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.deploy": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.clone": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.enabled": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.export": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "flow.validate": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self",
+              "connectorInstances",
+              "connectors",
+              "flow.deploy",
+              "flow.clone",
+              "flow.enabled",
+              "flow.export"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Import Flow Response _links"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/com.pingidentity.api.Relationship.PingOne.RO"
+          },
+          "flow": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Import Flow Response Flow Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Import Flow Response Flow Name"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ],
+            "title": "DaVinci Import Flow Response Flow"
+          },
+          "publishedVersion": {
+            "type": "number",
+            "title": "DaVinci Import Flow Response Published Version"
+          },
+          "version": {
+            "type": "number",
+            "title": "DaVinci Import Flow Response Version"
+          },
+          "alias": {
+            "type": "string",
+            "title": "DaVinci Import Flow Response Alias"
+          },
+          "clonedFrom": {
+            "type": "number",
+            "title": "DaVinci Import Flow Response Cloned From"
+          },
+          "color": {
+            "type": "string",
+            "title": "DaVinci Import Flow Response Color"
+          },
+          "connectors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.pingidentity.api.Relationship.DaVinci.RO"
+            },
+            "title": "DaVinci Import Flow Response Connectors"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Import Flow Response Created At"
+          },
+          "deployedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Import Flow Response Deployed At"
+          },
+          "description": {
+            "type": "string",
+            "title": "DaVinci Import Flow Response Description"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "DaVinci Import Flow Response Enabled"
+          },
+          "graphData": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.GraphData"
+          },
+          "inputSchema": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.InputSchema"
+          },
+          "outputSchema": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.OutputSchema"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.Settings"
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.Trigger"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Import Flow Response Updated At"
+          },
+          "updates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "DaVinci Import Flow Response Update"
+            },
+            "title": "DaVinci Import Flow Response Updates"
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true,
+              "title": "DaVinci Import Flow Response Variable"
+            },
+            "title": "DaVinci Import Flow Response Variables"
+          }
+        },
+        "required": [
+          "_links",
+          "environment",
+          "flow",
+          "publishedVersion",
+          "version"
+        ],
+        "title": "DaVinci Import Flow Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.FlowImportSubFlowsResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.FlowImportResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "_embedded": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.FlowImportResponse"
+                },
+                "title": "DaVinci Import Subflows Response Base 2 _embedded"
+              }
+            },
+            "title": "DaVinci Import Subflows Response Base 2"
+          }
+        ],
+        "title": "DaVinci Import Subflows Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.fragment.GraphData": {
+        "type": "object",
+        "properties": {
+          "boxSelectionEnabled": {
+            "type": "boolean",
+            "title": "DaVinci Flow Graph Data Response Box Selection Enabled"
+          },
+          "elements": {
+            "type": "object",
+            "properties": {
+              "nodes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": true,
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Id"
+                        },
+                        "nodeType": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Node Type"
+                        },
+                        "capabilityName": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Capability Name"
+                        },
+                        "connectionId": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Connection Id"
+                        },
+                        "connectorId": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Connector Id"
+                        },
+                        "idUnique": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Id Unique"
+                        },
+                        "label": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Label"
+                        },
+                        "linterError": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string",
+                                "minLength": 1,
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Code"
+                              },
+                              "message": {
+                                "type": "string",
+                                "minLength": 1,
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Message"
+                              },
+                              "type": {
+                                "type": "string",
+                                "minLength": 1,
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Type"
+                              },
+                              "recommendation": {
+                                "type": "string",
+                                "minLength": 1,
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Recommendation"
+                              },
+                              "flowId": {
+                                "type": "string",
+                                "minLength": 1,
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Flow Id"
+                              },
+                              "nodeId": {
+                                "type": "string",
+                                "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item Node Id"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "message",
+                              "type",
+                              "recommendation",
+                              "flowId"
+                            ],
+                            "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error Item"
+                          },
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Linter Error"
+                        },
+                        "name": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Name"
+                        },
+                        "properties": {
+                          "type": "object",
+                          "additionalProperties": true,
+                          "properties": {
+                            "backgroundColor": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Background Color Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Background Color"
+                            },
+                            "code": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Code Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Code"
+                            },
+                            "customCSS": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom CSS Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom CSS"
+                            },
+                            "customHTML": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom HTML Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom HTML"
+                            },
+                            "customScript": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom Script Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Custom Script"
+                            },
+                            "formFieldsList": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "preferredDataType": {
+                                        "type": [
+                                          "array",
+                                          "boolean",
+                                          "integer",
+                                          "number",
+                                          "object",
+                                          "string"
+                                        ],
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value Item Preferred Data Type"
+                                      },
+                                      "propertyName": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value Item Property Name"
+                                      },
+                                      "preferredControlType": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value Item Preferred Control Type"
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value Item Value"
+                                      }
+                                    },
+                                    "required": [
+                                      "preferredDataType",
+                                      "propertyName"
+                                    ],
+                                    "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value Item"
+                                  },
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Form Fields List"
+                            },
+                            "inputSchema": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Input Schema Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Input Schema"
+                            },
+                            "message": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Message Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Message"
+                            },
+                            "nodeTitle": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Node Title Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Node Title"
+                            },
+                            "outputSchema": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Output Schema Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Output Schema"
+                            },
+                            "saveVariables": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": true,
+                                    "properties": {
+                                      "name": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Name"
+                                      },
+                                      "key": {
+                                        "type": "number",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Key"
+                                      },
+                                      "label": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Label"
+                                      },
+                                      "nameDefault": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Name Default"
+                                      },
+                                      "type": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Type"
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item Value"
+                                      }
+                                    },
+                                    "required": [
+                                      "name"
+                                    ],
+                                    "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value Item"
+                                  },
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Save Variables"
+                            },
+                            "showContinueButton": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "boolean",
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Show Continue Button Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Show Continue Button"
+                            },
+                            "type": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Type Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Type"
+                            },
+                            "variableInputList": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "name": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value Item Name"
+                                      },
+                                      "preferredDataType": {
+                                        "type": [
+                                          "array",
+                                          "boolean",
+                                          "integer",
+                                          "number",
+                                          "object",
+                                          "string"
+                                        ],
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value Item Preferred Data Type"
+                                      },
+                                      "preferredControlType": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value Item Preferred Control Type"
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value Item Value"
+                                      }
+                                    },
+                                    "required": [
+                                      "name",
+                                      "preferredDataType"
+                                    ],
+                                    "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value Item"
+                                  },
+                                  "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List Value"
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ],
+                              "title": "DaVinci Flow Graph Data Response Elements Node Data Properties Variable Input List"
+                            }
+                          },
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Properties"
+                        },
+                        "status": {
+                          "type": "string",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Status"
+                        },
+                        "type": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Node Data Type"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "nodeType"
+                      ],
+                      "title": "DaVinci Flow Graph Data Response Elements Node Data"
+                    },
+                    "grabbable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Grabbable"
+                    },
+                    "group": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "DaVinci Flow Graph Data Response Elements Node Group"
+                    },
+                    "locked": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Locked"
+                    },
+                    "pannable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Pannable"
+                    },
+                    "position": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "number",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Position X"
+                        },
+                        "y": {
+                          "type": "number",
+                          "title": "DaVinci Flow Graph Data Response Elements Node Position Y"
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y"
+                      ],
+                      "title": "DaVinci Flow Graph Data Response Elements Node Position"
+                    },
+                    "removed": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Removed"
+                    },
+                    "selectable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Selectable"
+                    },
+                    "selected": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Selected"
+                    },
+                    "classes": {
+                      "type": "string",
+                      "title": "DaVinci Flow Graph Data Response Elements Node Classes"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "grabbable",
+                    "group",
+                    "locked",
+                    "pannable",
+                    "position",
+                    "removed",
+                    "selectable",
+                    "selected"
+                  ],
+                  "title": "DaVinci Flow Graph Data Response Elements Node"
+                },
+                "title": "DaVinci Flow Graph Data Response Elements Nodes"
+              },
+              "edges": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Edge Data Id"
+                        },
+                        "source": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Edge Data Source"
+                        },
+                        "target": {
+                          "type": "string",
+                          "minLength": 1,
+                          "title": "DaVinci Flow Graph Data Response Elements Edge Data Target"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "source",
+                        "target"
+                      ],
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Data"
+                    },
+                    "grabbable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Grabbable"
+                    },
+                    "group": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Group"
+                    },
+                    "locked": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Locked"
+                    },
+                    "pannable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Pannable"
+                    },
+                    "position": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "number",
+                          "title": "DaVinci Flow Graph Data Response Elements Edge Position X"
+                        },
+                        "y": {
+                          "type": "number",
+                          "title": "DaVinci Flow Graph Data Response Elements Edge Position Y"
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y"
+                      ],
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Position"
+                    },
+                    "removed": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Removed"
+                    },
+                    "selectable": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Selectable"
+                    },
+                    "selected": {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Selected"
+                    },
+                    "classes": {
+                      "type": "string",
+                      "title": "DaVinci Flow Graph Data Response Elements Edge Classes"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "grabbable",
+                    "group",
+                    "locked",
+                    "pannable",
+                    "position",
+                    "removed",
+                    "selectable",
+                    "selected"
+                  ],
+                  "title": "DaVinci Flow Graph Data Response Elements Edge"
+                },
+                "title": "DaVinci Flow Graph Data Response Elements Edges"
+              }
+            },
+            "required": [
+              "nodes"
+            ],
+            "title": "DaVinci Flow Graph Data Response Elements"
+          },
+          "maxZoom": {
+            "type": "number",
+            "format": "bigFloat",
+            "title": "DaVinci Flow Graph Data Response Max Zoom"
+          },
+          "minZoom": {
+            "type": "number",
+            "format": "bigFloat",
+            "title": "DaVinci Flow Graph Data Response Min Zoom"
+          },
+          "pan": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number",
+                "title": "DaVinci Flow Graph Data Response Pan X"
+              },
+              "y": {
+                "type": "number",
+                "title": "DaVinci Flow Graph Data Response Pan Y"
+              }
+            },
+            "required": [
+              "x",
+              "y"
+            ],
+            "title": "DaVinci Flow Graph Data Response Pan"
+          },
+          "panningEnabled": {
+            "type": "boolean",
+            "title": "DaVinci Flow Graph Data Response Panning Enabled"
+          },
+          "renderer": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Flow Graph Data Response Renderer Name"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "title": "DaVinci Flow Graph Data Response Renderer"
+          },
+          "userPanningEnabled": {
+            "type": "boolean",
+            "title": "DaVinci Flow Graph Data Response User Panning Enabled"
+          },
+          "userZoomingEnabled": {
+            "type": "boolean",
+            "title": "DaVinci Flow Graph Data Response User Zooming Enabled"
+          },
+          "zoom": {
+            "type": "number",
+            "title": "DaVinci Flow Graph Data Response Zoom"
+          },
+          "allLinterErrors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Code"
+                },
+                "message": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Message"
+                },
+                "type": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Type"
+                },
+                "recommendation": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Recommendation"
+                },
+                "flowId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Flow Id"
+                },
+                "nodeId": {
+                  "type": "string",
+                  "title": "DaVinci Flow Graph Data Response All Linter Error Node Id"
+                }
+              },
+              "required": [
+                "code",
+                "message",
+                "type",
+                "recommendation",
+                "flowId"
+              ],
+              "title": "DaVinci Flow Graph Data Response All Linter Error"
+            },
+            "title": "DaVinci Flow Graph Data Response All Linter Errors"
+          },
+          "data": {
+            "type": "object",
+            "title": "DaVinci Flow Graph Data Response Data"
+          },
+          "zoomingEnabled": {
+            "type": "boolean",
+            "title": "DaVinci Flow Graph Data Response Zooming Enabled"
+          }
+        },
+        "required": [
+          "boxSelectionEnabled",
+          "elements",
+          "maxZoom",
+          "minZoom",
+          "pan",
+          "panningEnabled",
+          "renderer",
+          "userPanningEnabled",
+          "userZoomingEnabled",
+          "zoom"
+        ],
+        "title": "DaVinci Flow Graph Data Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.fragment.InputSchema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "preferredControlType": {
+              "type": "string",
+              "minLength": 1,
+              "title": "DaVinci Flow Input Schema Response Item Preferred Control Type"
+            },
+            "preferredDataType": {
+              "type": "string",
+              "enum": [
+                "array",
+                "boolean",
+                "number",
+                "object",
+                "string"
+              ],
+              "minLength": 1,
+              "title": "DaVinci Flow Input Schema Response Item Preferred Data Type"
+            },
+            "propertyName": {
+              "type": "string",
+              "minLength": 1,
+              "title": "DaVinci Flow Input Schema Response Item Property Name"
+            },
+            "description": {
+              "type": "string",
+              "title": "DaVinci Flow Input Schema Response Item Description"
+            },
+            "isExpanded": {
+              "type": "boolean",
+              "title": "DaVinci Flow Input Schema Response Item Is Expanded"
+            },
+            "required": {
+              "type": "boolean",
+              "title": "DaVinci Flow Input Schema Response Item Required"
+            }
+          },
+          "required": [
+            "preferredControlType",
+            "preferredDataType",
+            "propertyName"
+          ],
+          "title": "DaVinci Flow Input Schema Response Item"
+        },
+        "title": "DaVinci Flow Input Schema Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.fragment.OutputSchema": {
+        "type": "object",
+        "properties": {
+          "output": {
+            "type": "object",
+            "properties": {
+              "properties": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true,
+                "title": "DaVinci Flow Output Schema Response Output Properties"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "object"
+                ],
+                "minLength": 1,
+                "title": "DaVinci Flow Output Schema Response Output Type"
+              },
+              "additionalProperties": {
+                "type": "boolean",
+                "title": "DaVinci Flow Output Schema Response Output Additional Properties"
+              }
+            },
+            "required": [
+              "properties",
+              "type"
+            ],
+            "title": "DaVinci Flow Output Schema Response Output"
+          }
+        },
+        "required": [
+          "output"
+        ],
+        "title": "DaVinci Flow Output Schema Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.fragment.Settings": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "csp": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Csp"
+          },
+          "css": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Css"
+          },
+          "cssLinks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "DaVinci Flow Settings Response Css Link"
+            },
+            "title": "DaVinci Flow Settings Response Css Links"
+          },
+          "customErrorScreenBrandLogoUrl": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Custom Error Screen Brand Logo Url"
+          },
+          "customErrorShowFooter": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Custom Error Show Footer"
+          },
+          "customFaviconLink": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Custom Favicon Link"
+          },
+          "customLogoURLSelection": {
+            "type": "integer",
+            "title": "DaVinci Flow Settings Response Custom Logo URL Selection"
+          },
+          "customTitle": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Custom Title"
+          },
+          "defaultErrorScreenBrandLogo": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Default Error Screen Brand Logo"
+          },
+          "flowHttpTimeoutInSeconds": {
+            "type": "integer",
+            "title": "DaVinci Flow Settings Response Flow Http Timeout In Seconds"
+          },
+          "flowTimeoutInSeconds": {
+            "type": "number",
+            "title": "DaVinci Flow Settings Response Flow Timeout In Seconds"
+          },
+          "intermediateLoadingScreenCSS": {
+            "oneOf": [
+              {
+                "type": "string",
+                "title": "DaVinci Flow Settings Response Intermediate Loading Screen CSS Choice 1"
+              },
+              {
+                "type": "object",
+                "title": "DaVinci Flow Settings Response Intermediate Loading Screen CSS Choice 2"
+              }
+            ],
+            "title": "DaVinci Flow Settings Response Intermediate Loading Screen CSS"
+          },
+          "intermediateLoadingScreenHTML": {
+            "oneOf": [
+              {
+                "type": "string",
+                "title": "DaVinci Flow Settings Response Intermediate Loading Screen HTML Choice 1"
+              },
+              {
+                "type": "object",
+                "title": "DaVinci Flow Settings Response Intermediate Loading Screen HTML Choice 2"
+              }
+            ],
+            "title": "DaVinci Flow Settings Response Intermediate Loading Screen HTML"
+          },
+          "jsCustomFlowPlayer": {
+            "type": "string",
+            "title": "DaVinci Flow Settings Response Js Custom Flow Player"
+          },
+          "jsLinks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "crossorigin": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Crossorigin"
+                },
+                "defer": {
+                  "type": "boolean",
+                  "title": "DaVinci Flow Settings Response Js Link Defer"
+                },
+                "integrity": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Integrity"
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Label"
+                },
+                "referrerpolicy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Referrerpolicy"
+                },
+                "type": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Type"
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Flow Settings Response Js Link Value"
+                }
+              },
+              "required": [
+                "crossorigin",
+                "defer",
+                "integrity",
+                "label",
+                "referrerpolicy",
+                "type",
+                "value"
+              ],
+              "title": "DaVinci Flow Settings Response Js Link"
+            },
+            "title": "DaVinci Flow Settings Response Js Links"
+          },
+          "logLevel": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4,
+            "title": "DaVinci Flow Settings Response Log Level"
+          },
+          "requireAuthenticationToInitiate": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Require Authentication To Initiate"
+          },
+          "scrubSensitiveInfo": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Scrub Sensitive Info"
+          },
+          "sensitiveInfoFields": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "DaVinci Flow Settings Response Sensitive Info Field"
+            },
+            "title": "DaVinci Flow Settings Response Sensitive Info Fields"
+          },
+          "useCSP": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Use CSP"
+          },
+          "useCustomCSS": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Use Custom CSS"
+          },
+          "useCustomFlowPlayer": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Use Custom Flow Player"
+          },
+          "useCustomScript": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Use Custom Script"
+          },
+          "useIntermediateLoadingScreen": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Use Intermediate Loading Screen"
+          },
+          "validateOnSave": {
+            "type": "boolean",
+            "title": "DaVinci Flow Settings Response Validate On Save"
+          }
+        },
+        "title": "DaVinci Flow Settings Response"
+      },
+      "com.pingidentity.pingone.davinci.flows.response.fragment.Trigger": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "AUTHENTICATION",
+              "SCHEDULE"
+            ],
+            "minLength": 1,
+            "title": "DaVinci Flow Trigger Response Type"
+          },
+          "configuration": {
+            "type": "object",
+            "properties": {
+              "mfa": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "title": "DaVinci Flow Trigger Response Configuration MFA Enabled"
+                  },
+                  "time": {
+                    "type": "number",
+                    "title": "DaVinci Flow Trigger Response Configuration MFA Time"
+                  },
+                  "timeFormat": {
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "DaVinci Flow Trigger Response Configuration MFA Time Format"
+                  }
+                },
+                "required": [
+                  "enabled",
+                  "time",
+                  "timeFormat"
+                ],
+                "title": "DaVinci Flow Trigger Response Configuration MFA"
+              },
+              "pwd": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean",
+                    "title": "DaVinci Flow Trigger Response Configuration Password Enabled"
+                  },
+                  "time": {
+                    "type": "number",
+                    "title": "DaVinci Flow Trigger Response Configuration Password Time"
+                  },
+                  "timeFormat": {
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "DaVinci Flow Trigger Response Configuration Password Time Format"
+                  }
+                },
+                "required": [
+                  "enabled",
+                  "time",
+                  "timeFormat"
+                ],
+                "title": "DaVinci Flow Trigger Response Configuration Password"
+              }
+            },
+            "required": [
+              "mfa",
+              "pwd"
+            ],
+            "title": "DaVinci Flow Trigger Response Configuration"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "DaVinci Flow Trigger Response"
+      },
+      "com.pingidentity.pingone.davinci.flowversions.response.FlowVersionExportResponse": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "object",
+            "properties": {
+              "environment": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              },
+              "self": {
+                "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+              }
+            },
+            "required": [
+              "environment",
+              "self"
+            ],
+            "additionalProperties": {
+              "$ref": "#/components/schemas/com.pingidentity.api.response.Link"
+            },
+            "title": "DaVinci Export Flow Version Response _links"
+          },
+          "environment": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Export Flow Version Response Environment Id"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "title": "DaVinci Export Flow Version Response Environment"
+          },
+          "flow": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Export Flow Version Response Flow Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "title": "DaVinci Export Flow Version Response Flow Name"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ],
+            "title": "DaVinci Export Flow Version Response Flow"
+          },
+          "publishedVersion": {
+            "type": "number",
+            "title": "DaVinci Export Flow Version Response Published Version"
+          },
+          "version": {
+            "type": "number",
+            "title": "DaVinci Export Flow Version Response Version"
+          },
+          "alias": {
+            "type": "string",
+            "title": "DaVinci Export Flow Version Response Alias"
+          },
+          "clonedFrom": {
+            "type": "number",
+            "title": "DaVinci Export Flow Version Response Cloned From"
+          },
+          "color": {
+            "type": "string",
+            "title": "DaVinci Export Flow Version Response Color"
+          },
+          "connectors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "DaVinci Export Flow Version Response Connector Id"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "title": "DaVinci Export Flow Version Response Connector"
+            },
+            "title": "DaVinci Export Flow Version Response Connectors"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Export Flow Version Response Created At"
+          },
+          "deployedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Export Flow Version Response Deployed At"
+          },
+          "description": {
+            "type": "string",
+            "title": "DaVinci Export Flow Version Response Description"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "DaVinci Export Flow Version Response Enabled"
+          },
+          "graphData": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.GraphData"
+          },
+          "inputSchema": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.InputSchema"
+          },
+          "outputSchema": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.OutputSchema"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.Settings"
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flows.response.fragment.Trigger"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "DaVinci Export Flow Version Response Updated At"
+          },
+          "updates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "DaVinci Export Flow Version Response Update"
+            },
+            "title": "DaVinci Export Flow Version Response Updates"
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true,
+              "title": "DaVinci Export Flow Version Response Variable"
+            },
+            "title": "DaVinci Export Flow Version Response Variables"
+          }
+        },
+        "required": [
+          "_links",
+          "environment",
+          "flow",
+          "publishedVersion",
+          "version"
+        ],
+        "title": "DaVinci Export Flow Version Response"
+      },
+      "com.pingidentity.pingone.davinci.flowversions.response.FlowVersionExportSubflowsResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowversions.response.FlowVersionExportResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "_embedded": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/com.pingidentity.pingone.davinci.flowversions.response.FlowVersionExportResponse"
+                },
+                "title": "DaVinci Export Flow Version Subflows Response Base 2 _embedded"
+              }
+            },
+            "title": "DaVinci Export Flow Version Subflows Response Base 2"
+          }
+        ],
+        "title": "DaVinci Export Flow Version Subflows Response"
       },
       "com.pingidentity.pingone.directory.totalidentitiesdashboard.data.TotalIdentitiesCountDTO": {
         "type": "object",

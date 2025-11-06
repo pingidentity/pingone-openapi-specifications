@@ -200,6 +200,9 @@ properties:
   canUseMfa:
     type: boolean
     title: Environment Capabilities Can Use MFA
+  canUseMfaCiam:
+    type: boolean
+    title: Environment Capabilities Can Use MFA Ciam
   canUseMfaFido2Devices:
     type: boolean
     title: Environment Capabilities Can Use MFA Fido 2 Devices
@@ -209,6 +212,9 @@ properties:
   canUseMfaVoiceOtp:
     type: boolean
     title: Environment Capabilities Can Use MFA Voice Otp
+  canUseMfaWf:
+    type: boolean
+    title: Environment Capabilities Can Use MFA Wf
   canUseMyAccount:
     type: boolean
     title: Environment Capabilities Can Use My Account

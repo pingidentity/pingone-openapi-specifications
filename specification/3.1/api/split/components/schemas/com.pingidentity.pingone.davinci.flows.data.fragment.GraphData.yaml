@@ -1,0 +1,533 @@
+type: object
+additionalProperties: true
+properties:
+  boxSelectionEnabled:
+    type: boolean
+    title: DaVinci Flow Graph Data Request Box Selection Enabled
+  data:
+    type: object
+    title: DaVinci Flow Graph Data Request Data
+  elements:
+    type: object
+    properties:
+      edges:
+        type: array
+        items:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                  title: DaVinci Flow Graph Data Request Elements Edge Data Id
+                source:
+                  type: string
+                  minLength: 1
+                  title: DaVinci Flow Graph Data Request Elements Edge Data Source
+                target:
+                  type: string
+                  minLength: 1
+                  title: DaVinci Flow Graph Data Request Elements Edge Data Target
+              required:
+                - id
+                - source
+                - target
+              title: DaVinci Flow Graph Data Request Elements Edge Data
+            classes:
+              type: string
+              title: DaVinci Flow Graph Data Request Elements Edge Classes
+            grabbable:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Edge Grabbable
+            group:
+              type: string
+              title: DaVinci Flow Graph Data Request Elements Edge Group
+            locked:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Edge Locked
+            pannable:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Edge Pannable
+            position:
+              type: object
+              properties:
+                x:
+                  type: number
+                  title: DaVinci Flow Graph Data Request Elements Edge Position X
+                'y':
+                  type: number
+                  title: DaVinci Flow Graph Data Request Elements Edge Position Y
+              required:
+                - x
+                - 'y'
+              title: DaVinci Flow Graph Data Request Elements Edge Position
+            removed:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Edge Removed
+            selectable:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Edge Selectable
+            selected:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Edge Selected
+          additionalProperties: true
+          required:
+            - data
+          title: DaVinci Flow Graph Data Request Elements Edge
+        title: DaVinci Flow Graph Data Request Elements Edges
+      nodes:
+        type: array
+        items:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                  title: DaVinci Flow Graph Data Request Elements Node Data Id
+                nodeType:
+                  type: string
+                  minLength: 1
+                  title: DaVinci Flow Graph Data Request Elements Node Data Node Type
+                capabilityName:
+                  type: string
+                  title: >-
+                    DaVinci Flow Graph Data Request Elements Node Data
+                    Capability Name
+                connectionId:
+                  type: string
+                  title: >-
+                    DaVinci Flow Graph Data Request Elements Node Data
+                    Connection Id
+                connectorId:
+                  type: string
+                  title: >-
+                    DaVinci Flow Graph Data Request Elements Node Data Connector
+                    Id
+                label:
+                  type: string
+                  title: DaVinci Flow Graph Data Request Elements Node Data Label
+                name:
+                  type: string
+                  title: DaVinci Flow Graph Data Request Elements Node Data Name
+                properties:
+                  type: object
+                  additionalProperties: true
+                  properties:
+                    backgroundColor:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          minLength: 1
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Background Color Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Background Color
+                    code:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          minLength: 1
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Code Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Code
+                    customCSS:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          minLength: 1
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Custom CSS Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Custom CSS
+                    customHTML:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          minLength: 1
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Custom HTML Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Custom HTML
+                    customScript:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          minLength: 1
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Custom Script Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Custom Script
+                    formFieldsList:
+                      type: object
+                      properties:
+                        value:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              preferredDataType:
+                                type:
+                                  - array
+                                  - boolean
+                                  - integer
+                                  - number
+                                  - object
+                                  - string
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Form Fields List Value Item
+                                  Preferred Data Type
+                              propertyName:
+                                type: string
+                                minLength: 1
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Form Fields List Value Item
+                                  Property Name
+                              preferredControlType:
+                                type: string
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Form Fields List Value Item
+                                  Preferred Control Type
+                              value:
+                                type: string
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Form Fields List Value Item
+                                  Value
+                            required:
+                              - preferredDataType
+                              - propertyName
+                            title: >-
+                              DaVinci Flow Graph Data Request Elements Node Data
+                              Properties Form Fields List Value Item
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Form Fields List Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Form Fields List
+                    inputSchema:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          minLength: 1
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Input Schema Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Input Schema
+                    message:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          minLength: 1
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Message Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Message
+                    nodeTitle:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          minLength: 1
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Node Title Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Node Title
+                    outputSchema:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          minLength: 1
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Output Schema Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Output Schema
+                    saveVariables:
+                      type: object
+                      properties:
+                        value:
+                          type: array
+                          items:
+                            type: object
+                            additionalProperties: true
+                            properties:
+                              name:
+                                type: string
+                                minLength: 1
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Save Variables Value Item Name
+                              key:
+                                type: number
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Save Variables Value Item Key
+                              label:
+                                type: string
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Save Variables Value Item
+                                  Label
+                              nameDefault:
+                                type: string
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Save Variables Value Item Name
+                                  Default
+                              type:
+                                type: string
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Save Variables Value Item Type
+                              value:
+                                type: string
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Save Variables Value Item
+                                  Value
+                            required:
+                              - name
+                            title: >-
+                              DaVinci Flow Graph Data Request Elements Node Data
+                              Properties Save Variables Value Item
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Save Variables Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Save Variables
+                    showContinueButton:
+                      type: object
+                      properties:
+                        value:
+                          type: boolean
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Show Continue Button Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Show Continue Button
+                    type:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          minLength: 1
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Type Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Type
+                    variableInputList:
+                      type: object
+                      properties:
+                        value:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                minLength: 1
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Variable Input List Value Item
+                                  Name
+                              preferredDataType:
+                                type:
+                                  - array
+                                  - boolean
+                                  - integer
+                                  - number
+                                  - object
+                                  - string
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Variable Input List Value Item
+                                  Preferred Data Type
+                              preferredControlType:
+                                type: string
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Variable Input List Value Item
+                                  Preferred Control Type
+                              value:
+                                type: string
+                                title: >-
+                                  DaVinci Flow Graph Data Request Elements Node
+                                  Data Properties Variable Input List Value Item
+                                  Value
+                            required:
+                              - name
+                              - preferredDataType
+                            title: >-
+                              DaVinci Flow Graph Data Request Elements Node Data
+                              Properties Variable Input List Value Item
+                          title: >-
+                            DaVinci Flow Graph Data Request Elements Node Data
+                            Properties Variable Input List Value
+                      required:
+                        - value
+                      title: >-
+                        DaVinci Flow Graph Data Request Elements Node Data
+                        Properties Variable Input List
+                  title: >-
+                    DaVinci Flow Graph Data Request Elements Node Data
+                    Properties
+                status:
+                  type: string
+                  title: DaVinci Flow Graph Data Request Elements Node Data Status
+                type:
+                  type: string
+                  title: DaVinci Flow Graph Data Request Elements Node Data Type
+              additionalProperties: true
+              required:
+                - id
+                - nodeType
+              title: DaVinci Flow Graph Data Request Elements Node Data
+            classes:
+              type: string
+              title: DaVinci Flow Graph Data Request Elements Node Classes
+            grabbable:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Node Grabbable
+            group:
+              type: string
+              title: DaVinci Flow Graph Data Request Elements Node Group
+            locked:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Node Locked
+            pannable:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Node Pannable
+            position:
+              type: object
+              properties:
+                x:
+                  type: number
+                  title: DaVinci Flow Graph Data Request Elements Node Position X
+                'y':
+                  type: number
+                  title: DaVinci Flow Graph Data Request Elements Node Position Y
+              required:
+                - x
+                - 'y'
+              title: DaVinci Flow Graph Data Request Elements Node Position
+            removed:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Node Removed
+            selectable:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Node Selectable
+            selected:
+              type: boolean
+              title: DaVinci Flow Graph Data Request Elements Node Selected
+          additionalProperties: true
+          required:
+            - data
+          title: DaVinci Flow Graph Data Request Elements Node
+        title: DaVinci Flow Graph Data Request Elements Nodes
+    additionalProperties: true
+    title: DaVinci Flow Graph Data Request Elements
+  maxZoom:
+    type: number
+    format: bigFloat
+    title: DaVinci Flow Graph Data Request Max Zoom
+  minZoom:
+    type: number
+    format: bigFloat
+    title: DaVinci Flow Graph Data Request Min Zoom
+  pan:
+    type: object
+    properties:
+      x:
+        type: number
+        title: DaVinci Flow Graph Data Request Pan X
+      'y':
+        type: number
+        title: DaVinci Flow Graph Data Request Pan Y
+    required:
+      - x
+      - 'y'
+    title: DaVinci Flow Graph Data Request Pan
+  panningEnabled:
+    type: boolean
+    title: DaVinci Flow Graph Data Request Panning Enabled
+  renderer:
+    type: object
+    title: DaVinci Flow Graph Data Request Renderer
+  userPanningEnabled:
+    type: boolean
+    title: DaVinci Flow Graph Data Request User Panning Enabled
+  userZoomingEnabled:
+    type: boolean
+    title: DaVinci Flow Graph Data Request User Zooming Enabled
+  zoom:
+    type: integer
+    title: DaVinci Flow Graph Data Request Zoom
+  zoomingEnabled:
+    type: boolean
+    title: DaVinci Flow Graph Data Request Zooming Enabled
+title: DaVinci Flow Graph Data Request
