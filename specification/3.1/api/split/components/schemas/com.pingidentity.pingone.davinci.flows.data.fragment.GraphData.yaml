@@ -493,11 +493,11 @@ properties:
     title: DaVinci Flow Graph Data Request Elements
   maxZoom:
     type: number
-    format: bigFloat
+    format: bigFloatUnquoted
     title: DaVinci Flow Graph Data Request Max Zoom
   minZoom:
     type: number
-    format: bigFloat
+    format: bigFloatUnquoted
     title: DaVinci Flow Graph Data Request Min Zoom
   pan:
     type: object

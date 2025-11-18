@@ -29,6 +29,15 @@ properties:
   status:
     $ref: >-
       ./com.pingidentity.pingone.orgmgt.environments.data.EnvironmentStatusValue.yaml
+  subtype:
+    type: string
+    enum:
+      - DEV
+      - QA
+      - STAGING
+      - TESTING
+      - UAT
+    title: Environment Replace Request Subtype
 x-immutable:
   - region
 title: Environment Replace Request

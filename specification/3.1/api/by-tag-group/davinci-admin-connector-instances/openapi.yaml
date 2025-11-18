@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform API
-  version: 2025.11.05-beta
+  version: 2025.11.18-development
   description: PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.
   contact:
     name: Ping Identity Developer Experiences
@@ -606,11 +606,6 @@ components:
       $schema: http://json-schema.org/draft/2020-12/schema#
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-          minLength: 1
-          title: Too Many Requests Error Id
         code:
           type: string
           enum:
@@ -661,8 +656,11 @@ components:
               - message
             title: Too Many Requests Error Detail
           title: Too Many Requests Error Details
+        id:
+          type: string
+          format: uuid
+          title: Too Many Requests Error Id
       required:
-        - id
         - code
         - message
       title: Too Many Requests Error
@@ -1505,14 +1503,6 @@ components:
           required:
             - nodes
           title: DaVinci Flow Graph Data Response Elements
-        maxZoom:
-          type: number
-          format: bigFloat
-          title: DaVinci Flow Graph Data Response Max Zoom
-        minZoom:
-          type: number
-          format: bigFloat
-          title: DaVinci Flow Graph Data Response Min Zoom
         pan:
           type: object
           properties:
@@ -1587,14 +1577,20 @@ components:
         data:
           type: object
           title: DaVinci Flow Graph Data Response Data
+        maxZoom:
+          type: number
+          format: bigFloatUnquoted
+          title: DaVinci Flow Graph Data Response Max Zoom
+        minZoom:
+          type: number
+          format: bigFloatUnquoted
+          title: DaVinci Flow Graph Data Response Min Zoom
         zoomingEnabled:
           type: boolean
           title: DaVinci Flow Graph Data Response Zooming Enabled
       required:
         - boxSelectionEnabled
         - elements
-        - maxZoom
-        - minZoom
         - pan
         - panningEnabled
         - renderer

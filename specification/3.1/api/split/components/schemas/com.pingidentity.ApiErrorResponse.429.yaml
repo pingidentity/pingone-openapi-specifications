@@ -1,11 +1,6 @@
 $schema: http://json-schema.org/draft/2020-12/schema#
 type: object
 properties:
-  id:
-    type: string
-    format: uuid
-    minLength: 1
-    title: Too Many Requests Error Id
   code:
     type: string
     enum:
@@ -56,8 +51,11 @@ properties:
         - message
       title: Too Many Requests Error Detail
     title: Too Many Requests Error Details
+  id:
+    type: string
+    format: uuid
+    title: Too Many Requests Error Id
 required:
-  - id
   - code
   - message
 title: Too Many Requests Error

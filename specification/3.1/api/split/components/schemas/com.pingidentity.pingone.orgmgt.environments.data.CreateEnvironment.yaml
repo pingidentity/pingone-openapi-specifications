@@ -27,4 +27,13 @@ properties:
   icon:
     type: string
     title: Environment Create Request Icon
+  subtype:
+    type: string
+    enum:
+      - DEV
+      - QA
+      - STAGING
+      - TESTING
+      - UAT
+    title: Environment Create Request Subtype
 title: Environment Create Request
