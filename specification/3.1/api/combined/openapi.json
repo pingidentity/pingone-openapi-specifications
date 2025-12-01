@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "PingOne Platform API",
-    "version": "2025.11.18-development",
+    "version": "2025.12.01-beta",
     "description": "PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.",
     "contact": {
       "name": "Ping Identity Developer Experiences",
@@ -3967,6 +3967,22 @@
                     "rangeMinimumValue": {
                       "type": "number",
                       "title": "Bad Request Error Detail Inner Error Range Minimum Value"
+                    },
+                    "supportedAttributes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "title": "Bad Request Error Detail Inner Error Supported Attribute"
+                      },
+                      "title": "Bad Request Error Detail Inner Error Supported Attributes"
+                    },
+                    "supportedOperators": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "title": "Bad Request Error Detail Inner Error Supported Operator"
+                      },
+                      "title": "Bad Request Error Detail Inner Error Supported Operators"
                     }
                   },
                   "additionalProperties": true,
@@ -6349,7 +6365,7 @@
         "additionalProperties": true,
         "properties": {
           "name": {
-            "pattern": "^\\s*([\\p{L}\\p{M}\\p{N}\\p{So}/.'_-]).?(?!.*((<)|(\\$\\{)))",
+            "pattern": "^\\s*([\\p{L}\\p{M}\\p{N}\\p{So}/.'_\\-\\[\\]]).?(?!.*((<)|(\\$\\{)))",
             "maxLength": 256,
             "type": "string",
             "minLength": 1,
@@ -6411,7 +6427,7 @@
         "additionalProperties": true,
         "properties": {
           "name": {
-            "pattern": "^\\s*([\\p{L}\\p{M}\\p{N}\\p{So}/.'_-]).?(?!.*((<)|(\\$\\{)))",
+            "pattern": "^\\s*([\\p{L}\\p{M}\\p{N}\\p{So}/.'_\\-\\[\\]]).?(?!.*((<)|(\\$\\{)))",
             "maxLength": 256,
             "type": "string",
             "minLength": 1,
@@ -7164,7 +7180,20 @@
             "title": "DaVinci Flow Settings Request Custom Error Screen Brand Logo Url"
           },
           "customErrorShowFooter": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Request Custom Error Show Footer Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Request Custom Error Show Footer Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Request Custom Error Show Footer"
           },
           "customFaviconLink": {
@@ -7180,7 +7209,20 @@
             "title": "DaVinci Flow Settings Request Custom Title"
           },
           "defaultErrorScreenBrandLogo": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Request Default Error Screen Brand Logo Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Request Default Error Screen Brand Logo Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Request Default Error Screen Brand Logo"
           },
           "flowHttpTimeoutInSeconds": {
@@ -7237,7 +7279,20 @@
                   "title": "DaVinci Flow Settings Request Js Link Value"
                 },
                 "defer": {
-                  "type": "boolean",
+                  "oneOf": [
+                    {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Settings Request Js Link Defer Choice 1"
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "false",
+                        "true"
+                      ],
+                      "title": "DaVinci Flow Settings Request Js Link Defer Choice 2"
+                    }
+                  ],
                   "title": "DaVinci Flow Settings Request Js Link Defer"
                 },
                 "crossorigin": {
@@ -7281,11 +7336,37 @@
             "title": "DaVinci Flow Settings Request Log Level"
           },
           "requireAuthenticationToInitiate": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Request Require Authentication To Initiate Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Request Require Authentication To Initiate Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Request Require Authentication To Initiate"
           },
           "scrubSensitiveInfo": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Request Scrub Sensitive Info Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Request Scrub Sensitive Info Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Request Scrub Sensitive Info"
           },
           "sensitiveInfoFields": {
@@ -7297,27 +7378,105 @@
             "title": "DaVinci Flow Settings Request Sensitive Info Fields"
           },
           "useCSP": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Request Use CSP Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Request Use CSP Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Request Use CSP"
           },
           "useCustomCSS": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Request Use Custom CSS Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Request Use Custom CSS Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Request Use Custom CSS"
           },
           "useCustomFlowPlayer": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Request Use Custom Flow Player Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Request Use Custom Flow Player Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Request Use Custom Flow Player"
           },
           "useCustomScript": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Request Use Custom Script Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Request Use Custom Script Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Request Use Custom Script"
           },
           "useIntermediateLoadingScreen": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Request Use Intermediate Loading Screen Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Request Use Intermediate Loading Screen Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Request Use Intermediate Loading Screen"
           },
           "validateOnSave": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Request Validate On Save Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Request Validate On Save Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Request Validate On Save"
           }
         },
@@ -8627,7 +8786,20 @@
             "title": "DaVinci Flow Settings Response Custom Error Screen Brand Logo Url"
           },
           "customErrorShowFooter": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Response Custom Error Show Footer Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Response Custom Error Show Footer Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Response Custom Error Show Footer"
           },
           "customFaviconLink": {
@@ -8643,7 +8815,20 @@
             "title": "DaVinci Flow Settings Response Custom Title"
           },
           "defaultErrorScreenBrandLogo": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Response Default Error Screen Brand Logo Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Response Default Error Screen Brand Logo Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Response Default Error Screen Brand Logo"
           },
           "flowHttpTimeoutInSeconds": {
@@ -8696,7 +8881,20 @@
                   "title": "DaVinci Flow Settings Response Js Link Crossorigin"
                 },
                 "defer": {
-                  "type": "boolean",
+                  "oneOf": [
+                    {
+                      "type": "boolean",
+                      "title": "DaVinci Flow Settings Response Js Link Defer Choice 1"
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "false",
+                        "true"
+                      ],
+                      "title": "DaVinci Flow Settings Response Js Link Defer Choice 2"
+                    }
+                  ],
                   "title": "DaVinci Flow Settings Response Js Link Defer"
                 },
                 "integrity": {
@@ -8745,11 +8943,37 @@
             "title": "DaVinci Flow Settings Response Log Level"
           },
           "requireAuthenticationToInitiate": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Response Require Authentication To Initiate Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Response Require Authentication To Initiate Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Response Require Authentication To Initiate"
           },
           "scrubSensitiveInfo": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Response Scrub Sensitive Info Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Response Scrub Sensitive Info Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Response Scrub Sensitive Info"
           },
           "sensitiveInfoFields": {
@@ -8761,27 +8985,105 @@
             "title": "DaVinci Flow Settings Response Sensitive Info Fields"
           },
           "useCSP": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Response Use CSP Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Response Use CSP Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Response Use CSP"
           },
           "useCustomCSS": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Response Use Custom CSS Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Response Use Custom CSS Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Response Use Custom CSS"
           },
           "useCustomFlowPlayer": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Response Use Custom Flow Player Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Response Use Custom Flow Player Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Response Use Custom Flow Player"
           },
           "useCustomScript": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Response Use Custom Script Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Response Use Custom Script Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Response Use Custom Script"
           },
           "useIntermediateLoadingScreen": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Response Use Intermediate Loading Screen Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Response Use Intermediate Loading Screen Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Response Use Intermediate Loading Screen"
           },
           "validateOnSave": {
-            "type": "boolean",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "title": "DaVinci Flow Settings Response Validate On Save Choice 1"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "false",
+                  "true"
+                ],
+                "title": "DaVinci Flow Settings Response Validate On Save Choice 2"
+              }
+            ],
             "title": "DaVinci Flow Settings Response Validate On Save"
           }
         },
@@ -9995,8 +10297,8 @@
         "type": "object",
         "properties": {
           "date": {
-            "type": "string",
-            "format": "date-time",
+            "type": "integer",
+            "format": "unix-date-time",
             "title": "Directory Total Identities Count Response Date"
           },
           "totalIdentities": {
@@ -10180,9 +10482,7 @@
             "title": "Environment Bill of Materials Product Console Href"
           }
         },
-        "required": [
-          "href"
-        ],
+        "required": [],
         "title": "Environment Bill of Materials Product Console"
       },
       "com.pingidentity.pingone.orgmgt.environments.bom.api.model.Product": {

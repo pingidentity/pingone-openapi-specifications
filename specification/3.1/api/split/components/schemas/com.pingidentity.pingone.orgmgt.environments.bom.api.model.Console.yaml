@@ -5,6 +5,5 @@ properties:
     minLength: 1
     type: string
     title: Environment Bill of Materials Product Console Href
-required:
-  - href
+required: []
 title: Environment Bill of Materials Product Console

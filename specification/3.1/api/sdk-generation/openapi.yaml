@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform User and Configuration Management API - SDK Generator
-  version: 2025.11.18-development
+  version: 2025.12.01-beta
   description: PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.
   contact:
     name: Ping Identity Developer Experiences
@@ -2213,6 +2213,7 @@ components:
           type: string
           minLength: 1
           title: Bad Request Error Message
+          x-go-generate-error-message: true
         details:
           type: array
           items:
@@ -2275,6 +2276,18 @@ components:
                   rangeMinimumValue:
                     type: number
                     title: Bad Request Error Detail Inner Error Range Minimum Value
+                  supportedAttributes:
+                    type: array
+                    items:
+                      type: string
+                      title: Bad Request Error Detail Inner Error Supported Attribute
+                    title: Bad Request Error Detail Inner Error Supported Attributes
+                  supportedOperators:
+                    type: array
+                    items:
+                      type: string
+                      title: Bad Request Error Detail Inner Error Supported Operator
+                    title: Bad Request Error Detail Inner Error Supported Operators
                 additionalProperties: true
                 title: Bad Request Error Detail Inner Error
               target:
@@ -3118,7 +3131,7 @@ components:
       additionalProperties: true
       properties:
         name:
-          pattern: ^\s*([\p{L}\p{M}\p{N}\p{So}/.'_-]).?(?!.*((<)|(\$\{)))
+          pattern: ^\s*([\p{L}\p{M}\p{N}\p{So}/.'_\-\[\]]).?(?!.*((<)|(\$\{)))
           maxLength: 256
           type: string
           minLength: 1
@@ -4802,7 +4815,7 @@ components:
       additionalProperties: true
       properties:
         name:
-          pattern: ^\s*([\p{L}\p{M}\p{N}\p{So}/.'_-]).?(?!.*((<)|(\$\{)))
+          pattern: ^\s*([\p{L}\p{M}\p{N}\p{So}/.'_\-\[\]]).?(?!.*((<)|(\$\{)))
           maxLength: 256
           type: string
           minLength: 1
@@ -4948,7 +4961,14 @@ components:
           type: string
           title: DaVinci Flow Settings Request Custom Error Screen Brand Logo Url
         customErrorShowFooter:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Request Custom Error Show Footer Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Request Custom Error Show Footer Choice 2
           title: DaVinci Flow Settings Request Custom Error Show Footer
         customFaviconLink:
           type: string
@@ -4960,7 +4980,14 @@ components:
           type: string
           title: DaVinci Flow Settings Request Custom Title
         defaultErrorScreenBrandLogo:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Request Default Error Screen Brand Logo Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Request Default Error Screen Brand Logo Choice 2
           title: DaVinci Flow Settings Request Default Error Screen Brand Logo
         flowHttpTimeoutInSeconds:
           type: integer
@@ -4999,7 +5026,14 @@ components:
                 minLength: 1
                 title: DaVinci Flow Settings Request Js Link Value
               defer:
-                type: boolean
+                oneOf:
+                  - type: boolean
+                    title: DaVinci Flow Settings Request Js Link Defer Choice 1
+                  - type: string
+                    enum:
+                      - 'false'
+                      - 'true'
+                    title: DaVinci Flow Settings Request Js Link Defer Choice 2
                 title: DaVinci Flow Settings Request Js Link Defer
               crossorigin:
                 type: string
@@ -5033,10 +5067,24 @@ components:
           maximum: 4
           title: DaVinci Flow Settings Request Log Level
         requireAuthenticationToInitiate:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Request Require Authentication To Initiate Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Request Require Authentication To Initiate Choice 2
           title: DaVinci Flow Settings Request Require Authentication To Initiate
         scrubSensitiveInfo:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Request Scrub Sensitive Info Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Request Scrub Sensitive Info Choice 2
           title: DaVinci Flow Settings Request Scrub Sensitive Info
         sensitiveInfoFields:
           type: array
@@ -5045,22 +5093,64 @@ components:
             title: DaVinci Flow Settings Request Sensitive Info Field
           title: DaVinci Flow Settings Request Sensitive Info Fields
         useCSP:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Request Use CSP Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Request Use CSP Choice 2
           title: DaVinci Flow Settings Request Use CSP
         useCustomCSS:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Request Use Custom CSS Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Request Use Custom CSS Choice 2
           title: DaVinci Flow Settings Request Use Custom CSS
         useCustomFlowPlayer:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Request Use Custom Flow Player Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Request Use Custom Flow Player Choice 2
           title: DaVinci Flow Settings Request Use Custom Flow Player
         useCustomScript:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Request Use Custom Script Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Request Use Custom Script Choice 2
           title: DaVinci Flow Settings Request Use Custom Script
         useIntermediateLoadingScreen:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Request Use Intermediate Loading Screen Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Request Use Intermediate Loading Screen Choice 2
           title: DaVinci Flow Settings Request Use Intermediate Loading Screen
         validateOnSave:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Request Validate On Save Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Request Validate On Save Choice 2
           title: DaVinci Flow Settings Request Validate On Save
       title: DaVinci Flow Settings Request
     DaVinciFlowSettingsResponse:
@@ -5083,7 +5173,14 @@ components:
           type: string
           title: DaVinci Flow Settings Response Custom Error Screen Brand Logo Url
         customErrorShowFooter:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Response Custom Error Show Footer Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Response Custom Error Show Footer Choice 2
           title: DaVinci Flow Settings Response Custom Error Show Footer
         customFaviconLink:
           type: string
@@ -5095,7 +5192,14 @@ components:
           type: string
           title: DaVinci Flow Settings Response Custom Title
         defaultErrorScreenBrandLogo:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Response Default Error Screen Brand Logo Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Response Default Error Screen Brand Logo Choice 2
           title: DaVinci Flow Settings Response Default Error Screen Brand Logo
         flowHttpTimeoutInSeconds:
           type: integer
@@ -5131,7 +5235,14 @@ components:
                 minLength: 1
                 title: DaVinci Flow Settings Response Js Link Crossorigin
               defer:
-                type: boolean
+                oneOf:
+                  - type: boolean
+                    title: DaVinci Flow Settings Response Js Link Defer Choice 1
+                  - type: string
+                    enum:
+                      - 'false'
+                      - 'true'
+                    title: DaVinci Flow Settings Response Js Link Defer Choice 2
                 title: DaVinci Flow Settings Response Js Link Defer
               integrity:
                 type: string
@@ -5169,10 +5280,24 @@ components:
           maximum: 4
           title: DaVinci Flow Settings Response Log Level
         requireAuthenticationToInitiate:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Response Require Authentication To Initiate Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Response Require Authentication To Initiate Choice 2
           title: DaVinci Flow Settings Response Require Authentication To Initiate
         scrubSensitiveInfo:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Response Scrub Sensitive Info Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Response Scrub Sensitive Info Choice 2
           title: DaVinci Flow Settings Response Scrub Sensitive Info
         sensitiveInfoFields:
           type: array
@@ -5181,22 +5306,64 @@ components:
             title: DaVinci Flow Settings Response Sensitive Info Field
           title: DaVinci Flow Settings Response Sensitive Info Fields
         useCSP:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Response Use CSP Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Response Use CSP Choice 2
           title: DaVinci Flow Settings Response Use CSP
         useCustomCSS:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Response Use Custom CSS Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Response Use Custom CSS Choice 2
           title: DaVinci Flow Settings Response Use Custom CSS
         useCustomFlowPlayer:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Response Use Custom Flow Player Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Response Use Custom Flow Player Choice 2
           title: DaVinci Flow Settings Response Use Custom Flow Player
         useCustomScript:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Response Use Custom Script Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Response Use Custom Script Choice 2
           title: DaVinci Flow Settings Response Use Custom Script
         useIntermediateLoadingScreen:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Response Use Intermediate Loading Screen Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Response Use Intermediate Loading Screen Choice 2
           title: DaVinci Flow Settings Response Use Intermediate Loading Screen
         validateOnSave:
-          type: boolean
+          oneOf:
+            - type: boolean
+              title: DaVinci Flow Settings Response Validate On Save Choice 1
+            - type: string
+              enum:
+                - 'false'
+                - 'true'
+              title: DaVinci Flow Settings Response Validate On Save Choice 2
           title: DaVinci Flow Settings Response Validate On Save
       title: DaVinci Flow Settings Response
     DaVinciFlowTriggerRequest:
@@ -6187,8 +6354,8 @@ components:
       type: object
       properties:
         date:
-          type: string
-          format: date-time
+          type: integer
+          format: unix-date-time
           title: Directory Total Identities Count Response Date
         totalIdentities:
           type: integer
@@ -6316,8 +6483,7 @@ components:
           minLength: 1
           type: string
           title: Environment Bill of Materials Product Console Href
-      required:
-        - href
+      required: []
       title: Environment Bill of Materials Product Console
     EnvironmentBillOfMaterialsReplaceRequest:
       type: object
@@ -7030,6 +7196,7 @@ components:
           type: string
           minLength: 1
           title: Forbidden Error Message
+          x-go-generate-error-message: true
         details:
           type: array
           items:
@@ -7089,6 +7256,7 @@ components:
         message:
           type: string
           title: General Error Message
+          x-go-generate-error-message: true
       title: General Error
       x-go-generate-error: true
     GeneralErrorDetail:
@@ -7130,6 +7298,7 @@ components:
           type: string
           minLength: 1
           title: Internal Server Error Message
+          x-go-generate-error-message: true
         details:
           type: array
           items:
@@ -7207,6 +7376,7 @@ components:
           type: string
           minLength: 1
           title: Not Found Error Message
+          x-go-generate-error-message: true
         details:
           type: array
           items:
@@ -7484,6 +7654,7 @@ components:
           type: string
           minLength: 1
           title: Too Many Requests Error Message
+          x-go-generate-error-message: true
         details:
           type: array
           items:
@@ -7553,6 +7724,7 @@ components:
           type: string
           minLength: 1
           title: Unauthorized Error Message
+          x-go-generate-error-message: true
         details:
           type: array
           items:
@@ -7607,6 +7779,7 @@ components:
           type: string
           minLength: 1
           title: Unsupported Media Type Error Message
+          x-go-generate-error-message: true
         details:
           type: array
           items:

@@ -2,7 +2,7 @@ type: object
 additionalProperties: true
 properties:
   name:
-    pattern: ^\s*([\p{L}\p{M}\p{N}\p{So}/.'_-]).?(?!.*((<)|(\$\{)))
+    pattern: ^\s*([\p{L}\p{M}\p{N}\p{So}/.'_\-\[\]]).?(?!.*((<)|(\$\{)))
     maxLength: 256
     type: string
     minLength: 1

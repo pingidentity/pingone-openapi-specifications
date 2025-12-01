@@ -80,6 +80,18 @@ properties:
             rangeMinimumValue:
               type: number
               title: Bad Request Error Detail Inner Error Range Minimum Value
+            supportedAttributes:
+              type: array
+              items:
+                type: string
+                title: Bad Request Error Detail Inner Error Supported Attribute
+              title: Bad Request Error Detail Inner Error Supported Attributes
+            supportedOperators:
+              type: array
+              items:
+                type: string
+                title: Bad Request Error Detail Inner Error Supported Operator
+              title: Bad Request Error Detail Inner Error Supported Operators
           additionalProperties: true
           title: Bad Request Error Detail Inner Error
         target:
