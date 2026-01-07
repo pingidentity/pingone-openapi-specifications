@@ -7,9 +7,14 @@ properties:
     type: string
     minLength: 1
     title: DaVinci Application Replace Request Name
-  apiKeyEnabled:
-    type: boolean
-    title: DaVinci Application Replace Request Api Key Enabled
+  apiKey:
+    type: object
+    additionalProperties: true
+    properties:
+      enabled:
+        type: boolean
+        title: DaVinci Application Replace Request Api Key Enabled
+    title: DaVinci Application Replace Request Api Key
   oauth:
     type: object
     additionalProperties: true

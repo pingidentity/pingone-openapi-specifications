@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform API
-  version: 2025.12.01-beta
+  version: 2026.01.07-beta
   description: PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.
   contact:
     name: Ping Identity Developer Experiences
@@ -2267,9 +2267,14 @@ components:
           type: string
           minLength: 1
           title: DaVinci Application Replace Request Name
-        apiKeyEnabled:
-          type: boolean
-          title: DaVinci Application Replace Request Api Key Enabled
+        apiKey:
+          type: object
+          additionalProperties: true
+          properties:
+            enabled:
+              type: boolean
+              title: DaVinci Application Replace Request Api Key Enabled
+          title: DaVinci Application Replace Request Api Key
         oauth:
           type: object
           additionalProperties: true
@@ -3536,9 +3541,11 @@ components:
                     properties:
                       x:
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Request Elements Edge Position X
                       'y':
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Request Elements Edge Position Y
                     required:
                       - x
@@ -3583,6 +3590,9 @@ components:
                       connectorId:
                         type: string
                         title: DaVinci Flow Graph Data Request Elements Node Data Connector Id
+                      idUnique:
+                        type: string
+                        title: DaVinci Flow Graph Data Request Elements Node Data Id Unique
                       label:
                         type: string
                         title: DaVinci Flow Graph Data Request Elements Node Data Label
@@ -3839,9 +3849,11 @@ components:
                     properties:
                       x:
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Request Elements Node Position X
                       'y':
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Request Elements Node Position Y
                     required:
                       - x
@@ -3876,9 +3888,11 @@ components:
           properties:
             x:
               type: number
+              format: bigFloatUnquoted
               title: DaVinci Flow Graph Data Request Pan X
             'y':
               type: number
+              format: bigFloatUnquoted
               title: DaVinci Flow Graph Data Request Pan Y
           required:
             - x
@@ -4871,9 +4885,11 @@ components:
                     properties:
                       x:
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Response Elements Node Position X
                       'y':
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Response Elements Node Position Y
                     required:
                       - x
@@ -4946,9 +4962,11 @@ components:
                     properties:
                       x:
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Response Elements Edge Position X
                       'y':
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Response Elements Edge Position Y
                     required:
                       - x
@@ -4986,9 +5004,11 @@ components:
           properties:
             x:
               type: number
+              format: bigFloatUnquoted
               title: DaVinci Flow Graph Data Response Pan X
             'y':
               type: number
+              format: bigFloatUnquoted
               title: DaVinci Flow Graph Data Response Pan Y
           required:
             - x

@@ -55,9 +55,11 @@ properties:
               properties:
                 x:
                   type: number
+                  format: bigFloatUnquoted
                   title: DaVinci Flow Graph Data Request Elements Edge Position X
                 'y':
                   type: number
+                  format: bigFloatUnquoted
                   title: DaVinci Flow Graph Data Request Elements Edge Position Y
               required:
                 - x
@@ -108,6 +110,9 @@ properties:
                   title: >-
                     DaVinci Flow Graph Data Request Elements Node Data Connector
                     Id
+                idUnique:
+                  type: string
+                  title: DaVinci Flow Graph Data Request Elements Node Data Id Unique
                 label:
                   type: string
                   title: DaVinci Flow Graph Data Request Elements Node Data Label
@@ -467,9 +472,11 @@ properties:
               properties:
                 x:
                   type: number
+                  format: bigFloatUnquoted
                   title: DaVinci Flow Graph Data Request Elements Node Position X
                 'y':
                   type: number
+                  format: bigFloatUnquoted
                   title: DaVinci Flow Graph Data Request Elements Node Position Y
               required:
                 - x
@@ -504,9 +511,11 @@ properties:
     properties:
       x:
         type: number
+        format: bigFloatUnquoted
         title: DaVinci Flow Graph Data Request Pan X
       'y':
         type: number
+        format: bigFloatUnquoted
         title: DaVinci Flow Graph Data Request Pan Y
     required:
       - x

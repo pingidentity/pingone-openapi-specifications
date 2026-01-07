@@ -454,9 +454,11 @@ properties:
               properties:
                 x:
                   type: number
+                  format: bigFloatUnquoted
                   title: DaVinci Flow Graph Data Response Elements Node Position X
                 'y':
                   type: number
+                  format: bigFloatUnquoted
                   title: DaVinci Flow Graph Data Response Elements Node Position Y
               required:
                 - x
@@ -529,9 +531,11 @@ properties:
               properties:
                 x:
                   type: number
+                  format: bigFloatUnquoted
                   title: DaVinci Flow Graph Data Response Elements Edge Position X
                 'y':
                   type: number
+                  format: bigFloatUnquoted
                   title: DaVinci Flow Graph Data Response Elements Edge Position Y
               required:
                 - x
@@ -569,9 +573,11 @@ properties:
     properties:
       x:
         type: number
+        format: bigFloatUnquoted
         title: DaVinci Flow Graph Data Response Pan X
       'y':
         type: number
+        format: bigFloatUnquoted
         title: DaVinci Flow Graph Data Response Pan Y
     required:
       - x

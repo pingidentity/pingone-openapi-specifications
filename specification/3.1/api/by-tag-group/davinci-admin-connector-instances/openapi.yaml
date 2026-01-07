@@ -1,7 +1,7 @@
 openapi: 3.1.1
 info:
   title: PingOne Platform API
-  version: 2025.12.01-beta
+  version: 2026.01.07-beta
   description: PingOne is a cloud-based framework for secure identity access management. The PingOne API gives developers the tools to integrate enterprise and third-party applications with the PingOne platform.
   contact:
     name: Ping Identity Developer Experiences
@@ -1405,9 +1405,11 @@ components:
                     properties:
                       x:
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Response Elements Node Position X
                       'y':
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Response Elements Node Position Y
                     required:
                       - x
@@ -1480,9 +1482,11 @@ components:
                     properties:
                       x:
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Response Elements Edge Position X
                       'y':
                         type: number
+                        format: bigFloatUnquoted
                         title: DaVinci Flow Graph Data Response Elements Edge Position Y
                     required:
                       - x
@@ -1520,9 +1524,11 @@ components:
           properties:
             x:
               type: number
+              format: bigFloatUnquoted
               title: DaVinci Flow Graph Data Response Pan X
             'y':
               type: number
+              format: bigFloatUnquoted
               title: DaVinci Flow Graph Data Response Pan Y
           required:
             - x
