@@ -49,6 +49,10 @@ The generated SDK will be placed in the `dist/` directory following the pattern 
 
 An automated agent skill is available to streamline the SDK generation process. The skill guides you through the workflow, handles parameter validation, and can fetch remote OpenAPI specifications. See [`.github/skills/sdk-builder/SKILL.md`](.github/skills/sdk-builder/SKILL.md) and [agentskills.io](https://agentskills.io/home) for details.
 
+To try it out, enable Agent Skills in a compatible IDE (e.g. VS Code) and issue a chat prompt:
+
+"Using the SDK builder, generate the `go` SDK using the defaults. Version `v0.4.0`.  Output to `/tmp/pingone-go-sdk`"
+
 ## Resources
 
   * **[Full API Documentation](https://apidocs.pingidentity.com/pingone/platform/v1/api/)**: The complete, published API reference.
