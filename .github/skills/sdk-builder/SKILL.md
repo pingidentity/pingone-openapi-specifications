@@ -64,10 +64,10 @@ curl -L -o /tmp/openapi-spec.yaml "https://pingidentity.com/openapi.yaml"
 
 ### Step 5: Execute SDK Generation
 
-Run Makefile `run` target with parameters:
+Run Makefile `generate-sdk` target with parameters:
 
 ```bash
-make run \
+make generate-sdk \
   INPUT_OAS="/path/to/spec.yaml" \
   LANGUAGE=go \
   PRODUCT=pingone \

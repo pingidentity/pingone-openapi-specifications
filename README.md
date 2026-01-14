@@ -24,10 +24,10 @@ This repository includes tooling to generate client SDKs directly from the OpenA
 
 ### Using the Makefile
 
-To build an SDK, use the `make run` command with the following parameters:
+To build an SDK, use the `make generate-sdk` command with the following parameters:
 
 ```bash
-make run \
+make generate-sdk \
   INPUT_OAS=specification/3.1/api/sdk-generation/openapi.yaml \
   LANGUAGE=go \
   VERSION=v0.6.0
@@ -47,7 +47,7 @@ The generated SDK will be placed in the `dist/` directory following the pattern 
 
 ### Agent Skill
 
-An automated agent skill is available to streamline the SDK generation process. The skill guides you through the workflow, handles parameter validation, and can fetch remote OpenAPI specifications. See [`.github/skills/sdk-builder/SKILL.md`](.github/skills/sdk-builder/SKILL.md) for details.
+An automated agent skill is available to streamline the SDK generation process. The skill guides you through the workflow, handles parameter validation, and can fetch remote OpenAPI specifications. See [`.github/skills/sdk-builder/SKILL.md`](.github/skills/sdk-builder/SKILL.md) and [agentskills.io](https://agentskills.io/home) for details.
 
 ## Resources
 

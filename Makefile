@@ -1,10 +1,10 @@
-.PHONY: build run templates help
+.PHONY: build-sdk-generator generate-sdk sdk-generator-default-templates generate-sdk-help
 
 # Image configuration
 IMAGE ?= ping-sdk-openapi-generator:dev
 
 # Required parameters (no defaults)
-INPUT_OAS ?=
+INPUT_OAS ?= specification/3.1/api/sdk-generation/openapi.yaml
 LANGUAGE ?=
 VERSION ?=
 
@@ -15,14 +15,14 @@ TARGET_DIR ?=
 # Internal - computed target directory with default pattern
 _TARGET_DIR = $(if $(TARGET_DIR),$(TARGET_DIR),dist/$(LANGUAGE)/$(PRODUCT)/$(VERSION))
 
-help:
+generate-sdk-help:
 	@echo "SDK Generator Makefile"
 	@echo ""
 	@echo "Targets:"
-	@echo "  build       Build the Docker image"
-	@echo "  run         Generate SDK using the Docker image"
-	@echo "  templates   Pull default templates for a language"
-	@echo "  help        Show this help message"
+	@echo "  build-sdk-generator              Build the Docker image"
+	@echo "  generate-sdk                     Generate SDK using the Docker image"
+	@echo "  sdk-generator-default-templates  Pull default templates for a language"
+	@echo "  generate-sdk-help                Show this help message"
 	@echo ""
 	@echo "Build Parameters:"
 	@echo "  IMAGE       Docker image name (default: ping-sdk-openapi-generator:dev)"
@@ -41,47 +41,52 @@ help:
 	@echo "  LANGUAGE    SDK language (required, e.g., go, python)"
 	@echo ""
 	@echo "Examples:"
-	@echo "  make build"
-	@echo "  make build IMAGE=my-generator:latest"
-	echo "  make run INPUT_OAS=/path/to/openapi.yaml LANGUAGE=go VERSION=v0.0.1"
-	@echo "  make run INPUT_OAS=/path/to/openapi.yaml LANGUAGE=python PRODUCT=identitycloud VERSION=v1.0.0 TARGET_DIR=/custom/output"
-	@echo "  make templates LANGUAGE=go"
+	@echo "  make build-sdk-generator"
+	@echo "  make build-sdk-generator IMAGE=my-generator:latest"
+	echo "  make generate-sdk INPUT_OAS=/path/to/openapi.yaml LANGUAGE=go VERSION=v0.0.1"
+	@echo "  make generate-sdk INPUT_OAS=/path/to/openapi.yaml LANGUAGE=python PRODUCT=identitycloud VERSION=v1.0.0 TARGET_DIR=/custom/output"
+	@echo "  make sdk-generator-default-templates LANGUAGE=go"
 
-build:
+build-sdk-generator:
 	docker build -t $(IMAGE) -f generator/sdk/Dockerfile .
 
-run: build
+generate-sdk: build-sdk-generator
 	@if [ -z "$(INPUT_OAS)" ]; then \
 		echo "Error: INPUT_OAS is required"; \
-		echo "Usage: make run INPUT_OAS=/path/to/spec.yaml LANGUAGE=go PRODUCT=pingone VERSION=v0.0.1"; \
+		echo "Usage: make generate-sdk INPUT_OAS=/path/to/spec.yaml LANGUAGE=go PRODUCT=pingone VERSION=v0.0.1"; \
 		exit 1; \
 	fi
 	@if [ -z "$(LANGUAGE)" ]; then \
 		echo "Error: LANGUAGE is required"; \
-		echo "Usage: make run INPUT_OAS=/path/to/spec.yaml LANGUAGE=go VERSION=v0.0.1"; \
+		echo "Usage: make generate-sdk INPUT_OAS=/path/to/spec.yaml LANGUAGE=go VERSION=v0.0.1"; \
 		exit 1; \
 	fi
 	@if [ -z "$(VERSION)" ]; then \
 		echo "Error: VERSION is required"; \
-		echo "Usage: make run INPUT_OAS=/path/to/spec.yaml LANGUAGE=go VERSION=v0.0.1"; \
+		echo "Usage: make generate-sdk INPUT_OAS=/path/to/spec.yaml LANGUAGE=go VERSION=v0.0.1"; \
 		exit 1; \
 	fi
 	@mkdir -p "$(_TARGET_DIR)"
-	@ABS_PATH="$(_TARGET_DIR)"; \
-	case "$$ABS_PATH" in \
+	@ABS_TARGET_PATH="$(_TARGET_DIR)"; \
+	case "$$ABS_TARGET_PATH" in \
 		/*) ;; \
-		*) ABS_PATH="$$(pwd)/$$ABS_PATH";; \
+		*) ABS_TARGET_PATH="$$(pwd)/$$ABS_TARGET_PATH";; \
+	esac; \
+	ABS_INPUT_OAS="$(INPUT_OAS)"; \
+	case "$$ABS_INPUT_OAS" in \
+		/*) ;; \
+		*) ABS_INPUT_OAS="$$(pwd)/$$ABS_INPUT_OAS";; \
 	esac; \
 	docker run \
-		-v "$(INPUT_OAS):/openapi.yaml" \
-		-v "$$ABS_PATH:/generated" \
+		-v "$$ABS_INPUT_OAS:/openapi.yaml" \
+		-v "$$ABS_TARGET_PATH:/generated" \
 		$(IMAGE) \
 		/openapi.yaml $(LANGUAGE) $(PRODUCT) $(VERSION)
 
-templates: build
+sdk-generator-default-templates: build-sdk-generator
 	@if [ -z "$(LANGUAGE)" ]; then \
 		echo "Error: LANGUAGE is required"; \
-		echo "Usage: make templates LANGUAGE=go"; \
+		echo "Usage: make sdk-generator-default-templates LANGUAGE=go"; \
 		exit 1; \
 	fi
 	@mkdir -p dist/default_templates
