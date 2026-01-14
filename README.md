@@ -18,6 +18,37 @@ You can use these specifications to:
 
 Have you built something interesting with these specs? We'd love to hear about it. **[Share your project on the PingOne Community pages\!](https://support.pingidentity.com/s/topic/0TO1W000000ddO4WAI/pingone)**
 
+## Building SDKs
+
+This repository includes tooling to generate client SDKs directly from the OpenAPI specifications using the included Makefile and Docker-based generator.
+
+### Using the Makefile
+
+To build an SDK, use the `make run` command with the following parameters:
+
+```bash
+make run \
+  INPUT_OAS=specification/3.1/api/sdk-generation/openapi.yaml \
+  LANGUAGE=go \
+  VERSION=v0.6.0
+```
+
+**Required Parameters:**
+
+- `INPUT_OAS` - Path to the OpenAPI specification file (must be absolute path or use `$PWD` for relative paths)
+- `LANGUAGE` - Target programming language (e.g., `go`, `python`)
+- `VERSION` - SDK version to generate (e.g., `v0.6.0`)
+
+**Optional Parameters:**
+
+- `TARGET_DIR` - Custom output directory (defaults to `dist/{language}/{product}/{version}`)
+
+The generated SDK will be placed in the `dist/` directory following the pattern `dist/{language}/{product}/{version}`.
+
+### Agent Skill
+
+An automated agent skill is available to streamline the SDK generation process. The skill guides you through the workflow, handles parameter validation, and can fetch remote OpenAPI specifications. See [`.github/skills/sdk-builder/SKILL.md`](.github/skills/sdk-builder/SKILL.md) for details.
+
 ## Resources
 
   * **[Full API Documentation](https://apidocs.pingidentity.com/pingone/platform/v1/api/)**: The complete, published API reference.
