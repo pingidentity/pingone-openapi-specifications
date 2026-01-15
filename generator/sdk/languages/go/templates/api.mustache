@@ -1,0 +1,558 @@
+{{>partial_header}}
+package {{packageName}}
+
+{{#operations}}
+import (
+	"bytes"
+	"context"
+	"errors"
+	"io"
+	"log/slog"
+	"net/http"
+	"net/url"
+	"strings"
+{{#imports}}	"{{import}}"
+{{/imports}}
+)
+
+{{#generateInterfaces}}
+
+type {{classname}} interface {
+	{{#operation}}
+
+	/*
+	{{operationId}} {{{summary}}}{{^summary}}Method for {{operationId}}{{/summary}}
+	{{#notes}}
+
+	{{{unescapedNotes}}}
+	{{/notes}}
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().{{#pathParams}}
+	@param {{paramName}}{{#description}} {{{.}}}{{/description}}{{/pathParams}}
+	@return {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request
+	{{#isDeprecated}}
+
+	Deprecated{{#vendorExtensions.x-deprecation-date}} ({{.}}){{/vendorExtensions.x-deprecation-date}}{{#vendorExtensions.x-deprecation-message}}: {{.}}{{/vendorExtensions.x-deprecation-message}}
+	{{/isDeprecated}}
+	*/
+	{{{nickname}}}(ctx context.Context{{#pathParams}}, {{paramName}} {{{dataType}}}{{/pathParams}}) {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request
+
+	// {{nickname}}Execute executes the request{{#returnType}}
+	//  @return {{{.}}}{{/returnType}}
+	{{#isDeprecated}}
+	//  Deprecated{{#vendorExtensions.x-deprecation-date}} ({{.}}){{/vendorExtensions.x-deprecation-date}}{{#vendorExtensions.x-deprecation-message}}: {{.}}{{/vendorExtensions.x-deprecation-message}}
+	{{/isDeprecated}}
+	{{nickname}}Execute(r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request) ({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error)
+	{{/operation}}
+}
+{{/generateInterfaces}}
+
+// {{classname}}Service {{classname}} service
+type {{classname}}Service service
+{{#operation}}
+
+type {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request struct {
+	ctx context.Context{{#generateInterfaces}}
+	ApiService {{classname}}
+{{/generateInterfaces}}{{^generateInterfaces}}
+	ApiService *{{classname}}Service
+{{/generateInterfaces}}
+{{#allParams}}
+	{{paramName}} {{^isPathParam}}{{^isFile}}*{{/isFile}}{{/isPathParam}}{{{dataType}}}
+{{/allParams}}
+}
+
+{{#allParams}}
+{{^isPathParam}}
+{{#description}}
+// {{.}}
+{{/description}}
+{{#isDeprecated}}
+// Deprecated{{#vendorExtensions.x-deprecation-date}} ({{.}}){{/vendorExtensions.x-deprecation-date}}{{#vendorExtensions.x-deprecation-message}}: {{.}}{{/vendorExtensions.x-deprecation-message}}
+{{/isDeprecated}}
+func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request) {{vendorExtensions.x-export-param-name}}({{paramName}} {{{dataType}}}) {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request {
+	r.{{paramName}} = {{^isFile}}&{{/isFile}}{{paramName}}
+	return r
+}
+
+{{/isPathParam}}
+{{/allParams}}
+func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request) Execute() {{#vendorExtensions.x-pingidentity-paginatedresponse}}PagedIterator[{{returnType}}]{{/vendorExtensions.x-pingidentity-paginatedresponse}}{{^vendorExtensions.x-pingidentity-paginatedresponse}}({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error){{/vendorExtensions.x-pingidentity-paginatedresponse}} {
+	return r.ApiService.{{nickname}}Execute(r)
+}
+{{#vendorExtensions.x-pingidentity-paginatedresponse}}
+
+func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request) ExecuteInitialPage() ({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error) {
+	return r.ApiService.{{nickname}}ExecutePage(r, nil)
+}
+
+func (r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request) executePageByLink(link JSONHALLink) ({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error) {
+	return r.ApiService.{{nickname}}ExecutePage(r, &link)
+}
+{{/vendorExtensions.x-pingidentity-paginatedresponse}}
+
+/*
+{{operationId}} {{{summary}}}{{^summary}}Method for {{operationId}}{{/summary}}
+{{#notes}}
+
+{{{unescapedNotes}}}
+{{/notes}}
+
+{{#vendorExtensions.x-permission}}
+ @permission {{.}}
+{{/vendorExtensions.x-permission}}
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().{{#pathParams}}
+ @param {{paramName}}{{#description}} {{{.}}}{{/description}}{{/pathParams}}
+ @return {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request
+{{#isDeprecated}}
+
+Deprecated{{#vendorExtensions.x-deprecation-date}} ({{.}}){{/vendorExtensions.x-deprecation-date}}{{#vendorExtensions.x-deprecation-message}}: {{.}}{{/vendorExtensions.x-deprecation-message}}
+{{/isDeprecated}}
+*/
+func (a *{{{classname}}}Service) {{{nickname}}}(ctx context.Context{{#pathParams}}, {{paramName}} {{{dataType}}}{{/pathParams}}) {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request {
+	return {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request{
+		ApiService: a,
+		ctx: ctx,
+		{{#pathParams}}
+		{{paramName}}: {{paramName}},
+		{{/pathParams}}
+	}
+}
+{{#vendorExtensions.x-pingidentity-paginatedresponse}}
+
+// Execute executes the request{{#returnType}}
+//  @return {{{.}}}{{/returnType}}
+{{#isDeprecated}}
+// Deprecated{{#vendorExtensions.x-deprecation-date}} ({{.}}){{/vendorExtensions.x-deprecation-date}}{{#vendorExtensions.x-deprecation-message}}: {{.}}{{/vendorExtensions.x-deprecation-message}}
+{{/isDeprecated}}
+func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request) PagedIterator[{{returnType}}] {
+  return paginationIterator(r.ExecuteInitialPage, r.executePageByLink)
+}
+{{/vendorExtensions.x-pingidentity-paginatedresponse}}
+
+// Execute executes the request{{#vendorExtensions.x-pingidentity-paginatedresponse}} (returning the initial page of the paged response only){{/vendorExtensions.x-pingidentity-paginatedresponse}}{{#returnType}}
+//  @return {{{.}}}{{/returnType}}
+{{#isDeprecated}}
+// Deprecated{{#vendorExtensions.x-deprecation-date}} ({{.}}){{/vendorExtensions.x-deprecation-date}}{{#vendorExtensions.x-deprecation-message}}: {{.}}{{/vendorExtensions.x-deprecation-message}}
+{{/isDeprecated}}
+func (a *{{{classname}}}Service) {{nickname}}Execute{{#vendorExtensions.x-pingidentity-paginatedresponse}}Page{{/vendorExtensions.x-pingidentity-paginatedresponse}}(r {{#structPrefix}}{{&classname}}{{/structPrefix}}{{^structPrefix}}Api{{/structPrefix}}{{operationId}}Request{{#vendorExtensions.x-pingidentity-paginatedresponse}}, link *JSONHALLink{{/vendorExtensions.x-pingidentity-paginatedresponse}}) ({{#returnType}}{{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}, {{/returnType}}*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.Method{{httpMethod}}
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		{{#returnType}}
+		localVarReturnValue  {{^isArray}}{{^returnTypeIsPrimitive}}{{^isResponseFile}}*{{/isResponseFile}}{{/returnTypeIsPrimitive}}{{/isArray}}{{{.}}}
+		{{/returnType}}
+	)
+
+	{{#vendorExtensions.x-pingidentity-paginatedresponse}}
+	var linkUrl *url.URL
+	if link != nil {
+		var err error
+		linkUrl, err = url.Parse(link.Href)
+		if err != nil {
+			return localVarReturnValue, nil, &APIError{error: err.Error()}
+		}
+	}
+
+	{{/vendorExtensions.x-pingidentity-paginatedresponse}}
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "{{{classname}}}Service.{{{nickname}}}")
+	if err != nil {
+		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, &APIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "{{{path}}}"{{#pathParams}}
+	localVarPath = strings.Replace(localVarPath, "{"+"{{{baseName}}}"+"}", url.PathEscape(parameterValueToString(r.{{paramName}}, "{{paramName}}")), -1){{/pathParams}}
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	{{#allParams}}
+	{{#required}}
+	{{^isPathParam}}
+	if r.{{paramName}} == nil {
+		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("{{paramName}} is required and must be specified")
+	}
+	{{/isPathParam}}
+	{{#minItems}}
+	if len({{^isPathParam}}*{{/isPathParam}}r.{{paramName}}) < {{minItems}} {
+		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("{{paramName}} must have at least {{minItems}} elements")
+	}
+	{{/minItems}}
+	{{#maxItems}}
+	if len({{^isPathParam}}*{{/isPathParam}}r.{{paramName}}) > {{maxItems}} {
+		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("{{paramName}} must have less than {{maxItems}} elements")
+	}
+	{{/maxItems}}
+	{{#minLength}}
+	if strlen({{^isPathParam}}*{{/isPathParam}}r.{{paramName}}) < {{minLength}} {
+		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("{{paramName}} must have at least {{minLength}} elements")
+	}
+	{{/minLength}}
+	{{#maxLength}}
+	if strlen({{^isPathParam}}*{{/isPathParam}}r.{{paramName}}) > {{maxLength}} {
+		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("{{paramName}} must have less than {{maxLength}} elements")
+	}
+	{{/maxLength}}
+	{{#minimum}}
+	{{#isString}}
+	{{paramName}}Txt, err := atoi({{^isPathParam}}*{{/isPathParam}}r.{{paramName}})
+	if {{paramName}}Txt < {{minimum}} {
+	{{/isString}}
+	{{^isString}}
+	if {{^isPathParam}}*{{/isPathParam}}r.{{paramName}} < {{minimum}} {
+	{{/isString}}
+		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("{{paramName}} must be greater than {{minimum}}")
+	}
+	{{/minimum}}
+	{{#maximum}}
+	{{#isString}}
+	{{paramName}}Txt, err := atoi({{^isPathParam}}*{{/isPathParam}}r.{{paramName}})
+	if {{paramName}}Txt > {{maximum}} {
+	{{/isString}}
+	{{^isString}}
+	if {{^isPathParam}}*{{/isPathParam}}r.{{paramName}} > {{maximum}} {
+	{{/isString}}
+		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, reportError("{{paramName}} must be less than {{maximum}}")
+	}
+	{{/maximum}}
+	{{/required}}
+	{{/allParams}}
+
+	{{#queryParams}}
+	{{#required}}
+	{{#isCollectionFormatMulti}}
+	{
+		t := *r.{{paramName}}
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "{{{baseName}}}", s.Index(i).Interface(), "{{style}}", "{{collectionFormat}}")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "{{{baseName}}}", t, "{{style}}", "{{collectionFormat}}")
+		}
+	}
+	{{/isCollectionFormatMulti}}
+	{{^isCollectionFormatMulti}}
+	parameterAddToHeaderOrQuery(localVarQueryParams, "{{{baseName}}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
+	{{/isCollectionFormatMulti}}
+	{{/required}}
+	{{^required}}
+	if r.{{paramName}} != nil {
+	{{#isCollectionFormatMulti}}
+		t := *r.{{paramName}}
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "{{{baseName}}}", s.Index(i).Interface(), "{{style}}", "{{collectionFormat}}")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "{{{baseName}}}", t, "{{style}}", "{{collectionFormat}}")
+		}
+	{{/isCollectionFormatMulti}}
+	{{^isCollectionFormatMulti}}
+		parameterAddToHeaderOrQuery(localVarQueryParams, "{{{baseName}}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
+	{{/isCollectionFormatMulti}}
+	{{#defaultValue}}} else {
+		var defaultValue {{{dataType}}} = {{{.}}}
+		r.{{paramName}} = &defaultValue
+	{{/defaultValue}}}
+	{{/required}}
+	{{/queryParams}}
+
+	{{#vendorExtensions.x-pingidentity-paginatedresponse}}
+	// overwrite query params with link URL query params if provided
+	if linkUrl != nil {
+		localVarQueryParams = linkUrl.Query()
+	}
+
+	{{/vendorExtensions.x-pingidentity-paginatedresponse}}
+	// to determine the Content-Type header
+{{=<% %>=}}
+	localVarHTTPContentTypes := []string{<%#consumes%>"<%&mediaType%>"<%^-last%>, <%/-last%><%/consumes%>}
+<%={{ }}=%>
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+{{=<% %>=}}
+	localVarHTTPHeaderAccepts := []string{<%#produces%>"<%&mediaType%>"<%^-last%>, <%/-last%><%/produces%>}
+<%={{ }}=%>
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+{{#headerParams}}
+	{{#required}}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "{{{baseName}}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
+	{{/required}}
+	{{^required}}
+	if r.{{paramName}} != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "{{{baseName}}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
+	}
+	{{/required}}
+{{/headerParams}}
+{{#formParams}}
+{{#isFile}}
+{{#isArray}}
+	var {{paramName}}LocalVarFormFileName string
+	var {{paramName}}LocalVarFileName     string
+	var {{paramName}}LocalVarFileBytes    []byte
+
+	{{paramName}}LocalVarFormFileName = "{{{baseName}}}"
+	{{paramName}}LocalVarFile := r.{{paramName}}
+
+	if {{paramName}}LocalVarFile != nil {
+		// loop through the array to prepare multiple files upload
+		for _, {{paramName}}LocalVarFileValue := range {{paramName}}LocalVarFile {
+			fbs, _ := io.ReadAll({{paramName}}LocalVarFileValue)
+
+			{{paramName}}LocalVarFileBytes = fbs
+			{{paramName}}LocalVarFileName = {{paramName}}LocalVarFileValue.Name()
+			{{paramName}}LocalVarFileValue.Close()
+			formFiles = append(formFiles, formFile{fileBytes: {{paramName}}LocalVarFileBytes, fileName: {{paramName}}LocalVarFileName, formFileName: {{paramName}}LocalVarFormFileName})
+		}
+	}
+{{/isArray}}
+{{^isArray}}
+	var {{paramName}}LocalVarFormFileName string
+	var {{paramName}}LocalVarFileName     string
+	var {{paramName}}LocalVarFileBytes    []byte
+
+	{{paramName}}LocalVarFormFileName = "{{{baseName}}}"
+	{{paramName}}LocalVarFile := r.{{paramName}}
+
+	if {{paramName}}LocalVarFile != nil {
+		fbs, _ := io.ReadAll({{paramName}}LocalVarFile)
+
+		{{paramName}}LocalVarFileBytes = fbs
+		{{paramName}}LocalVarFileName = {{paramName}}LocalVarFile.Name()
+		{{paramName}}LocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: {{paramName}}LocalVarFileBytes, fileName: {{paramName}}LocalVarFileName, formFileName: {{paramName}}LocalVarFormFileName})
+	}
+{{/isArray}}
+{{/isFile}}
+{{^isFile}}
+{{#required}}
+	parameterAddToHeaderOrQuery(localVarFormParams, "{{{baseName}}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
+{{/required}}
+{{^required}}
+{{#isModel}}
+	if r.{{paramName}} != nil {
+		paramJson, err := parameterToJson(*r.{{paramName}})
+		if err != nil {
+			return {{#returnType}}localVarReturnValue, {{/returnType}}nil, err
+		}
+		localVarFormParams.Add("{{{baseName}}}", paramJson)
+	}
+{{/isModel}}
+{{^isModel}}
+	if r.{{paramName}} != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "{{{baseName}}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
+	}
+{{/isModel}}
+{{/required}}
+{{/isFile}}
+{{/formParams}}
+{{#bodyParams}}
+	// body params
+	localVarPostBody = r.{{paramName}}
+{{/bodyParams}}
+{{#authMethods}}
+{{#isApiKey}}
+{{^isKeyInCookie}}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			{{#vendorExtensions.x-auth-id-alias}}
+			if apiKey, ok := auth["{{.}}"]; ok {
+				var key string
+				if prefix, ok := auth["{{name}}"]; ok && prefix.Prefix != "" {
+					key = prefix.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+			{{/vendorExtensions.x-auth-id-alias}}
+			{{^vendorExtensions.x-auth-id-alias}}
+			if apiKey, ok := auth["{{name}}"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+			{{/vendorExtensions.x-auth-id-alias}}
+				{{#isKeyInHeader}}
+				localVarHeaderParams["{{keyParamName}}"] = key
+				{{/isKeyInHeader}}
+				{{#isKeyInQuery}}
+				localVarQueryParams.Add("{{keyParamName}}", key)
+				{{/isKeyInQuery}}
+			}
+		}
+	}
+{{/isKeyInCookie}}
+{{/isApiKey}}
+{{/authMethods}}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, err
+	}
+
+	{{! Start Ping - Pagination based on API standards }}
+	{{#vendorExtensions.x-pingidentity-paginatedresponse}}
+	if linkUrl != nil && linkUrl.Host != req.Host {
+		slog.Error("link host does not match expected host", "expected host", req.Host, "provided link host", linkUrl.Host)
+		return localVarReturnValue, nil, reportError("link host does not match expected host")
+	}
+
+	{{/vendorExtensions.x-pingidentity-paginatedresponse}}
+	{{! End Ping - Pagination based on API standards }}
+	{{! Start Ping - DOCS-8830 }}
+	var bodyBytes []byte
+	if req.Body != nil {
+		bodyBytes, _ = io.ReadAll(req.Body)
+	}
+
+	var localVarHTTPResponse *http.Response
+	var localVarBody []byte
+
+	for i := range maxRetries {
+		if req.Body != nil {
+			req.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
+		}
+
+		if i > 0 {
+			slog.Debug("Retrying request", "attempt", i, "method", localVarHTTPMethod, "path", localVarPath)
+		}
+
+	localVarHTTPResponse, err = a.client.callAPI(req)
+	{{! End Ping - DOCS-8830 }}
+	if err != nil || localVarHTTPResponse == nil {
+		return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, err
+	}
+
+	{{! Start Ping - Deprecation handling per API standards }}
+	logDeprecationHeaders(localVarHTTPResponse.Header, localVarPath, localVarHTTPMethod)
+	{{! End Ping - Deprecation handling per API standards }}
+
+	{{! Start Ping - DOCS-8830 }}
+	localVarBody, err = io.ReadAll(localVarHTTPResponse.Body)
+	{{! End Ping - DOCS-8830 }}
+	_ = localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, err
+	}
+
+{{#withCustomMiddlewareFunction}}
+	if a.client.cfg.ResponseMiddleware != nil {
+		err = a.client.cfg.ResponseMiddleware(localVarHTTPResponse, localVarBody)
+		if err != nil {
+			return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, err
+		}
+	}
+
+{{/withCustomMiddlewareFunction}}
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &APIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		{{#responses}}
+		{{#dataType}}
+		{{^is1xx}}
+		{{^is2xx}}
+		{{#range}}
+		{{#is3xx}}
+		if localVarHTTPResponse.StatusCode >= 300 && localVarHTTPResponse.StatusCode < 400 {
+		{{/is3xx}}
+		{{#is4xx}}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+		{{/is4xx}}
+		{{#is5xx}}
+		if localVarHTTPResponse.StatusCode >= 500 {
+		{{/is5xx}}
+		{{/range}}
+		{{^range}}
+		{{^wildcard}}
+		if localVarHTTPResponse.StatusCode == {{{code}}} {
+		{{/wildcard}}
+		{{/range}}
+			var v {{{dataType}}}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
+			}
+			{{! Start Ping - P14C-63085 }}
+			{{#vendorExtensions.x-pingone-p14c-63085}}
+			// check if environment exists - P14C-63085
+			_, _, err := a.client.EnvironmentsApi.GetEnvironmentById(r.ctx, r.environmentID).Execute()
+			if err != nil {
+				var notFoundErr NotFoundError
+				if errors.As(err, &notFoundErr) {
+					slog.Info("The API's error response is inconsistent with that of the containing environment. The environment has not been found", "API error", v, "parent environment error", notFoundErr)
+					return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, errors.Join(notFoundErr, err)
+				}
+			}
+			{{/vendorExtensions.x-pingone-p14c-63085}}
+			{{! End Ping - P14C-63085 }}
+			{{! Start Ping - DOCS-8830 }}
+			{{#vendorExtensions.x-pingone-docs-8830}}
+			// check if environment created recently - DOCS-8830
+			retryEnvironmentResponse, retryVarHTTPResponse, err := a.client.EnvironmentsApi.GetEnvironmentById(r.ctx, r.environmentID).Execute()
+			if err != nil {
+				newErr.error = err.Error()
+				return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
+			}
+			if retryVarHTTPResponse.StatusCode == 200 && retryEnvironmentResponse != nil {
+				// Check if the retryEnvironmentResponse.CreatedAt is within the last 30 seconds
+				if time.Since(retryEnvironmentResponse.CreatedAt) < 30*time.Second {
+					slog.Debug("The environment was created within the last 30 seconds, retrying request", "attempt", i, "method", localVarHTTPMethod, "path", localVarPath)
+					// Retry the request
+					time.Sleep(1 * time.Second)
+					continue
+				}
+			}
+			{{/vendorExtensions.x-pingone-docs-8830}}
+			{{! End Ping - DOCS-8830 }}
+			{{^-last}}
+			return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, getErrorObject(v)
+			{{/-last}}
+		{{^wildcard}}
+		}
+		{{/wildcard}}
+		{{/is2xx}}
+		{{/is1xx}}
+		{{/dataType}}
+		{{/responses}}
+		return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
+		{{! Start Ping - DOCS-8830 }}
+		}
+		break
+		{{! End Ping - DOCS-8830 }}
+	}
+
+	{{#returnType}}
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &APIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
+	}
+
+	{{/returnType}}
+	return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, nil
+}
+{{/operation}}
+{{/operations}}
