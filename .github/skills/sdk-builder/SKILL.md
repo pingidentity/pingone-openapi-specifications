@@ -62,7 +62,45 @@ Example:
 curl -L -o /tmp/openapi-spec.yaml "https://pingidentity.com/openapi.yaml"
 ```
 
-### Step 5: Execute SDK Generation
+### Step 5: Check Output Directory
+
+Before generating the SDK, check if the output directory already exists and contains files:
+
+1. Determine the target directory path:
+   - If `TARGET_DIR` provided: use that path
+   - Otherwise: use default pattern `dist/{language}/{product}/{version}`
+
+2. Check directory status using `run_in_terminal`:
+   ```bash
+   if [ -d "/path/to/output" ] && [ "$(ls -A /path/to/output 2>/dev/null)" ]; then
+     echo "EXISTS_AND_NOT_EMPTY"
+   elif [ -d "/path/to/output" ]; then
+     echo "EXISTS_BUT_EMPTY"
+   else
+     echo "DOES_NOT_EXIST"
+   fi
+   ```
+
+3. Handle results:
+   - **DOES_NOT_EXIST**: Proceed to Step 6
+   - **EXISTS_BUT_EMPTY**: Proceed to Step 6
+   - **EXISTS_AND_NOT_EMPTY**: Prompt user with options:
+     ```
+     The output directory already exists and contains files:
+     {directory_path}
+     
+     How would you like to proceed?
+     1. Remove existing directory and regenerate
+     2. Cancel generation
+     3. Specify a different output directory
+     ```
+     
+     Based on user choice:
+     - Option 1: Run `rm -rf {directory_path}` then proceed to Step 6
+     - Option 2: Stop workflow and confirm cancellation
+     - Option 3: Return to Step 2 to gather new TARGET_DIR, then re-check
+
+### Step 6: Execute SDK Generation
 
 Run Makefile `generate-sdk` target with parameters:
 
@@ -80,7 +118,7 @@ The Makefile will:
 2. Generate SDK to the target directory
 3. Apply language-specific post-processing
 
-### Step 6: Confirm Completion
+### Step 7: Confirm Completion
 
 Report to user:
 - Location of generated SDK
@@ -89,6 +127,7 @@ Report to user:
 ## Notes
 
 - Always verify required parameters before running generation
+- Always check for existing output directory and prompt user before overwriting
 - For remote OAS files, validate download succeeded before proceeding
 - Default output follows pattern: `dist/{language}/{product}/{version}`
 - PR workflow requires future "pr-raiser" skill integration

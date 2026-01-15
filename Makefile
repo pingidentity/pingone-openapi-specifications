@@ -1,4 +1,4 @@
-.PHONY: build-sdk-generator generate-sdk sdk-generator-default-templates generate-sdk-help
+.PHONY: build-sdk-generator generate-sdk sdk-generator-default-templates generate-sdk-help clean
 
 # Image configuration
 IMAGE ?= ping-sdk-openapi-generator:dev
@@ -22,6 +22,7 @@ generate-sdk-help:
 	@echo "  build-sdk-generator              Build the Docker image"
 	@echo "  generate-sdk                     Generate SDK using the Docker image"
 	@echo "  sdk-generator-default-templates  Pull default templates for a language"
+	@echo "  clean                            Remove the dist directory"
 	@echo "  generate-sdk-help                Show this help message"
 	@echo ""
 	@echo "Build Parameters:"
@@ -99,3 +100,8 @@ sdk-generator-default-templates: build-sdk-generator
 	@echo "Templates extracted successfully"
 	@echo "Location: dist/default_templates/$(LANGUAGE)"
 	@echo "Absolute path: $(shell pwd)/dist/default_templates/$(LANGUAGE)"
+
+clean:
+	@echo "Removing dist directory..."
+	@rm -rf dist
+	@echo "Done"
