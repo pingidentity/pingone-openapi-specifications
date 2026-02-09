@@ -69,7 +69,7 @@ if [[ "$DEBUG" == "true" ]]; then
 fi
 if [[ "$LANGUAGE" == "go" ]]; then
   additionalGeneratorArgs+=" --enable-post-process-file \
-    --type-mappings=\"integer=int32,number=float32,string+byte=[]byte,string+UUID=uuid.UUID,string+uuid=uuid.UUID,integer+bigInt=big.Int,number+bigFloat=big.Float,number+bigFloatUnquoted=types.BigFloatUnquoted,integer+unix-date-time=types.UnixTime\" \
+    --type-mappings=\"integer=int32,number=float32,string+byte=[]byte,string+UUID=uuid.UUID,string+uuid=uuid.UUID,integer+bigInt=big.Int,number+bigFloat=big.Float,number+bigFloatUnquoted=types.BigFloatUnquoted,number+float64=float64,integer+unix-date-time=types.UnixTime\" \
     --import-mappings=\"uuid.UUID=github.com/google/uuid,integer+bigInt=math/big,number+bigFloat=math/big,types.BigFloatUnquoted=$GENERATOR_GIT_HOST/$GENERATOR_GIT_USER_ID/$clientName/types,types.UnixTime=$GENERATOR_GIT_HOST/$GENERATOR_GIT_USER_ID/$clientName/types\" \
     --additional-properties=apiNameSuffix=Api,enumClassPrefix=true,packageName=$PRODUCT,packageVersion=$sdkVersion,isGoSubmodule=true,useOneOfDiscriminatorLookup=true,withGoMod=false,disallowAdditionalPropertiesIfNotPresent=false \
     --inline-schema-options RESOLVE_INLINE_ENUMS=true,ARRAY_ITEM_SUFFIX=,MAP_ITEM_SUFFIX="
