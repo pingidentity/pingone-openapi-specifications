@@ -405,6 +405,12 @@ func (a *{{{classname}}}Service) {{nickname}}Execute{{#vendorExtensions.x-pingid
 	if err != nil {
 		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, err
 	}
+	{{! Start Ping - Extension-based write serialization }}
+	{{#vendorExtensions.x-pingidentity-synchronized-CDI-873}}
+	a.modificationMutex.Lock()
+	defer a.modificationMutex.Unlock()
+	{{/vendorExtensions.x-pingidentity-synchronized-CDI-873}}
+	{{! End Ping - Extension-based write serialization }}
 
 	{{! Start Ping - Pagination based on API standards }}
 	{{#vendorExtensions.x-pingidentity-paginatedresponse}}

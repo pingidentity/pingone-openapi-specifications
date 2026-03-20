@@ -25,6 +25,7 @@ import (
 	"slices"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 	"unicode/utf8"
 
@@ -68,6 +69,9 @@ type APIClient struct {
 
 type service struct {
 	client *APIClient
+	// Used to synchronize mutating requests across the given API service.
+	// Only used by API services that are marked with a spec extension `x-pingidentity-synchronized-CDI-873: true`
+	modificationMutex sync.Mutex
 }
 
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
