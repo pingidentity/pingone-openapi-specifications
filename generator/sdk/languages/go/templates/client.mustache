@@ -69,9 +69,8 @@ type APIClient struct {
 
 type service struct {
 	client *APIClient
-	// Used only for write operations (POST/PUT/DELETE) to synchronize
-	// mutating requests across the given API service.
-	// Only used by API services that are marked with a spec extension
+	// Used to synchronize mutating requests across the given API service.
+	// Only used by API services that are marked with a spec extension `x-pingidentity-synchronized-CDI-873: true`
 	modificationMutex sync.Mutex
 }
 
