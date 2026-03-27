@@ -997,6 +997,8 @@ var (
 	maxRetries                       = 10
 	maximumRetryAfterBackoff         = 30
 	maximumRetryAfterBackoffDuration = time.Duration(maximumRetryAfterBackoff) * time.Second
+	maximumAccessFailedRetry         = 10
+	maximumAccessFailedRetryDuration = time.Duration(maximumAccessFailedRetry) * time.Second
 )
 
 func testForRetryable(r *http.Response, err error, retryAttempt int) (time.Duration, bool) {
@@ -1084,4 +1086,30 @@ func calculateExponentialBackoff(attempt int, baseDelay time.Duration) (time.Dur
 	slog.Debug("Calculated backoff duration", "maximumRetryAfterBackoffDuration", maximumRetryAfterBackoffDuration.String(), "attempt", attempt, "baseDelay", baseDelay.String(), "jitter", jitter.String(), "calculatedBackOff", calculatedBackOff.String())
 
 	return time.Duration(math.Min(float64(calculatedBackOff), float64(maximumRetryAfterBackoffDuration))), nil
+}
+
+func calculateFibonacciBackoff(attempt int, baseDelay time.Duration, maxDuration time.Duration) (time.Duration, error) {
+	a := 1
+	b := 1
+	for i := 2; i <= attempt; i++ {
+		next := a + b
+		a = b
+		b = next
+	}
+
+	n, err := rand.Int(rand.Reader, big.NewInt(101))
+	if err != nil {
+		return 0, err
+	}
+
+	if !n.IsInt64() {
+		return 0, fmt.Errorf("generated random jitter value is too large. This is always a problem with the SDK. Please raise an issue with the SDK maintainers.")
+	}
+
+	jitter := time.Duration(n.Int64()) * time.Millisecond // Add random jitter
+	calculatedBackOff := time.Duration(b)*baseDelay + jitter
+
+	slog.Debug("Calculated Fibonacci backoff duration", "maxDuration", maxDuration.String(), "attempt", attempt, "baseDelay", baseDelay.String(), "jitter", jitter.String(), "calculatedBackOff", calculatedBackOff.String())
+
+	return time.Duration(math.Min(float64(calculatedBackOff), float64(maxDuration))), nil
 }
