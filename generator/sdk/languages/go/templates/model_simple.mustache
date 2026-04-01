@@ -414,7 +414,7 @@ func (o *{{{classname}}}) UnmarshalJSON(data []byte) (err error) {
 		{{^useDefaultValuesForRequiredVars}}
 		if _, exists := allProperties[requiredProperty]; !exists {
 		{{/useDefaultValuesForRequiredVars}}
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+			return fmt.Errorf("no value given for required property %v when unmarshaling {{classname}}", requiredProperty)
 		}
 	}
 
