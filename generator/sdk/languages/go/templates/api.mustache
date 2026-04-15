@@ -525,7 +525,13 @@ func (a *{{{classname}}}Service) {{nickname}}Execute{{#vendorExtensions.x-pingid
 					if time.Since(retryEnvironmentResponse.CreatedAt) < {{#retrySeconds}}{{retrySeconds}}{{/retrySeconds}}{{^retrySeconds}}30{{/retrySeconds}}*time.Second {
 						slog.Debug("The environment was created within the last {{#retrySeconds}}{{retrySeconds}}{{/retrySeconds}}{{^retrySeconds}}30{{/retrySeconds}} seconds, retrying request", "attempt", i, "method", localVarHTTPMethod, "path", localVarPath)
 						// Retry the request
-						time.Sleep(1 * time.Second)
+						backoffDuration, backoffErr := calculateFibonacciBackoff(i, 1*time.Second, maximumAccessFailedRetryDuration)
+						if backoffErr != nil {
+							slog.Error("Failed to calculate backoff duration", "error", backoffErr)
+							newErr.error = backoffErr.Error()
+							return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
+						}
+						time.Sleep(backoffDuration)
 						continue
 					}
 				}
