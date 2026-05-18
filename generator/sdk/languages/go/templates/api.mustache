@@ -435,6 +435,12 @@ func (a *{{{classname}}}Service) {{nickname}}Execute{{#vendorExtensions.x-pingid
 	if err != nil {
 		return {{#returnType}}localVarReturnValue, {{/returnType}}nil, err
 	}
+	{{! Start Ping - Extension-based write serialization }}
+	{{#vendorExtensions.x-pingidentity-synchronized-CDI-873}}
+	a.modificationMutex.Lock()
+	defer a.modificationMutex.Unlock()
+	{{/vendorExtensions.x-pingidentity-synchronized-CDI-873}}
+	{{! End Ping - Extension-based write serialization }}
 
 	{{! Start Ping - Pagination based on API standards }}
 	{{#vendorExtensions.x-pingidentity-paginatedresponse}}
@@ -545,16 +551,16 @@ func (a *{{{classname}}}Service) {{nickname}}Execute{{#vendorExtensions.x-pingid
 					return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
 				}
 				if retryVarHTTPResponse.StatusCode == 200 && retryEnvironmentResponse != nil {
-					// Check if the retryEnvironmentResponse.CreatedAt is within the last 30 seconds
-					if time.Since(retryEnvironmentResponse.CreatedAt) < 30*time.Second {
-						slog.Debug("The environment was created within the last 30 seconds, retrying request", "attempt", i, "method", localVarHTTPMethod, "path", localVarPath)
+					// Check if the retryEnvironmentResponse.CreatedAt is within the last {{#retrySeconds}}{{retrySeconds}}{{/retrySeconds}}{{^retrySeconds}}30{{/retrySeconds}} seconds
+					if time.Since(retryEnvironmentResponse.CreatedAt) < {{#retrySeconds}}{{retrySeconds}}{{/retrySeconds}}{{^retrySeconds}}30{{/retrySeconds}}*time.Second {
+						slog.Debug("The environment was created within the last {{#retrySeconds}}{{retrySeconds}}{{/retrySeconds}}{{^retrySeconds}}30{{/retrySeconds}} seconds, retrying request", "attempt", i, "method", localVarHTTPMethod, "path", localVarPath)
 						span.AddEvent("pingone.retry.environment_not_ready",
-						trace.WithAttributes(
-							attribute.Int("retry.attempt", i),
-							attribute.String("retry.reason", "environment_created_within_30s"),
-						),
-					)
-					// Retry the request
+							trace.WithAttributes(
+								attribute.Int("retry.attempt", i),
+								attribute.String("retry.reason", "environment_created_within_30s"),
+							),
+						)
+						// Retry the request
 						time.Sleep(1 * time.Second)
 						continue
 					}
