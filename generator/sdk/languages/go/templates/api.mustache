@@ -561,7 +561,13 @@ func (a *{{{classname}}}Service) {{nickname}}Execute{{#vendorExtensions.x-pingid
 							),
 						)
 						// Retry the request
-						time.Sleep(1 * time.Second)
+						backoffDuration, backoffErr := calculateFibonacciBackoff(i, 1*time.Second, maximumAccessFailedRetryDuration)
+						if backoffErr != nil {
+							slog.Error("Failed to calculate backoff duration", "error", backoffErr)
+							newErr.error = backoffErr.Error()
+							return {{#returnType}}localVarReturnValue, {{/returnType}}localVarHTTPResponse, newErr
+						}
+						time.Sleep(backoffDuration)
 						continue
 					}
 				}
