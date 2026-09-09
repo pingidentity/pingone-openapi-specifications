@@ -1,6 +1,6 @@
-FROM golang:1.24.1 AS go-build
+FROM golang:1.25.0 AS go-build
 
-RUN go install golang.org/x/tools/cmd/goimports@latest
+RUN go install golang.org/x/tools/cmd/goimports@v0.49.0
 
 FROM openapitools/openapi-generator-cli:v7.16.0 AS openapigenerator
 
